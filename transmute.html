@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Samotraces Trans_Mute</title>
+
+    <!--LIBS-->
+    <script type="text/javascript" src="lib/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="lib/d3.js"></script>
+    <!--<script type="text/javascript" src="lib/jquery.js"></script>-->
+    <script type="text/javascript" src="lib/jquery.mousewheel.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css"  href="lib/jquery-ui.css">
+        <!--BOOTSTRAP-->
+    <link href="lib/bootstrap.css" rel="stylesheet">
+    <link href="lib/bootstrap-theme.css" rel="stylesheet">
+    <script type="text/javascript" src="lib/bootstrap.js"></script>
+
+    <!--DIST-->
+    <script type="text/javascript" src="dist/Samotraces.js"></script>
+    <script type="text/javascript" src="dist/date_heure.js"></script>
+    <script type="text/javascript" src="../../../src/generate_samotraces.php"></script>
+    <link rel="stylesheet" type="text/css" href="dist/samotraces.css"> 
+    <link rel="stylesheet" type="text/css" href="dist/style.css"> 
+        <!--UI-->
+    <script type="text/javascript" src="dist/main_ui.js"></script>
+    <link href="dist/main.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+<div class="container-fluid" style="height: 100%; padding: 0; margin: 0;">
+    <h1 style="margin-bottom: -1em;">TRANS_MUTE</h1>
+
+    <div class="row" style="margin-bottom: 1em;">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs">
+              <li><a href="#">Home</a></li>
+              <li class="active"><a href="#">Profile</a></li>
+              <li><a href="#">Messages</a></li>
+            </ul>
+        </div>
+    </div>
+
+    
+
+
+    <div id="toolbox" class="row" style="margin-top: 1em; height: 40%; display: none;">
+            <div class="col-md-1 sidebar" >
+
+                <ul class="nav nav-pills nav-stacked">
+                  <li><a id="ajouter_obsel" href="#">Ajouter<span class="glyphicon glyphicon-plus pull-right"></span></a></li>
+                  <li class="active"><a id="transformer_obsel" href="#">Modifier   <span class="glyphicon glyphicon-pencil pull-right"></span></a></li>
+                  <li><a id="supprimer_obsel" href="#">Supprimer   <span class="glyphicon glyphicon-remove pull-right"></span></a></li>
+                </ul>
+
+            </div>
+
+            <div class="col-md-11">
+                <div class="progress">
+                  <div class="progress-bar" style="width: 16.67%;">
+                    1
+                  </div>
+                  <div class="progress-bar progress-bar-info" style="width: 16.67%">
+                    <span>2</span>
+                  </div>
+                  <div class="progress-bar progress-bar-success" style="width: 16.67%">
+                    <span>3</span>
+                  </div>
+                  <div class="progress-bar" style="width: 16.67%;">
+                    <span>4</span>
+                  </div>
+                  <div class="progress-bar progress-bar-info" style="width: 16.66%">
+                    <span>5</span>
+                  </div>
+                  <div class="progress-bar progress-bar-undone" style="width: 16.66%">
+                    <span>6</span>
+                  </div>
+                </div>
+            </div>
+
+            <div class="col-md-11">
+                <div class="col-md-2 border-right">
+                obsels selectionnés :<br/>
+                <div id="img_replace"></div>    
+                </div>
+                <div class="col-md-2 border-right">
+                 <label >Type :</label>             
+                 <SELECT id="replace_type" size="1" name="champ" >
+                 </SELECT> 
+                 <span id="error_replace_type" color="#fba"></span>
+                </div>
+                <div class="col-md-2 border-right">
+                    <label >Time Stamp : </label><input type="text" id="replace_TimeStamp" value="">
+                </div>
+                <div class="col-md-2 border-right">
+                     <div id="attrs_replace">
+                     Attributs :
+                     </div>
+                </div>
+                <div class="col-md-2 border-right">
+                    <fieldset> 
+                      <legend><b>Activer/desactiver le système de suggestions</b></legend>
+                      <div><br><input type="checkbox" id="activer_suggestion" >utiliser le système de suggestions</div>
+                    </fieldset>
+                </div>
+                <div class="col-md-2 border-right">
+                     <button id="modify-obs" disabled="disabled" >Remplacer Obsel</button>
+                </div>
+            </div>
+    
+    </div>
+
+    <div id="traces" class="row" style="height: 100%;">
+
+        <div class="col-md-1 sidebar">
+            <ul class="nav nav-pills nav-stacked">
+              <li><a id="charger_trace" href="#">Charger</span></a></li>
+              <li class="active"><a id="transformer_trace" href="#">Transformer</span></a></li>
+              <li><a id="comparer_trace" href="#">Comparer</span></a></li>
+            </ul>
+        </div>
+
+        <!--<div id="row_charger" class="col-md-11 bg-grey" style="height: 100%; margin-left: 15px; margin-right: -30px; padding-right: 30px; display: none;">
+            <div id="my-widget" style="background: #fff; margin-top: 2em;"></div>
+            <div id="scale"></div>
+            <div id="importer"></div><br>
+        </div>-->
+
+        <div id="row_transformer" class="col-md-11 bg-grey" style="height: 100%; margin-left: 15px; margin-right: -30px; padding-right: 30px;">
+            <div id="my-widget" style="background: #fff; margin-top: 2em; display: block;"></div>
+            <div id="scale"></div>
+            <div id="importer"></div><br>
+            <div id="importer transformation"></div>    
+            <div id="obsel-inspector"></div>
+            <div id="my-widget2" style="background: #fff; margin-top: 5em;"></div>
+            <div id="scale2"></div>
+            <br><div id="interaction-liste"></div>
+        </div>
+
+    </div>
+
+    <div class="row" style="margin-top: 20em;">
+        <div class="col-md-4">
+            <div id="obsel-inspector2"></div>   
+          <br><fieldset> 
+         
+          <legend><b>Liste des transformations</b></legend>
+          <form action="./" method="post">
+          <br><div align="right"><textarea cols="73" rows="10" id="historique" ></textarea></div>
+          <br><div align="right"><a href="#" class="blueButton" id="download" >Download</a></div>
+          </form>
+         </fieldset> 
+        </div>
+         <br><div id="dialog" title="Suggestion Samotraces_Transformation" float: right;></div>
+        </div>
+
+        <div class="col-md-4">
+            <h1 align="center" class="texte_gris">Ajouter Obsel</h1>
+            <hr class="ligne_boite_outils"/> 
+             <br>
+             <hr class="ligne_boite_outils"/> 
+             <label >Type :</label>
+             <SELECT id="add_type" size="1" name="champ" >
+             </SELECT> 
+              <span id="error_add_type" color="#fba"></span>
+             <br><br><label >Time Stamp : </label><input type="text" id="add_TimeStamp" value="">
+         
+             <br><br>
+             <div id="attrs">
+             Attributs :
+             </div>
+             <button id="add-obs">Ajouter Obsel</button>
+        </div>
+
+        <div class="col-md-4">
+            <h1 align="center" class="texte_gris">Supprimer Obsel</h1>
+             <hr class="ligne_boite_outils"/> 
+             obsels selectionnés :<div id="img_delete"></div>
+             <hr class="ligne_boite_outils"/> 
+             <button id="delete-obs" disabled="disabled" >Supprimer Obsel</button>
+        </div>
+
+
+    
+    <script src="assets/js/jquery.generateFile.js"></script>
+    <script src="assets/js/script.js"></script> 
+
+
+</div>
+
+</body>
+</html>
