@@ -11,8 +11,9 @@ $(document).ready(function(){
 
 		switch (id)
 		{
-			case 'load_trace' : $('#row_load').siblings('.col-md-10').hide();
-								$('#row_load').show();
+			case 'load_trace' : $('#traces_header').html('Charger trace');
+								$('#my-widget2, #scale2').hide();
+								$('#importer').show();
 								if(toolbox_vis)
 								{
 									$('#toolbox').hide();
@@ -20,8 +21,9 @@ $(document).ready(function(){
 								}
 								break;
 
-			case 'transform_trace' : 	$('#row_transform').siblings('.col-md-10').hide();
-										$('#row_transform').show();
+			case 'transform_trace' : 	$('#traces_header').html('Transformer trace');
+										$('#my-widget2, #scale2').show();
+										$('#importer').hide();
 										if(!toolbox_vis)
 										{
 											$('#toolbox').show();
@@ -29,8 +31,7 @@ $(document).ready(function(){
 										}
 									 	break;
 
-			case 'compare_trace' : 	$('#row_compare').siblings('.col-md-10').hide();
-									$('#row_compare').show();
+			case 'compare_trace' : 	
 									if(toolbox_vis)
 									{
 										$('#toolbox').hide();
@@ -38,8 +39,7 @@ $(document).ready(function(){
 									}
 								   	break;
 
-			case 'import_trace' : 	$('#row_import').siblings('.col-md-10').hide();
-									$('#row_import').show();
+			case 'import_trace' : 	
 									if(toolbox_vis)
 									{
 										$('#toolbox').hide();
@@ -47,8 +47,7 @@ $(document).ready(function(){
 									}
 									break;
 
-			case 'history' : 	$('#row_history').siblings('.col-md-10').hide();
-								$('#row_history').show();
+			case 'history' : 	
 								if(toolbox_vis)
 								{
 									$('#toolbox').hide();
@@ -56,8 +55,7 @@ $(document).ready(function(){
 								}
 								break;
 
-			case 'download_transformation' : 	$('#row_download').siblings('.col-md-10').hide();
-												$('#row_download').show();
+			case 'download_transformation' : 	
 												if(toolbox_vis)
 												{
 													$('#toolbox').hide();
