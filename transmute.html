@@ -103,31 +103,47 @@
 
       </div>
 
-      <div class="col-md-10 full-height">
+      <div class="col-md-10 full-height" style="padding-top: 10px; text-align: center; " >
+
+        <!-- display the selected trace -->
         <div class="col-md-2 step">
             <div class="row">
               <div class="progress-bar bg-mauve" style="width: 100%;">
                 1
               </div>
             </div>
-          <div class="row border-right">
-            <div class="col-md-12">
-               <p class="loremipsum">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <div class="row border-right">
+              <div class="col-md-12">
+                <label>obsels selectionnés</label>
+                <div id="img_replace"></div>
+
+                <br><br>
+                               
+                <br><br>
+
+
+              </div>
             </div>
-          </div>
         </div>
+
+        <!-- replacement choice -->
         <div class="col-md-2 step">
           <div class="row">
               <div class="progress-bar bg-purple" style="width: 100%;">
                 2
               </div>
-            </div>
+          </div>
           <div class="row border-right">
             <div class="col-md-12">
-               <p class="loremipsum">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <label>Replacement</label>
+                <SELECT id="replace_type" size="1" name="champ" >
+                </SELECT> 
+                <span id="error_replace_type" color="#fba"></span>
             </div>
           </div>
         </div>
+
+        <!-- time stamp -->
         <div class="col-md-2 step">
           <div class="row">
               <div class="progress-bar bg-darkblue" style="width: 100%;">
@@ -136,10 +152,13 @@
             </div>
           <div class="row border-right">
             <div class="col-md-12">
-               <p class="loremipsum">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+               <label >Time Stamp</label>
+               <input type="text" id="replace_TimeStamp" value="" size="5">
             </div>
           </div>
         </div>
+
+        <!-- attribut -->
         <div class="col-md-2 step">
           <div class="row">
               <div class="progress-bar bg-mediumblue" style="width: 100%;">
@@ -148,10 +167,13 @@
             </div>
           <div class="row border-right">
             <div class="col-md-12">
-               <p class="loremipsum">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <label>Attributs</label>
+                <div id="attrs_replace"></div>
             </div>
           </div>
         </div>
+
+        <!-- suggestion -->
         <div class="col-md-2 step">
           <div class="row">
               <div class="progress-bar bg-lightblue" style="width: 100%;">
@@ -160,10 +182,13 @@
             </div>
           <div class="row border-right">
             <div class="col-md-12">
-               <p class="loremipsum">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+              <label>Suggestion</label>
+               <p class="loremipsum">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
           </div>
         </div>
+
+        <!-- submit button -->
         <div class="col-md-2 step">
           <div class="row">
               <div class="progress-bar bg-green" style="width: 100%;">
@@ -172,7 +197,7 @@
           </div>
           <div class="row border-right">
             <div class="col-md-12">
-               <p class="loremipsum">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <button type="button" class="btn btn-default" id="modify-obs" disabled="disabled" >Remplacer</button>
             </div>
           </div>
         </div>
