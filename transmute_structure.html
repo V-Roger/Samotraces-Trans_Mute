@@ -47,39 +47,71 @@
         </div>
     </div>
 
-    <div id="traces" class="row">
+    <div id="traces" class="container-fluid">
+      <div class="row full-height">
 
-        <div class="col-md-1">
-            <ul class="nav nav-pills nav-stacked">
-              <li><a id="charger_trace" href="#">Charger</span></a></li>
-              <li class="active"><a id="transformer_trace" href="#">Transformer</span></a></li>
-              <li><a id="comparer_trace" href="#">Comparer</span></a></li>
-            </ul>
-        </div>
+          <div class="col-md-2">
+              <ul id="nav_traces" class="nav nav-pills nav-stacked">
+                <li><h4>TRACES</h4></li>
+                <li class="active"><a id="load_trace" href="#">Charger</a></li>
+                <li><a id="transform_trace" href="#">Transformer</a></li>
+                <li><a id="compare_trace" href="#">Comparer</a></li>
+                <li><h4>TRANSFORMATIONS</h4></li>
+                <li><a id="import_trace" href="#">Importer</a></li>
+                <li><a id="history" href="#">Historique</a></li>
+                <li><a id="download_transformation" href="#">T&eacute;l&eacute;charger</a></li>
+              </ul>
+          </div>
 
-        <!--<div id="row_charger" class="col-md-11 bg-grey" style="height: 100%; margin-left: 15px; margin-right: -30px; padding-right: 30px; display: none;">
-            <div id="my-widget" style="background: #fff; margin-top: 2em;"></div>
-            <div id="scale"></div>
-            <div id="importer"></div><br>
-        </div>-->
+          <div id="row_load" class="col-md-10 bg-grey">
+              <h4>Charger Trace</h4>
+              <div id="my-widget" style="background: #fff; margin-top: 2em;"></div>
+              <div id="scale"></div>
+              <div id="importer"></div><br>
+          </div>
 
-        <div id="row_transformer" class="col-md-11 bg-grey">
-            <div id="my-widget" style="background: #fff; margin-top: 2em; display: block;"></div>
-            <div id="scale"></div>
-            <div id="importer"></div><br>
-            <div id="importer transformation"></div>    
-            <div id="obsel-inspector"></div>
-            <div id="my-widget2" style="background: #fff; margin-top: 5em;"></div>
-            <div id="scale2"></div>
-            <br><div id="interaction-liste"></div>
-        </div>
+          <div id="row_transform" class="col-md-10 bg-grey">
+              <h4>Transformer Trace</h4>
+              <div id="my-widget" style="background: #fff; margin-top: 2em; display: block;"></div>
+              <div id="scale"></div>
+              <div id="obsel-inspector"></div>
+              <div id="my-widget2" style="background: #fff; margin-top: 5em;"></div>
+              <div id="scale2"></div>
+          </div>
 
-    </div>
-    
-    <div id="toolbox" class="row">
-      <div class="col-md-1">
+          <div id="row_compare" class="col-md-10 bg-grey">
+              <h4>Comparer Trace</h4>
+              <div id="my-widget" style="background: #fff; margin-top: 2em; display: block;"></div>
+              <div id="scale"></div> 
+              <div id="obsel-inspector"></div>
+              <div id="my-widget2" style="background: #fff; margin-top: 5em;"></div>
+              <div id="scale2"></div>
+          </div>
+
+          <div id="row_import" class="col-md-10 bg-grey">
+              <h4>Importer Transformation</h4>
+              <div id="importer transformation"></div>
+              <div id="my-widget2" style="background: #fff; margin-top: 5em;"></div>
+              <div id="scale2"></div>
+          </div>
+
+          <div id="row_history" class="col-md-10 bg-grey">
+              <h4>Historique</h4>
+          </div>
+
+          <div id="row_download" class="col-md-10 bg-grey">
+              <h4>T&eacute;l&eacute;charger Transformation</h4>
+              <div id="interaction-liste"></div>
+          </div>
+      </div>
+    </div><!--container-fluid-->
+
+    <div id="toolbox" class="container-fluid">
+    <div class="row full-height">
+      <div class="col-md-2">
 
           <ul class="nav nav-pills nav-stacked">
+            <li><h4>OBSELS</h4></li>
             <li><a id="ajouter_obsel" href="#">Ajouter<span class="glyphicon glyphicon-plus pull-right"></span></a></li>
             <li class="active"><a id="transformer_obsel" href="#">Modifier   <span class="glyphicon glyphicon-pencil pull-right"></span></a></li>
             <li><a id="supprimer_obsel" href="#">Supprimer   <span class="glyphicon glyphicon-remove pull-right"></span></a></li>
@@ -87,7 +119,7 @@
 
       </div>
 
-      <div class="col-md-11" style="height: 100%;">
+      <div class="col-md-10 full-height">
         <div class="col-md-2 step">
             <div class="row">
               <div class="progress-bar bg-mauve" style="width: 100%;">
@@ -163,6 +195,7 @@
       </div>
     
     </div><!--toolbox-->
+    </div><!--container-fluid-->
 
     <!--
     <div class="row" style="margin-top: 20em;">
