@@ -12,8 +12,11 @@ $(document).ready(function(){
 		switch (id)
 		{
 			case 'load_trace' : $('#traces_header').html('Charger trace');
+								$('#widgets').show();
 								$('#my-widget2, #scale2').hide();
 								$('#importer').show();
+								$('#transformation_list').hide();
+								$('#importer-transformation').hide();
 								if(toolbox_vis)
 								{
 									$('#toolbox').hide();
@@ -22,8 +25,11 @@ $(document).ready(function(){
 								break;
 
 			case 'transform_trace' : 	$('#traces_header').html('Transformer trace');
+										$('#widgets').show();
 										$('#my-widget2, #scale2').show();
 										$('#importer').hide();
+										$('#transformation_list').hide();
+										$('#importer-transformation').hide();
 										if(!toolbox_vis)
 										{
 											$('#toolbox').show();
@@ -31,7 +37,11 @@ $(document).ready(function(){
 										}
 									 	break;
 
-			case 'compare_trace' : 	
+			case 'compare_trace' : 	$('#traces_header').html('Comparer trace');
+									$('#my-widget2, #scale2').show();
+									$('#importer').hide();
+									$('#transformation_list').hide();
+									$('#importer-transformation').hide();
 									if(toolbox_vis)
 									{
 										$('#toolbox').hide();
@@ -39,15 +49,25 @@ $(document).ready(function(){
 									}
 								   	break;
 
-			case 'import_trace' : 	
-									if(toolbox_vis)
-									{
-										$('#toolbox').hide();
-										$('#traces').css('height', '92%');
-									}
-									break;
+			case 'import_transformation' : 	$('#traces_header').html('Importer transformation');
+											$('#widgets').hide();
+											$('#my-widget2, #scale2').show();
+											$('#importer-transformation').show();
+											$('#importer').hide();
+											$('#transformation_list').hide();
+											if(toolbox_vis)
+											{
+												$('#toolbox').hide();
+												$('#traces').css('height', '92%');
+											}
+											break;
 
-			case 'history' : 	
+			case 'history' : 	$('#traces_header').html('Historique');
+								$('#widgets').hide();			
+								$('#my-widget2, #scale2').show();
+								$('#transformation_list').show();
+								$('#importer').hide();
+								$('#importer-transformation').hide();
 								if(toolbox_vis)
 								{
 									$('#toolbox').hide();
@@ -55,7 +75,11 @@ $(document).ready(function(){
 								}
 								break;
 
-			case 'download_transformation' : 	
+			case 'download_transformation' : 	$('#traces_header').html('Télécharger transformation');
+												$('#widgets').hide();
+												$('#my-widget2, #scale2').show();
+												$('#transformation_list').show();
+												$('#importer').hide();
 												if(toolbox_vis)
 												{
 													$('#toolbox').hide();

@@ -56,13 +56,13 @@
                 <li><a id="transform_trace" href="#">Transformer</a></li>
                 <li><a id="compare_trace" href="#">Comparer</a></li>
                 <li><h4>TRANSFORMATIONS</h4></li>
-                <li><a id="import_trace" href="#">Importer</a></li>
+                <li><a id="import_transformation" href="#">Importer</a></li>
                 <li><a id="history" href="#">Historique</a></li>
                 <li><a id="download_transformation" href="#">T&eacute;l&eacute;charger</a></li>
               </ul>
           </div>
 
-          <div id="row_load" class="col-md-10 bg-grey traces_row">
+          <div id="row_traces" class="col-md-10 bg-grey traces_row">
               <h4 id="traces_header">Charger Trace</h4>
               <div id="clef"></div>
               <div id="widgets">
@@ -70,36 +70,25 @@
                   <div id="scale"></div>
                   <div id="importer"></div>
                   <div id="obsel-inspector"></div>  
-              </div><br>
+              </div><br><br>
+              <div id="importer-transformation"></div>  
               <div id="obsel-inspector"></div>
               <div id="my-widget2"></div>
               <div id="scale2"></div>
-              <br><div id="interaction-liste"></div>
-          </div>
+              <div id="interaction-liste"></div>
 
-          <div id="row_transform" class="col-md-10 bg-grey traces_row">
-              <h4>Transformer Trace</h4>
-          </div>
-
-          <div id="row_compare" class="col-md-10 bg-grey traces_row">
-              <h4>Comparer Trace</h4>
-          </div>
-
-          <div id="row_import" class="col-md-10 bg-grey traces_row">
-              <h4>Importer Transformation</h4>
-        <div id="importer transformation"></div>  
-
-          </div>
-
-          <div id="row_history" class="col-md-10 bg-grey traces_row">
-              <h4>Historique</h4>
-          </div>
-
-          <div id="row_download" class="col-md-10 bg-grey traces_row">
-              <h4>T&eacute;l&eacute;charger Transformation</h4>
+              <fieldset id="transformation_list"> 
+                 <legend><b>Liste des transformations</b></legend>
+                    <form action="./" method="post">
+                    <br><div align="right"><textarea cols="73" rows="10" id="historique" ></textarea></div>
+                    <br><div align="right"><a href="#" class="blueButton" id="download" >Télécharger</a></div>
+                    </form>
+              </fieldset> 
           </div>
       </div>
     </div><!--container-fluid-->
+
+    <div class="clearfix"></div>
 
     <div id="toolbox" class="container-fluid">
     <div class="row full-height">
@@ -233,7 +222,7 @@
              new Samotraces.UI.Widgets.WindowScale('scale',tw);
        new Samotraces.UI.Widgets.WindowScale('scale2',tw2);
              var importer = new Samotraces.UI.Widgets.ImportTrace('importer');
-       new Samotraces.UI.Widgets.ImportTrace('importer transformation');//,trace_Transformation);
+       new Samotraces.UI.Widgets.ImportTrace('importer-transformation');//,trace_Transformation);
        new Samotraces.UI.Widgets.ObselInspector('obsel-inspector',obsel_selector_origin);
       
        var trace, trace_Transformation, visu_origin, visu;
@@ -252,7 +241,7 @@
         visu = new Samotraces.UI.Widgets.TraceDisplayIcons('my-widget2',trace_Transformation,tw2,options);
         
         $('#importtrans').remove();
-        new Samotraces.UI.Widgets.ImportTrace('importer transformation',trace_Transformation);
+        new Samotraces.UI.Widgets.ImportTrace('importer-transformation',trace_Transformation);
       });
       
       

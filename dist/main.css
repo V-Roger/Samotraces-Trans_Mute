@@ -164,7 +164,7 @@ min-height: 50%;
   display: none;
 }
 
-#row_load{
+#row_traces{
   display: block;
 }
 
@@ -189,6 +189,6 @@ display: none;
   background: #fff;
  }
 
- #my-widget2, #scale2{
+ #my-widget2, #scale2, #importer-transformation, #transformation_list{
   display: none;
  }
