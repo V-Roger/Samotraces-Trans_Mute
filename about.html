@@ -1,51 +1,75 @@
 <!doctype html>
 <html>
+
 <head>
-    <meta charset="utf-8">
+    <title>STREFACTOR | Test Bootstrap</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Samotraces Trans_Mute</title>
-
-    <!--LIBS-->
-    <script type="text/javascript" src="lib/jquery-2.1.0.min.js"></script>
-    <script type="text/javascript" src="lib/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="lib/d3.js"></script>
-    <!--<script type="text/javascript" src="lib/jquery.js"></script>-->
-    <script type="text/javascript" src="lib/jquery.mousewheel.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" type="text/css"  href="lib/jquery-ui.css">
-        <!--BOOTSTRAP-->
-    <link href="lib/bootstrap.css" rel="stylesheet">
-    <link href="lib/bootstrap-theme.css" rel="stylesheet">
-    <script type="text/javascript" src="lib/bootstrap.js"></script>
-
-    <!--DIST-->
-    <script type="text/javascript" src="dist/Samotraces.js"></script>
-    <script type="text/javascript" src="dist/date_heure.js"></script>
-    <script type="text/javascript" src="../../../src/generate_samotraces.php"></script>
-    <link rel="stylesheet" type="text/css" href="dist/samotraces.css"> 
-    <link rel="stylesheet" type="text/css" href="dist/style.css"> 
-        <!--UI-->
-    <script type="text/javascript" src="dist/main_ui.js"></script>
-    <link href="dist/main.css" rel="stylesheet">
-
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
-
 
 <body>
 
-    <div class="container-fluid" style="height: 100%; padding: 0; margin: 0;">
-        <h1 style="margin-bottom: -1em;">TRANS_MUTE</h1>
 
-        <div class="row" style="margin-bottom: 1em;">
-            <div class="col-md-12">
-                <ul class="nav nav-tabs">
-                  <li><a href="#">Home</a></li>
-                  <li class="active"><a href="#">Profile</a></li>
-                  <li><a href="#">Messages</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+<div class="navbar navbar-fixed-top" role="navigation">
+	<div class="container-fluid" style="position: relative; height: 100%; padding: 0; margin: 0; border-bottom: 1px solid #ddd;">
+		<div class="col-md-1">
+			<div id="logo">
+			<img class="imglogo" src="img/LogoSamotraces.png" alt="Logo Samotraces">
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<h1 id="titre">Samotraces Transmute</h1>
+		</div>
+
+		<div class="col-md-7" style="position: absolute; bottom:-1px; right:0;">
+			<ul class="nav nav-tabs">
+		  	<li><a class="liris-mauve" href="contact.html"><span class="glyphicon glyphicon-envelope"></span> Contact</a></li>
+		  	<li class="active"><a class="liris-lightblue" href="apropos.html"><span class="glyphicon glyphicon-globe"></span> A propos</a></li>			
+			<li class="dropdown">
+		    <a href="#" data-toggle="dropdown" class="liris-purple dropdown-toggle">
+		     <span class="glyphicon glyphicon-question-sign"></span> Ressources <span class="caret"></span>
+		    </a>
+		    <ul class="dropdown-menu">
+		      <li><a href="#">Tutoriels</a></li>
+		      <li><a href="#">Autres</a></li>
+		    </ul>
+			</li>
+
+			<li><a class="liris-green" href="tool.html"><span class="glyphicon glyphicon-tree-conifer"></span> Samotraces</a></li>
+		  	<li><a class="liris-mediumblue" href="index.html"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+			</ul>
+		</div>
+
+
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div class="row" style="padding-left:40px;">
+		<h2>A propos blablablab lablablb</h2>
+		blabhzfiuhf zhezaiuhbdia yagiahd ioa iuhfe iuzg uygazue fzgyegf uzgef zuefg <p/>
+		ezzfh iuhfe izuehgf zyigef yzegf <p/><br/><br/>
+		<div class="col-md-2"></div>
+		<div class="col-md-3" style="padding: 0;">
+			<img src="img/LogoSamotraces.png" height="100px">
+		</div>
+
+		<div class="col-md-3" style="padding: 0;">
+			<img src="img/LogoLiris.png" height="100px">
+		</div>
+		<div class="col-md-4"></div>
+
+	</div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
 
 </body>
 </html>
+
