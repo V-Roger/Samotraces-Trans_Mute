@@ -1,52 +1,107 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Samotraces Trans_Mute</title>
-
-    <!--LIBS-->
-    <script type="text/javascript" src="lib/jquery-2.1.0.min.js"></script>
-    <script type="text/javascript" src="lib/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="lib/d3.js"></script>
-    <!--<script type="text/javascript" src="lib/jquery.js"></script>-->
-    <script type="text/javascript" src="lib/jquery.mousewheel.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" type="text/css"  href="lib/jquery-ui.css">
-        <!--BOOTSTRAP-->
-    <link href="lib/bootstrap.css" rel="stylesheet">
-    <link href="lib/bootstrap-theme.css" rel="stylesheet">
-    <script type="text/javascript" src="lib/bootstrap.js"></script>
-
-    <!--DIST-->
-    <script type="text/javascript" src="dist/Samotraces.js"></script>
-    <script type="text/javascript" src="dist/date_heure.js"></script>
-    <script type="text/javascript" src="../../../src/generate_samotraces.php"></script>
-    <link rel="stylesheet" type="text/css" href="dist/samotraces.css"> 
-    <link rel="stylesheet" type="text/css" href="dist/style.css"> 
-        <!--UI-->
-    <script type="text/javascript" src="dist/main_ui.js"></script>
-    <link href="dist/main.css" rel="stylesheet">
-
+    <title>STREFACTOR | Test Bootstrap</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
-
 
 <body>
 
-    <div class="container-fluid" style="height: 100%; padding: 0; margin: 0;">
-        <h1 style="margin-bottom: -1em;">TRANS_MUTE</h1>
+<div class="navbar navbar-fixed-top" role="navigation">
+	<div class="container-fluid" style="position: relative; height: 100%; padding: 0; margin: 0; border-bottom: 1px solid #ddd;">
+		<div class="col-md-1">
+			<div id="logo">
+			<img class="imglogo" src="img/LogoSamotraces.png" alt="Logo Samotraces">
+			</div>
+		</div>
 
-        <div class="row" style="margin-bottom: 1em;">
-            <div class="col-md-12">
-                <ul class="nav nav-tabs">
-                  <li><a href="#">Home</a></li>
-                  <li class="active"><a href="#">Profile</a></li>
-                  <li><a href="#">Messages</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+		<div class="col-md-4">
+			<h1 id="titre">Samotraces Transmute</h1>
+		</div>
+
+		<div class="col-md-7" style="position: absolute; bottom:-1px; right:0;">
+			<ul class="nav nav-tabs">
+		  	<li class="active"><a class="liris-mauve" href="contact.html"><span class="glyphicon glyphicon-envelope"></span> Contact</a></li>
+		  	<li><a class="liris-lightblue" href="apropos.html"><span class="glyphicon glyphicon-globe"></span> A propos</a></li>			
+			<li class="dropdown">
+		    <a href="#" data-toggle="dropdown" class="liris-purple dropdown-toggle">
+		     <span class="glyphicon glyphicon-question-sign"></span> Ressources <span class="caret"></span>
+		    </a>
+		    <ul class="dropdown-menu">
+		      <li><a href="#">Tutoriels</a></li>
+		      <li><a href="#">Autres</a></li>
+		    </ul>
+			</li>
+
+			<li><a class="liris-green" href="tool.html"><span class="glyphicon glyphicon-tree-conifer"></span> Samotraces</a></li>
+		  	<li><a class="liris-mediumblue" href="index.html"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+			</ul>
+		</div>
+
+
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-4 col-md-12">
+			<div class="row bg-grey" style="height:30%;">
+
+				<div class="col-md-2"></div>
+
+				<div class="col-md-2" style="text-align:center; ">
+					<h3>Contact 1</h3>
+					<p>mail contact 1</p>
+					<p>tel contact 1</p>
+				</div>
+
+				<div class="col-md-2" style="text-align:center;">
+					<h3>Contact 2</h3>
+					<p>mail contact 2</p>
+					<p>tel contact 2</p>
+				</div>
+				<div class="col-md-2" style="text-align:center;">
+					<h3>Contact 3</h3>
+					<p>mail contact 3</p>
+					<p>tel contact 3</p>
+				</div>
+				<div class="col-md-2" style="text-align:center;">
+					<h3>Contact 4</h3>
+					<p>mail contact 4</p>
+					<p>tel contact 4</p>
+				</div>
+
+				<div class="col-md-2"></div>
+			</div>
+		</div>
+
+		<div class="col-sm-8 col-md-12">
+			<div class="row" style="height:50%;">
+
+				<div class="col-md-12" style="text-align:center;">
+					<h3>Nous contacter : </h3>
+
+					<form action="mailto:XXXXXX" method="post" name="contact">
+						
+						<input name="votre nom" placeholder="Nom"></br><br/>
+						
+						<textarea name="mail" rows="1" cols="40" placeholder="Email"></textarea></br><br/>
+						
+						<textarea name="message" rows="7" cols="70" placeholder="Entrez ici votre message"></textarea></br><br/>
+						<input type="submit" style="color: #FFF; background-image: -moz-linear-gradient(center t… , rgb(51, 137, 210), rgb(51, 137, 210)); background-color: #3389D2;" value="Envoyer">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/placeholdem.min.js"></script>
+	<script>Placeholdem( document.querySelectorAll( '[placeholder]' ) );</script>
 
 
 </body>
-</html>
