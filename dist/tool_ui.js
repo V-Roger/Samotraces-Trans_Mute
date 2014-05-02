@@ -92,4 +92,28 @@ $(document).ready(function(){
 		}
 	});
 
+	$('#nav_pills > li > a').click(function(){
+
+			var id = $(this).attr('id');
+
+			$(this).parent().addClass('active');
+			$(this).parent().siblings().removeClass('active');
+
+			switch (id)
+			{
+				case 'ajouter_obsel' : 
+									$('#row_replace').hide();
+									break;
+
+				case 'transformer_obsel' : 
+									$('#row_replace').show();
+								 	break;
+
+				case 'supprimer_obsel' : 	
+									$('#row_replace').hide();
+								   	break;
+				default : break;
+			}
+		});
+
 });
