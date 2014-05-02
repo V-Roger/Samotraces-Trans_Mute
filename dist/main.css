@@ -31,7 +31,8 @@ min-width:620px;
 
 #logo {
   margin-left: 20%;
-  max-width: 55px;
+  margin-top: 0.15em;
+  max-width: 50px;
 }
 
 #tuto {
