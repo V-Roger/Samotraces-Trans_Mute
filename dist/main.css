@@ -57,7 +57,7 @@ min-width:620px;
 .nav-tabs > li.active > a:focus {
   cursor: default;
   border: 1px solid #ddd;
-  background: #fff;
+  background: #ddd;
   border-bottom-color: transparent;
   border-top: 3px solid #428bca;
 }
@@ -98,6 +98,20 @@ min-width:620px;
   color: rgb(182,57,125);
 }
 
+
+.dropdown .liris-purple:active,
+.dropdown .liris-purple:hover,
+.dropdown .liris-purple:focus{
+  border-top: 3px solid #9571b2;
+  color: #9571b2;
+}
+
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus{
+  border-top: 3px solid #9571b2;
+  color: #9571b2;
+}
 
 .nav-pills > li > a {
   border-radius: 0;
@@ -178,10 +192,6 @@ min-width:620px;
   border-right: 2px dashed #5a5a5a;
 }
 
-.border-right:last-child{
-  border-right: none;
-}
-
 }
 
 @font-face {
@@ -232,7 +242,7 @@ overflow-x: hidden;
 .nav-tabs > li.active > a:focus {
   color: #555;
   cursor: default;
-  background-color: #fff;
+  background-color: #ebecf1;
   border: 1px solid #ddd;
   border-bottom-color: transparent;
   border-top: 3px solid #3389d2;

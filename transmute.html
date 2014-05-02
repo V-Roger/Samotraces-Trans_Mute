@@ -33,18 +33,44 @@
 
 <body>
 
-<div class="container-fluid">
-    <h1 style="margin-bottom: -1em;">TRANS_MUTE</h1>
+<div class="container-fluid"> 
 
-    <div id="header" class="row">
-        <div class="col-md-12">
-            <ul class="nav nav-tabs">
-              <li><a href="#">Home</a></li>
-              <li class="active"><a href="#">Profile</a></li>
-              <li><a href="#">Messages</a></li>
-            </ul>
+<div class="container-fluid" style="height: 70px;">
+  <div class="navbar navbar-fixed-top" role="navigation">
+    <div class="container-fluid" style="position: relative; height: 100%; padding: 0; margin: 0; border-bottom: 1px solid #ddd;">
+      <div class="col-md-1">
+        <div id="logo">
+        <img class="imglogo" src="images/LogoSamotraces.png" alt="Logo Samotraces">
         </div>
+      </div>
+
+      <div class="col-md-4">
+        <h1 id="titre">Samotraces Transmute</h1>
+      </div>
+
+      <div class="col-md-7" style="position: absolute; bottom:-1px; right:0;">
+        <ul class="nav nav-tabs">
+          <li><a class="liris-mauve" href="contact.html"><span class="glyphicon glyphicon-envelope"></span> Contact</a></li>
+          <li><a class="liris-lightblue" href="about.html"><span class="glyphicon glyphicon-globe"></span> A propos</a></li>      
+        <li class="dropdown">
+          <a href="#" data-toggle="dropdown" class="liris-purple dropdown-toggle">
+           <span class="glyphicon glyphicon-question-sign"></span> Resources<span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+           <li><a href="tutorials.html">Tutoriels</a></li>
+           <li><a href="resources.html">Autres</a></li>
+          </ul>
+        </li>
+
+        <li class="active"><a class="liris-green" href="tool.html"><span class="glyphicon glyphicon-tree-conifer"></span> Samotraces</a></li>
+          <li><a class="liris-mediumblue" href="home.html"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+        </ul>
+      </div>
+
+
     </div>
+  </div>
+</div>
 
     <div id="traces" class="container-fluid">
       <div class="row full-height">
@@ -104,18 +130,55 @@
       </div>
 
       <div id="row_add" class="col-md-10 full-height" style="padding-top: 10px; text-align: center; " >
-        <div class="col-md-12">
-          <label >Type :</label>
-          <SELECT id="add_type" size="1" name="champ" >
-          </SELECT> 
-          <span id="error_add_type" color="#fba"></span>
-          <br><br><label >Time Stamp : </label><input type="text" id="add_TimeStamp" value="">
-          <br><br>
-          <div id="attrs">
-          Attributs :
+        <div class="col-md-3 step">
+          <div class="row">
+              <div class="progress-bar bg-purple" style="width: 100%;">
+                2
+              </div>
+          </div>
+          <div class="row border-right">
+              <div class="col-md-12">
+                <label >Type :</label>  
+                <SELECT id="add_type" size="1" name="champ" >
+                </SELECT> 
+                <span id="error_add_type" color="#fba"></span>
+              </div>
+          </div>
+        </div>
+        <div class="col-md-3 step">
+        <div class="row">
+              <div class="progress-bar bg-darkblue" style="width: 100%;">
+                2
+              </div>
+        </div>
+        <div class="row border-right">
+              <div class="col-md-12">
+                  <label >Time Stamp : </label><input type="text" id="add_TimeStamp" value="">
+              </div>
+        </div>
+        </div>
+        <div class="col-md-3 step">
+        <div class="row">
+              <div class="progress-bar bg-mediumblue" style="width: 100%;">
+                2
+              </div>
+          </div>
+        <div class="row border-right">
+              <div class="col-md-12">
+                <div id="attrs">
+                  Attributs :
+                </div>
+              </div>
+        </div>
+        </div>
+        <div class="col-md-3 step">
+        <div class="row">
+              <div class="progress-bar bg-green" style="width: 100%;">
+                2
+              </div>
           </div>
           <button id="add-obs">Ajouter Obsel</button>
-        </div>        
+        </div>      
       </div><!-- row add -->
 
       <div id="row_replace" class="col-md-10 full-height" style="padding-top: 10px; text-align: center; " >
