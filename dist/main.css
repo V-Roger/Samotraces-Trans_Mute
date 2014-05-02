@@ -386,6 +386,16 @@ display: none;
 }
 
 
+/*-----Modif Bootstraps------*/
+@media (min-width: 992px) {
+  .col-md-11 {
+    width: 88%;
+  }
+  .col-md-1 {
+    width: 12%;
+  }
+
+
  /*-----Widgets------*/
 
  .Widget{
