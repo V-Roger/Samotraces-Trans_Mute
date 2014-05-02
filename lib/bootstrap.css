@@ -930,6 +930,7 @@ pre code {
   .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
     float: left;
   }
+
   .col-sm-12 {
     width: 100%;
   }
@@ -1088,11 +1089,12 @@ pre code {
   .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
     float: left;
   }
+
   .col-md-12 {
     width: 100%;
   }
   .col-md-11 {
-    width: 91.66666667%;
+    width: 88%;
   }
   .col-md-10 {
     width: 83.33333333%;
@@ -1122,7 +1124,7 @@ pre code {
     width: 16.66666667%;
   }
   .col-md-1 {
-    width: 8.33333333%;
+    width: 12%;
   }
   .col-md-pull-12 {
     right: 100%;
@@ -2373,12 +2375,24 @@ input[type="button"].btn-block {
   -webkit-transition: height .35s ease;
           transition: height .35s ease;
 }
+
 @font-face {
   font-family: 'Glyphicons Halflings';
 
   src: url('../fonts/glyphicons-halflings-regular.eot');
   src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
+
+@font-face {
+    font-family: 'BLOKKNeue-Regular';
+    src: url('../fonts/BLOKKNeue-Regular.eot');
+    src: url('../fonts/BLOKKNeue-Regular.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/BLOKKNeue-Regular.woff') format('woff'),
+         url('../fonts/BLOKKNeue-Regular.svg#BLOKKNeue-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .glyphicon {
   position: relative;
   top: 1px;
@@ -3459,7 +3473,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a {
   position: relative;
   display: block;
-  padding: 10px 15px;
+  padding: 10px 5px 10px 5px;
+  /*Modification Thomas*/
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
