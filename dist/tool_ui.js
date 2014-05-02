@@ -38,6 +38,7 @@ $(document).ready(function(){
 									 	break;
 
 			case 'compare_trace' : 	$('#traces_header').html('Comparer trace');
+									$('#widgets').show();
 									$('#my-widget2, #scale2').show();
 									$('#importer').hide();
 									$('#transformation_list').hide();
