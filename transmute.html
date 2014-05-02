@@ -96,12 +96,27 @@
 
           <ul id="nav_pills" class="nav nav-pills nav-stacked">
             <li><h4>OBSELS</h4></li>
-            <li><a id="ajouter_obsel" href="#">Ajouter<span class="glyphicon glyphicon-plus pull-right"></span></a></li>
-            <li class="active"><a id="transformer_obsel" href="#">Modifier   <span class="glyphicon glyphicon-pencil pull-right"></span></a></li>
+            <li class="active"><a id="ajouter_obsel" href="#">Ajouter<span class="glyphicon glyphicon-plus pull-right"></span></a></li>
+            <li><a id="transformer_obsel" href="#">Modifier   <span class="glyphicon glyphicon-pencil pull-right"></span></a></li>
             <li><a id="supprimer_obsel" href="#">Supprimer   <span class="glyphicon glyphicon-remove pull-right"></span></a></li>
           </ul>
 
       </div>
+
+      <div id="row_add" class="col-md-10 full-height" style="padding-top: 10px; text-align: center; " >
+        <div class="col-md-12">
+          <label >Type :</label>
+          <SELECT id="add_type" size="1" name="champ" >
+          </SELECT> 
+          <span id="error_add_type" color="#fba"></span>
+          <br><br><label >Time Stamp : </label><input type="text" id="add_TimeStamp" value="">
+          <br><br>
+          <div id="attrs">
+          Attributs :
+          </div>
+          <button id="add-obs">Ajouter Obsel</button>
+        </div>        
+      </div><!-- row add -->
 
       <div id="row_replace" class="col-md-10 full-height" style="padding-top: 10px; text-align: center; " >
 
@@ -205,6 +220,12 @@
           </div>
         </div><!-- row replacement-->
     
+      <div id="row_delete" class="col-md-10 full-height" style="padding-top: 10px; text-align: center; " >
+        <div class="col-md-12">
+          <button class="btn btn-default" id="delete-obs" disabled="disabled" >Supprimer Obsel</button>
+        </div>
+      </div><!-- row delete -->
+
     </div><!--toolbox-->
     </div><!--container-fluid-->
 

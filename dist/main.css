@@ -405,3 +405,9 @@ display: none;
  #my-widget2, #scale2, #importer-transformation, #transformation_list{
   display: none;
  }
+
+ /*-----Toobox-----*/
+
+ #row_replace, #row_delete {
+  display: none;
+ }

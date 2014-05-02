@@ -102,15 +102,21 @@ $(document).ready(function(){
 			switch (id)
 			{
 				case 'ajouter_obsel' : 
+									$('#row_add').show();
 									$('#row_replace').hide();
+									$('#row_delete').hide();
 									break;
 
 				case 'transformer_obsel' : 
+									$('#row_add').hide();
 									$('#row_replace').show();
+									$('#row_delete').hide();
 								 	break;
 
 				case 'supprimer_obsel' : 	
+									$('#row_add').hide();
 									$('#row_replace').hide();
+									$('#row_delete').show();
 								   	break;
 				default : break;
 			}
