@@ -40,13 +40,6 @@ h3{
   font-weight:bold;
 }
 
-.imglogo {
-  height:55px;
-  width: auto;
-  display: block;
-  vertical-align: center;
-}
-
 #titre {
   text-align: center;
   color: rgb(41,127,200);
@@ -54,11 +47,6 @@ h3{
 
 #titre:hover {
   color: rgb(149,113,178);
-}
-
-#logo {
-  margin: 0 auto;
-  width:40%;
 }
 
 
