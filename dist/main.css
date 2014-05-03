@@ -39,6 +39,10 @@ min-width:620px;
   text-align: center;
 }
 
+.navbar{
+  border: none;
+}
+
 .nav-tabs > li {
   float: right;
   margin-right: none;
@@ -50,16 +54,6 @@ min-width:620px;
   color: #555;
   font-weight: bold;
   border-top: 3px solid transparent;
-}
-
-.nav-tabs > li.active > a,
-.nav-tabs > li.active > a:hover 
-.nav-tabs > li.active > a:focus {
-  cursor: default;
-  border: 1px solid #ddd;
-  background: #ddd;
-  border-bottom-color: transparent;
-  border-top: 3px solid #428bca;
 }
 
 .nav-tabs > li > a:hover,
@@ -99,12 +93,12 @@ min-width:620px;
 }
 
 
-.dropdown .liris-purple:active,
-.dropdown .liris-purple:hover,
-.dropdown .liris-purple:focus{
+.dropdown > .liris-purple:active,
+.dropdown > .liris-purple:hover,
+.dropdown > .liris-purple:focus{
   border-top: 3px solid #9571b2;
   color: #9571b2;
-}
+} 
 
 .nav .open > a,
 .nav .open > a:hover,
