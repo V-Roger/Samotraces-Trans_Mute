@@ -415,3 +415,22 @@ display: none;
  #row_replace, #row_delete {
   display: none;
  }
+
+
+ /*-------RESPONSIVE VIDEO EMBED------*/
+.video{
+clear: both;
+width: 46%;
+left: 27%;
+position: relative;
+padding-bottom: 25.875%; /* 16:9 */
+height: 0;
+}
+
+.video iframe{
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}

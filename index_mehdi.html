@@ -1,0 +1,1313 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+		<script type="text/javascript" src="lib/jquery-2.1.0.min.js"></script>
+        <script type="text/javascript" src="lib/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="lib/d3.js"></script>
+        <!--<script type="text/javascript" src="lib/jquery.js"></script>-->
+        <script type="text/javascript" src="lib/jquery.mousewheel.js"></script>
+        <script type="text/javascript" src="dist/Samotraces.js"></script>
+		<script type="text/javascript" src="dist/date_heure.js"></script>
+		<script type="text/javascript" src="../../../src/generate_samotraces.php"></script>
+        <link rel="stylesheet" type="text/css" href="dist/samotraces.css"> 
+		<link rel="stylesheet" type="text/css" href="dist/style.css"> 
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+		<link rel="stylesheet" type="text/css"  href="lib/jquery-ui.css">
+    </head>
+    <body>
+		<style type="text/css">
+            #baniere{
+			 height:taille_fixe px;
+			 width:100%;
+			}
+			#baniere_gauche{
+			 width:30%;
+			 height:100%;
+			 float:left;
+			}
+			#baniere_milieu{
+			 width:30%;
+			 height:100%;
+			 float:left;
+			 border-left: 1px solid grey;
+             padding-left: 5px;
+             margin-left: 30px;
+			 height: 380px;
+			}
+			 #baniere_droite{
+			 width:30%;
+			 height:100%;
+			 float:left;
+			 border-left: 1px solid grey;
+             padding-left: 5px;
+             margin-left: 30px;
+			 height: 380px;
+			}
+	
+		</style>	
+		 <h1 align="center"> Samotraces_Transformations </h1>
+        <h3>Charger une trace :</h3>
+		<div id="clef"></div>
+        <div id="widgets">
+            <div id="my-widget"></div>
+            <div id="scale"></div>
+            <div id="importer"></div>
+            <div id="obsel-inspector"></div>
+        </div><br>
+		<h3>Manipuler une trace :</h3>
+		<fieldset> 
+		  <legend><b>Activer/desactiver le système de suggestions</b></legend>
+		  <div><br><input type="checkbox" id="activer_suggestion" >utiliser le système de suggestions</div>
+		</fieldset> <br>
+        <div id="importer transformation"></div>	
+        <div id="obsel-inspector"></div>
+        <div id="my-widget2"></div>
+        <div id="scale2"></div>
+        <br><div id="interaction-liste"></div>
+      
+	    <fieldset> 
+		<br><div id="dialog" title="Suggestion Samotraces_Transformation" float: right;></div>
+         <legend><b>Boite à outils</b></legend>
+		 <div id=baniere>
+		 <div id=baniere_gauche>
+		    <h1 align="center" class="texte_gris">Ajouter Obsel</h1>
+			<hr class="ligne_boite_outils"/> 
+			 <br>
+			 <hr class="ligne_boite_outils"/> 
+			 <label >Type :</label>
+			 <SELECT id="add_type" size="1" name="champ" >
+			 </SELECT> 
+			  <span id="error_add_type" color="#fba"></span>
+			 <br><br><label >Time Stamp : </label><input type="text" id="add_TimeStamp" value="">
+		 
+			 <br><br>
+			 <div id="attrs">
+			 Attributs :
+			 </div>
+			 <button id="add-obs">Ajouter Obsel</button>
+		
+		 </div>	 
+		 <div id=baniere_milieu>
+		      <h1 align="center" class="texte_gris">Remplacer Obsel</h1>
+			  <hr class="ligne_boite_outils"/> 
+			  obsels selectionnés :<div id="img_replace"></div>
+			  <hr class="ligne_boite_outils"/> 
+			  <label >Type :</label>
+			 <SELECT id="replace_type" size="1" name="champ" >
+			 </SELECT> 
+			  <span id="error_replace_type" color="#fba"></span>
+			 <br><br><label >Time Stamp : </label><input type="text" id="replace_TimeStamp" value="">
+		 
+			 <br><br>
+			 <div id="attrs_replace">
+			 Attributs :
+			 </div>
+			  <button id="modify-obs" disabled="disabled" >Remplacer Obsel</button>
+		 </div>
+		 <div id=baniere_droite>
+		     <h1 align="center" class="texte_gris">Supprimer Obsel</h1>
+			 <hr class="ligne_boite_outils"/> 
+			 obsels selectionnés :<div id="img_delete"></div>
+			 <hr class="ligne_boite_outils"/> 
+			 <button id="delete-obs" disabled="disabled" >Supprimer Obsel</button>
+		 </div>
+		</div>
+         </fieldset> 
+		 
+          <div id="obsel-inspector2"></div>	
+		  <br><fieldset> 
+		 
+		   <legend><b>Liste des transformations</b></legend>
+          <form action="./" method="post">
+          <br><div align="right"><textarea cols="73" rows="10" id="historique" ></textarea></div>
+          <br><div align="right"><a href="#" class="blueButton" id="download" >Télécharger</a></div>
+          </form>
+		 </fieldset> 
+		</div>
+		 
+         <script type="text/javascript">
+        function init() {
+		     // Create logical objects
+			 $('#historique').val("");
+			 $('#add_type').val("");
+			 $('#replace_type').val("");
+			 var index=$('#add_type').val();
+			 var index_replace=$('#replace_type').val();
+              // Create logical objects
+		     //var trace        = new Samotraces.LocalTrace();
+		     //var trace_Transformation = trace.transform(trace.transformations.duplicate); //new Samotraces.LocalTrace();
+             var tw            = new Samotraces.TimeWindow({start: 0,end: 20});
+			 var tw2          = new Samotraces.TimeWindow({start: 0,end: 20});
+             var obsel_selector    = new Samotraces.Selector('Obsel','multiple');
+			 var obsel_selector_origin   = new Samotraces.Selector('Obsel');
+	
+			 // Visualisation options
+             var options = { 
+             url:  function(o) {
+			     var attrs ="";
+			   for (var attr in o.attributes)
+				{
+				  if(o.attributes[attr]!="")
+				  {
+                   attrs=attrs+' '+o.attributes[attr];
+				  } 
+				}
+				  return 'images/'+o.type+attrs+'.png' ;
+                },
+                width: 25,
+                height: 40,
+                y: 0,
+				
+			};
+			  		
+			 // Create widgets
+             //var visu_origin = new Samotraces.UI.Widgets.TraceDisplayIcons('my-widget',trace,tw,options);
+		     //var visu = new Samotraces.UI.Widgets.TraceDisplayIcons('my-widget2',trace_Transformation,tw2,options);
+             new Samotraces.UI.Widgets.WindowScale('scale',tw);
+			 new Samotraces.UI.Widgets.WindowScale('scale2',tw2);
+             var importer = new Samotraces.UI.Widgets.ImportTrace('importer');
+			 new Samotraces.UI.Widgets.ImportTrace('importer transformation');//,trace_Transformation);
+			 new Samotraces.UI.Widgets.ObselInspector('obsel-inspector',obsel_selector_origin);
+			
+			 var trace, trace_Transformation, visu_origin, visu;
+			
+			importer.on('importtrace:newtrace',function(e) {
+				delete visu_origin;
+				delete visu;
+				delete trace;
+				delete trace_Transformation;
+				$('#my-widget').empty();
+				$('#my-widget2').empty();
+			
+				trace = e.data;
+				trace_Transformation = trace.transform(trace.transformations.duplicate);
+				visu_origin = new Samotraces.UI.Widgets.TraceDisplayIcons('my-widget',trace,tw,options);
+				visu = new Samotraces.UI.Widgets.TraceDisplayIcons('my-widget2',trace_Transformation,tw2,options);
+				
+				$('#importtrans').remove();
+				new Samotraces.UI.Widgets.ImportTrace('importer transformation',trace_Transformation);
+			});
+			
+			
+			
+			// Select Obsel when clicked
+			$('body').on("click","#my-widget .Samotraces-obsel",function(e){
+			   var obsel = $.data(e.target,'Samotraces-data');
+                obsel_selector_origin.select(obsel);
+			});
+			
+      
+			$('body').on("click","#my-widget2 .Samotraces-obsel",function(e) {
+				var obs = $.data(e.target,'Samotraces-data');
+				$(e.target).addClass('selected');
+				obsel_selector.toggle(obs);
+			});
+			/*
+			trace.on('trace:create_obsel',function(e) {
+				//trace_Transformation.create_obsel(e.data);//o.type,o.timestamp,o.attributes);
+				obsel_selector.empty(); 
+				
+			});
+			*/
+			var img="";
+			obsel_selector.on('selection:add', function(e) {
+				$("#delete-obs").prop("disabled",false);
+				$("#modify-obs").prop("disabled",false);
+				
+				var obs = e.data;
+				function create_points(obs) {
+					var x = visu.options.x(obs);
+					return String.concat(x+3,",10,",x+8,",15,",x+13,",10");
+				}
+				visu.svg
+					.append('polygon')
+					.attr('points',create_points(obs))
+					.attr('stroke-width','1px')
+					.attr('stroke','black')
+					.attr('id',"__OBSEL__"+obs.get_id());
+					
+					var valueattr_obsel_selection="";
+					for(var attr in obs.attributes)
+					{
+					  valueattr_obsel_selection+= ' '+obs.attributes[attr];
+					}
+					var img_element_delete = jQuery("<img>",{
+						id: 'delete_'+obs.id,
+						src:'images/'+obs.type+''+valueattr_obsel_selection+'.png',
+					});
+			         var img_element_replace = jQuery("<img>",{
+						id: 'replace_'+obs.id,
+						src:'images/'+obs.type+''+valueattr_obsel_selection+'.png',
+					});
+					   $("#img_replace").append(img_element_replace);
+					   $("#img_delete").append(img_element_delete);
+				   //<<
+
+			});
+			
+			obsel_selector.on('selection:remove', function(e) {
+				if(obsel_selector.is_empty()) {
+					$("#delete-obs").prop("disabled",true);
+					$("#modify-obs").prop("disabled",true);
+				}
+				var obs = e.data;
+				 $('#__OBSEL__'+obs.id).remove();
+				 $('#replace_'+obs.id).remove();
+				 $('#delete_'+obs.id).remove();
+			});
+			obsel_selector.on('selection:empty', function() {
+					$("#delete-obs").prop("disabled",true);
+					$("#modify-obs").prop("disabled",true);
+				 visu.svg.selectAll('polygon').remove();
+			});
+			
+			function update_points(p) {
+				var myfunc = {
+					calculate_x: function(time) {
+						return x = (time - tw2.start)*visu.element.clientWidth/tw2.get_width();
+					}
+				};
+				var options_x = options.x || function(o) {
+					return this.calculate_x(o.get_begin()) - 8;
+				};
+				var id = $(p).attr('id');
+				var obs = trace_Transformation.get_obsel(id.substr(9));
+				var x = options_x.call(myfunc,obs);
+				//var t = obs.get_begin();
+				//var x = (t - tw2.start)*visu.element.clientWidth/tw2.get_width() - 8;
+				return String.concat(x+3,",10,",x+8,",15,",x+13,",10");					
+			}
+			
+			tw2.on('tw:update',function() {
+				$('polygon').each(function(i,p) {
+				console.log(p);
+					$(p).attr('points',update_points(p));
+				})
+			});
+			
+			tw2.on('tw:translate',function() {
+				$('polygon').each(function(i,p) {
+				console.log(p);
+					$(p).attr('points',update_points(p));
+				})
+			});
+			
+			
+			//crud transformations
+			 var i=0;
+			 var Transformation_Interaction=[];
+			 var date = date_heure();
+			 var texte = "";
+		
+			$("#add-obs").click(function() {
+			  i++;
+			  var o_attr = {};
+			  var obsels_source_add=[] ;
+			  o_attr.attributes = {};
+			  o_attr.type = $('#add_type').val();
+			  o_attr.begin = $('#add_TimeStamp').val();
+			  o_attr.end = $('#add_TimeStamp').val();
+			  if(controle_champsobligatoire("add_type")==false)
+				{
+				   return false;
+				}
+				else
+				{
+					$('#attrs > ul > li > label').each(function() {
+					   if($('#select_interaction_add'+$('#add_type').val()+$(this).attr("Id")).val()!='empty')
+						{
+						 o_attr.attributes[$(this).attr("Id")]=$('#select_interaction_add'+$('#add_type').val()+$(this).attr("Id")).val();
+						}
+					});
+
+				     trace_Transformation.create_obsel(o_attr);	
+					 alert(count);
+				     obsels_source_add.push({
+						idObs : 0,//getid
+						hasbegin : o_attr.begin,
+						hasend : o_attr.end,
+						type : o_attr.type,
+						attributes : o_attr.attributes 
+					});
+				    Transformation_Interaction.push({
+						id_interaction : i,
+						date : date,
+						evt : "trace:create:obsel" ,
+						obsels_source : obsels_source_add				
+					});
+					 texte = JSON.stringify(Transformation_Interaction);
+					 document.getElementById('historique').value=texte ;	
+				}	 
+		    });
+			////
+			$("#delete-obs").click(function() { 
+				i++;
+				var img="";
+				var attr_obsel_selection =[];
+				var obsels_source_delete = [];
+				
+			if($('#activer_suggestion').is(':checked')!=true)	
+			 {
+			 obsel_selector.selection.forEach(function(obs) {
+					obsels_source_delete.push({
+						idObs : obs.get_id(),
+						hasbegin : obs.get_begin(),
+						hasend : obs.get_end(),
+						type : obs.get_type(),
+						attributes : obs.attributes ,							
+					});	
+							trace_Transformation.remove_obsel(obs);
+					        obsel_selector.unselect(obs);
+				});
+				Transformation_Interaction.push({
+					id_interaction : i,
+					date : date,
+					evt : "trace:remove:obsel" ,
+					obsels_source : obsels_source_delete				
+				}); // TODO implémenter un get_selection
+				obsel_selector.empty();
+				texte = JSON.stringify(Transformation_Interaction);
+			    document.getElementById('historique').value=texte;
+			  }
+			 
+		    else
+			{	
+				obsel_selector.selection.forEach(function(obs) {
+					obsels_source_delete.push({
+						idObs : obs.get_id(),
+						hasbegin : obs.get_begin(),
+						hasend : obs.get_end(),
+						type : obs.get_type(),
+						attributes : obs.attributes ,							
+					});	
+					
+			       //dialog
+					var valueattr_obsel_selection="";
+					for(var attr in obs.attributes)
+					{
+					  valueattr_obsel_selection+= ' '+obs.attributes[attr];
+					 if(jQuery.inArray(attr,attr_obsel_selection)==-1)
+						{
+						   attr_obsel_selection.push(attr);
+						}
+					}
+					 img +='<img src="images/'+obs.type+''+valueattr_obsel_selection+'.png"/>' ;
+				});	 
+				 $("#dialog").html('Voulez vous supprimer cet(s) obsel uniquement ?'+img);
+					 $( "#dialog" ).dialog({
+					  height:480,
+					  width:480,
+					  draggable: true,
+					  resizable: true,
+					  position: ["center",500] ,
+					  show: {
+						effect: "blind",
+						duration: 800
+						},
+					  hide: {
+						effect: "slide",
+						duration: 500
+						},
+					 
+					buttons: 
+					{
+						 
+						"Oui": function() {
+							obsel_selector.selection.forEach(function(obs) {
+							  trace_Transformation.remove_obsel(obs);
+							  obsel_selector.unselect(obs);
+							});
+							 obsel_selector.empty();
+							 Transformation_Interaction.push({
+								id_interaction : i,
+								date : date,
+								evt : "trace:remove:obsel" ,
+								obsels_source : obsels_source_delete				
+							}); // TODO implémenter un get_selection
+							 texte = JSON.stringify(Transformation_Interaction);
+							 document.getElementById('historique').value=texte;
+						
+						   $(this).dialog('close');	
+						},
+						"Non": function() {
+						    $(this).html('Voulez vous supprimer tous les obsels de type ?');
+							 var div_element = jQuery("<div>",{
+						      id: 'div_type' });	
+						     
+								$('#add_type > option' ).each(function() {
+								    var checked=false;
+									if($(this).attr("Id")!='vide')
+									{
+									  var type=$(this).attr("Id");
+
+									  obsels_source_delete.forEach(function(o) {
+										  if(type==o.type)
+											{
+											  checked=true;
+											} 							  
+										});	
+										$('<input>', {
+											id: $(this).attr("Id"),
+											type: "checkbox" ,
+											checked: checked,
+										}).appendTo(div_element);
+										$('<label>', {
+											id: 'lab'+$(this).attr("Id"),
+											value:$(this).attr("Id"),
+										}).html($(this).attr("Id")).appendTo(div_element);
+										
+										(div_element).append('<br><br>&emsp;les attributs: ');
+										$('#dialog').append(div_element);
+									    list_attributesvalue(trace,'div_type',type,"ul_suggestion","select_suggestion");
+								    }	
+										
+								});		
+						        //suppression après suggestion oui/non
+							    $(this).dialog({
+							    buttons: {
+								  "Oui": function() { 
+								   var cpt_attr_obsel=0;
+								   var bool_valid_value=true;
+								   var cpt_attr_model=0;
+								   var obsels_source_delete=[];
+								    trace_Transformation.list_obsels().forEach(function(o){  
+										$('#div_type > input:checked').each(function() {
+										  if(o.type==$(this).attr("Id"))
+											{
+											  $('#ul_suggestion'+o.type+'> li').each(function() {
+													cpt_attr_model++;
+													for(var attr in o.attributes)
+													{
+													   if($(this).attr("Id")=='li'+attr)
+														{
+															if($('#select_suggestion'+o.type+attr).val()!='empty')
+															{
+															  var value_attr = $('#select_suggestion'+o.type+attr).val();
+															}
+															else
+															{
+															 var value_attr = o.attributes[attr];
+															}
+														  
+														   cpt_attr_obsel++;
+														   if (value_attr != o.attributes[attr]) 
+															{
+															  bool_valid_value=false;
+															}
+														}	
+													}
+													if(cpt_attr_model != cpt_attr_obsel)
+													{
+														var att=$(this).attr("Id").substr(2);
+														if($('#select_suggestion'+o.type+att).val()=='empty')
+														{
+														   cpt_attr_model--;
+														}
+														else
+														{
+														   bool_valid_value=false;
+														}
+													}
+
+												});
+											
+												if(bool_valid_value==true && cpt_attr_obsel==cpt_attr_model)
+												  {
+													obsels_source_delete.push({
+														idObs : o.get_id(),
+														hasbegin : o.get_begin(),
+														hasend : o.get_end(),
+														type : o.get_type(),
+														attributes : o.attributes ,							
+													});	
+													trace_Transformation.remove_obsel(o);	 
+												}	
+												 bool_valid_value=true;
+												 cpt_attr_obsel=0;
+												 cpt_attr_model=0;
+											}
+									    });
+                                     									
+								    });
+									
+									//supprimer les obsels selectionné lore de la suggestion
+									obsel_selector.selection.forEach(function(obs) {
+				                       obsels_source_delete.forEach(function(o){
+									     if(o.idObs!=obs.id)
+										    {
+								              trace_Transformation.remove_obsel(obs);
+											  obsel_selector.unselect(obs);
+										    }
+									   })
+								    });
+									 
+									obsel_selector.empty(); 
+									Transformation_Interaction.push({
+										id_interaction : i,
+										date : date,
+										evt : "trace:remove:obsel" ,
+										obsels_source : obsels_source_delete				
+									}); // TODO implémenter un get_selection
+									texte = JSON.stringify(Transformation_Interaction);
+									document.getElementById('historique').value=texte;
+									$(this).dialog('close');
+								},
+							   "Non": function() {
+							     $(this).dialog('close');
+															  
+							    }
+							   }
+							});
+						 
+						 
+						   
+						},
+					}
+				});		 
+				     
+	
+			} 
+		});	
+			//>>suggestion replace
+		$("#modify-obs").click(function() { 
+			i++;
+			var img="";
+			var valueattr_new_obsel="";
+			var attr_obsel_selection =[];
+			var obsels_source_modify=[] ;
+			var obsels_source_transformer=[];
+			var o_attr = {};
+			o_attr.attributes = {};
+			o_attr.type = $('#replace_type').val();
+			o_attr.begin = $('#replace_TimeStamp').val();
+			o_attr.end = $('#replace_TimeStamp').val();
+			var valueattr_new_obsel="";
+				
+			if(controle_champsobligatoire('replace_type')==false)
+			{
+			   return false;
+			}
+			else
+			{
+				
+				$('#attrs_replace > ul > li > label').each(function() {
+				    if($('#select_interaction_replace'+$('#replace_type').val()+$(this).attr("Id")).val()!='empty')
+					{
+						o_attr.attributes[$(this).attr("Id")]=$('#select_interaction_replace'+$('#replace_type').val()+$(this).attr("Id")).val();
+						valueattr_new_obsel+=' '+$('#select_interaction_replace'+$('#replace_type').val()+$(this).attr("Id")).val();
+					}
+				});
+				
+					
+			       if($('#activer_suggestion').is(':checked')!=true)
+					{
+						 obsel_selector.selection.forEach(function(obs) {
+						
+								obsels_source_modify.push({
+									idObs : obs.get_id(),
+									hasbegin : obs.get_begin(),
+									hasend : obs.get_end(),
+									type : obs.get_type(),
+									attributes : obs.attributes ,
+								  
+								});
+							 trace_Transformation.remove_obsel(obs);
+							 obsel_selector.unselect(obs);
+							 //obsel_selector.select(new_obs);
+							});
+							
+							if(o_attr.begin=="") 
+							{					
+							   obsels_source_modify.forEach(function(obsel){
+							   o_attr.begin=obsel.hasbegin;
+							   o_attr.end=obsel.hasend;
+							   trace_Transformation.create_obsel(o_attr);
+								obsels_source_transformer.push({
+									hasbegin_trans :o_attr.begin,
+									hasend_trans : o_attr.end,
+									type_trans : o_attr.type,
+									attributes_trans : o_attr.attributes ,
+								});
+							 });
+							
+							}
+							else
+							{
+							  trace_Transformation.create_obsel(o_attr);
+							
+							 obsels_source_transformer.push({
+								hasbegin_trans :o_attr.begin,
+								hasend_trans : o_attr.end,
+								type_trans : o_attr.type,
+								attributes_trans : o_attr.attributes ,
+							 });
+							}
+							Transformation_Interaction.push({
+								id_interaction : i,
+								date : date,
+								evt : "trace:update:obsel" ,
+								obsels_source : obsels_source_modify,
+								obsels_Transformer : obsels_source_transformer				
+							});   
+						 texte = JSON.stringify(Transformation_Interaction);
+						 document.getElementById('historique').value=texte ;
+						 $('#replace_TimeStamp').val("");
+					}
+						
+				 else{	
+						var obsel_id=[];
+						trace_Transformation.list_obsels().forEach(function(o){ 
+						 obsel_id.push(o.id);
+						});
+						 
+						 obsel_selector.selection.forEach(function(obs) {
+						 obsels_source_modify.push({
+							idObs : obs.get_id(),
+							hasbegin : obs.get_begin(),
+							hasend : obs.get_end(),
+							type : obs.get_type(),
+							attributes : obs.attributes ,
+						});
+						//dialog
+						 var valueattr_obsel_selection="";
+						 new_img='<img src="images/'+o_attr.type+''+valueattr_new_obsel+'.png"/>' ;
+						 for(var attr in obs.attributes)
+						   {
+							  valueattr_obsel_selection+= ' '+obs.attributes[attr];
+							  
+							 if(jQuery.inArray(attr,attr_obsel_selection)==-1)
+								{
+								   attr_obsel_selection.push(attr);
+								}
+							}
+						 img +='<img src="images/'+obs.type+''+valueattr_obsel_selection+'.png"/>' ;
+						 
+						  
+						});	  
+						 $("#dialog").html('Voulez vous transformer cet(s) obsel uniquement<br>&emsp;'+img+"<br>en :<br>&emsp;"+new_img+"<br>?");
+						 $( "#dialog" ).dialog({
+						  height:480,
+						  width:900,
+						  draggable: true,
+						  resizable: true,
+						  position: ["center",500] ,
+						   show: {
+							effect: "blind",
+							duration: 800
+							},
+						  hide: {
+							effect: "slide",
+							duration: 500
+							},
+						  buttons: {
+							 
+							 "Oui": function() {
+								
+									 obsel_selector.selection.forEach(function(obs) {
+					
+										 trace_Transformation.remove_obsel(obs);
+										 obsel_selector.unselect(obs);
+										});
+									     obsel_selector.empty(); 
+									if(o_attr.begin=="")
+									{					
+									   obsels_source_modify.forEach(function(obsel){
+									    o_attr.begin=obsel.hasbegin;
+							            o_attr.end=obsel.hasend;
+							            trace_Transformation.create_obsel(o_attr);
+										obsels_source_transformer.push({
+											hasbegin_trans :o_attr.begin,
+											hasend_trans : o_attr.end,
+											type_trans : o_attr.type,
+											attributes_trans : o_attr.attributes ,
+										});
+									 });
+									
+									}
+									else
+									{
+									  trace_Transformation.create_obsel(o_attr);
+									
+									 obsels_source_transformer.push({
+										hasbegin_trans :o_attr.begin,
+										hasend_trans : o_attr.end,
+										type_trans : o_attr.type,
+										attributes_trans : o_attr.attributes , 
+									 });
+									}
+									Transformation_Interaction.push({
+										id_interaction : i,
+										date : date,
+										evt : "trace:update:obsel" ,
+										obsels_source : obsels_source_modify,
+										obsels_Transformer : obsels_source_transformer				
+									});   
+									texte = JSON.stringify(Transformation_Interaction);
+									document.getElementById('historique').value=texte ;
+									 $('#replace_TimeStamp').val("");
+								 $(this).dialog('close');	
+							   },
+							    "Non": function() {
+								
+								 $("#dialog").html('Voulez vous remplacer chaque obsel de type ?<br>');
+								 var div_element = jQuery("<div>",{
+								 id: 'div_type' });	
+								 $('#add_type > option' ).each(function() {
+								    var checked=false;
+									if($(this).attr("Id")!='vide')
+									{
+									  var type=$(this).attr("Id");
+
+									  obsels_source_modify.forEach(function(o) {
+									
+										  if(type==o.type)
+											{
+											  checked=true;
+											} 							  
+										});	
+										$('<input>', {
+											id: $(this).attr("Id"),
+											type: "checkbox" ,
+											checked: checked,
+										}).appendTo(div_element);
+										$('<label>', {
+											id: 'lab'+$(this).attr("Id"),
+											value:$(this).attr("Id"),
+										}).html($(this).attr("Id")).appendTo(div_element);
+										
+										(div_element).append('<br><br>&emsp;1)les attributs: ');
+										$('#dialog').append(div_element);
+									    list_attributesvalue(trace,'div_type',type,"ul_suggestion","select_suggestion");
+								    }	
+										
+								});	
+								   
+								//>>relation entre les obsels selectionnés 
+								$(this).append('<br>2)Relation entre obsel(s): ');
+								$(this).append('<br><br>&emsp;<input type="radio"  name="choix" id="successive" onChange="obsel_relation()"> adjacence ');
+								$(this).append('<div id=div_successive></div>');
+								$(this).append('<br>&emsp;<input type="radio" name="choix" id="separe" onChange="obsel_separe()" > Dans un intervalle');
+								$(this).append('<div id=sep_interval class=baniere>');
+										
+								 $("#separe").change(function(){ 
+								     $("#div_successive").empty();
+									 //>>début de l'interval
+									 $("#sep_interval").append('<br><div id=attrs_baniere_gauche class=baniere_gauche>Commence par: <SELECT id=relationsepare_debut_type></SELECT></div>');
+									  var index_relsep_debut = $('#relationsepare_debut_type').val();
+									  list_typeobsel(trace,'relationsepare_debut_type');
+									  //<<
+									  
+									  //>>fin de l interval
+									  $("#sep_interval").append('<div id=attrs_baniere_milieuG class=baniere_milieuG>Et termine par: <SELECT id=relationsepare_fin_type></SELECT></div>');
+									   var index_relsep_fin = $('#relationsepare_fin_type').val();
+									   list_typeobsel(trace,'relationsepare_fin_type');
+									  //<<
+									  
+									  //>> ne contient pas
+									   $("#sep_interval").append('<div id=attrs_baniere_milieuD class=baniere_milieuD>Et ne contient pas :<br><br>&emsp;<SELECT id=relationsepare_noncontenu_type multiple="multiple"></SELECT></div></div>');
+									    list_typeobsel(trace,'relationsepare_noncontenu_type');
+									    $("#attrs_baniere_milieuD").append('<button id=add_type_attr>+</button>');
+									    $("#attrs_baniere_milieuD").append('<button id=delete_type_attr>-</button>');
+									    $("#sep_interval").append('<div id=attrs_baniere_droite class=baniere_droite>');
+									   
+									   $("#add_type_attr").click(function(){
+									    
+									     var type=$("#relationsepare_noncontenu_type").val();
+										 $("#ul_relationsepare_noncontenu"+type).remove();
+										 $("#li_noncontenu"+type).remove();
+										 if(type!="vide")
+										 {
+										  $("#attrs_baniere_droite").append('<li id=li_noncontenu'+type+'>'+type+'</li>');
+										  list_attributesvalue(trace,"attrs_baniere_droite",type,"ul_relationsepare_noncontenu","relationsepare_noncontenu_type");
+								         }
+									   });	
+									   $("#delete_type_attr").click(function(){
+									     var type=$("#relationsepare_noncontenu_type").val();
+										 $("#ul_relationsepare_noncontenu"+type).remove();
+										 $("#li_noncontenu"+type).remove();
+									   });
+									   //liste_relation ('baniere_milieuG');
+									   //<<
+									 
+									  $("#relationsepare_debut_type").change(function(){
+										   var type=$('#relationsepare_debut_type').val();
+										   if(type=="")
+											{
+											 list_attributesvalue(trace,"attrs_baniere_gauche",type,"ul_relationsepare_debut","relationsepare_debut_type");
+											 index_relsep_debut=type;
+											}
+										   else
+											{
+											 $('#ul_relationsepare_debut'+index_relsep_debut).remove();
+											 list_attributesvalue(trace,"attrs_baniere_gauche",type,"ul_relationsepare_debut","relationsepare_debut_type");
+											 index_relsep_debut=type;
+											}
+									    });
+									    $("#relationsepare_fin_type").change(function(){
+										   var type=$('#relationsepare_fin_type').val();
+										   if(type=="")
+											{
+											 list_attributesvalue(trace,"attrs_baniere_milieuG",type,"ul_relationsepare_fin","relationsepare_fin_type");
+											 index_relsep_fin=type;
+											}
+										   else
+											{
+											 $('#ul_relationsepare_fin'+index_relsep_fin).remove();
+											 list_attributesvalue(trace,"attrs_baniere_milieuG",type,"ul_relationsepare_fin","relationsepare_fin_type");
+											 index_relsep_fin=type;
+											}
+								      
+								        });
+								 });
+								 //
+								  								 
+								//<<
+								$(this).append("<b><div>par l'obsel ?"+new_img+'</div>');
+								 //suppression après suggestion oui/non
+								 $(this).dialog({
+								  buttons: {
+									  "Oui": function() { 
+										   var cpt_attr_obsel=0;
+										   var bool_valid_value=true;
+										   var cpt_attr_model=0;
+										   var obsels_source_modify=[];
+										   trace_Transformation.list_obsels().forEach(function(o){  
+												$('#div_type > input:checked').each(function() {
+												  if(o.type==$(this).attr("Id"))
+													{ 
+														$('#ul_suggestion'+o.type+'> li').each(function() {
+															cpt_attr_model++;
+															for(var attr in o.attributes)
+															{
+															   if($(this).attr("Id")=='li'+attr)
+																{
+																	if($('#select_suggestion'+o.type+attr).val()!='empty')
+																	{
+																	  var value_attr = $('#select_suggestion'+o.type+attr).val();
+																	}
+																	else
+																	{
+																	 var value_attr = o.attributes[attr];
+																	}
+																  
+																   cpt_attr_obsel++;
+																   if (value_attr != o.attributes[attr]) 
+																	{
+																	  bool_valid_value=false;
+																	}
+																}	
+															}
+															if(cpt_attr_model != cpt_attr_obsel)
+															{
+																var att=$(this).attr("Id").substr(2);
+																if($('#select_suggestion'+o.type+att).val()=='empty')
+																{
+																   cpt_attr_model--;
+																}
+																else
+																{
+																   bool_valid_value=false;
+																}
+															}
+
+														});
+														
+														//relation entre les obsels
+														 var bool_succ=false;
+														 var bool_pred=false;
+														if(document.getElementById('successive').checked==true)
+														{ 
+															if($('#prédécesseur'+$(this).attr("Id")).val()!="prédécesseurempty")
+															{
+															 var predecesseur=$('#prédécesseur'+$(this).attr("Id")).val();
+															}
+															else
+															{
+															 bool_pred=true;
+															}
+															if($('#successeur'+$(this).attr("Id")).val()!="successeurempty")
+															{
+															 var successeur=$('#successeur'+$(this).attr("Id")).val();
+															}
+															else
+															{
+															 bool_succ=true;
+															}
+														   for(var i=0;i<obsel_id.length;i++)
+														   {
+															  if(obsel_id[i]==o.id)
+																{
+																	trace.list_obsels().forEach(function(ob){  
+																	  if(obsel_id[i-1]==ob.id && predecesseur!="prédécesseurempty" && predecesseur==ob.type)
+																	   {
+																		 bool_pred=true;
+																	   }
+																	 
+																	 if(obsel_id[i+1]==ob.id && successeur!="successeurempty" && successeur==ob.type)
+																	   {
+																		 bool_succ=true;
+																	   }
+																	   
+																	});
+																	
+																}
+															}
+														}
+														else
+														{
+														 bool_succ=true;
+														 bool_pred=true;
+														}
+														//
+													  if((bool_valid_value==true && cpt_attr_obsel==cpt_attr_model)&& (bool_succ==true && bool_pred==true))
+													   {
+															 obsels_source_modify.push({
+																idObs : o.get_id(),
+																hasbegin : o.get_begin(),
+																hasend : o.get_end(),
+																type : o.get_type(),
+																attributes : o.attributes ,							
+															});	
+															trace_Transformation.remove_obsel(o);
+															obsel_selector.unselect(o);
+														}
+														  bool_valid_value=true;										 
+														  cpt_attr_obsel=0;
+														  cpt_attr_model=0;
+													}
+												}); 
+											});
+											
+											obsel_selector.empty(); 
+									       if($('#replace_TimeStamp').val()=="")
+									       {
+												obsels_source_modify.forEach(function(obsel){
+												 
+													o_attr.begin=obsel.hasbegin;
+													o_attr.end=obsel.hasend;
+													trace_Transformation.create_obsel(o_attr);
+													obsels_source_transformer.push({
+														hasbegin_trans :o_attr.begin,
+														hasend_trans : o_attr.end,
+														type_trans : o_attr.type,
+														attributes_trans : o_attr.attributes ,
+													});
+												});
+											}
+                                            else
+                                            {
+												trace_Transformation.create_obsel(o_attr);
+												obsels_source_transformer.push({
+													hasbegin_trans :o_attr.begin,
+													hasend_trans : o_attr.end,
+													type_trans : o_attr.type,
+													attributes_trans : o_attr.attributes , 
+												}); 
+											}											
+											Transformation_Interaction.push({
+												id_interaction : i,
+												date : date,
+												evt : "trace:update:obsel" ,
+												obsels_source : obsels_source_modify,
+												obsels_Transformer : obsels_source_transformer				
+											});   
+											texte = JSON.stringify(Transformation_Interaction);
+											document.getElementById('historique').value=texte ;
+											 $('#replace_TimeStamp').val("");
+											$(this).dialog('close');
+										},
+										
+									    "Non": function() {
+									     $(this).dialog('close');
+																  
+										}
+								    }
+								});
+								 
+							}
+					    }
+					});
+				}
+				
+		    }		
+		});	
+        //<<
+			
+			$('#add_type').change( function() { 
+			   var type=$('#add_type').val();
+			   if(type=="")
+			   {
+				 $('#ul_interaction_add'+index).remove();
+				 index=type;
+			   }
+			   else
+			   {
+				 $('#ul_interaction_add'+index).remove();
+				 list_attributesvalue(trace,"attrs",type,"ul_interaction_add","select_interaction_add");
+				 index=type;
+			   }
+			}); 	
+			$('#replace_type').change( function() { 
+			   var type=$('#replace_type').val();
+			   if(type=="")
+			   {
+				 $('#ul_interaction_replace'+index_replace).remove();
+				 index_replace=type;
+			   }
+			   else
+			   {
+				 $('#ul_interaction_replace'+index_replace).remove();
+				 list_attributesvalue(trace,"attrs_replace",type,"ul_interaction_replace","select_interaction_replace");
+				 index_replace=type;
+			   }
+			}); 
+			
+    }
+		
+		//create liste type/trace
+            function list_typeobsel(trace,select_id)
+            {
+			  $('#'+select_id).empty();
+              var obsel_type=[];
+                $('<option>', {
+                    id: "vide",
+                }).text("").appendTo('#'+select_id);
+               trace.list_obsels().forEach(function(o){
+                   if(jQuery.inArray(o.type,obsel_type)==-1)
+                    {
+                     obsel_type.push(o.type);   
+                         $('<option>', {
+                            id: o.type,
+                        }).text(o.type).appendTo('#'+select_id);
+                   }             
+                });   
+                   
+            }
+			
+						//create liste box attributes values   
+	     function list_attributesvalue(trace,div_id,select_type,ul_id,select_id)
+		    {
+				  var obsel_attr = [] ;
+				  var obsel_value =[];
+				  var obsel_type=[];
+				  var obj = {};
+				  var obsel_type_attr={};
+				  trace.list_obsels().forEach(function(o){
+				  //>>type/attributes
+ 				  if(jQuery.inArray(o.type,obsel_type)==-1)
+						 {
+						   obsel_type.push(o.type);	
+						   obsel_type_attr[o.type]=[];
+						 }
+					
+					//<<
+					for (var attr in o.attributes)
+					{
+					   if(jQuery.inArray(attr,obsel_attr)==-1)
+						 {
+						   obsel_attr.push(attr);
+						   obj[attr] = [];
+						 }
+					}	
+				   
+				  });
+				  
+				   for (var type in obsel_type_attr)
+				   {
+				     var tab_attr=[];
+				     trace.list_obsels().forEach(function(o){
+					
+					 if(type==o.type)
+					   {
+						  for (var attr in o.attributes)
+							{
+							  if(jQuery.inArray(attr,tab_attr)==-1)
+								 {
+								   tab_attr.push(attr);
+								   obsel_type_attr[o.type].push(attr);
+								 }
+							}	
+                        }							
+					 });
+				   }
+				
+				  trace.list_obsels().forEach(function(o){
+					
+					 for (var attr in o.attributes)
+						{
+						   
+						   if(jQuery.inArray(o.attributes[attr],obsel_value)==-1)
+							{
+							 obsel_value.push(o.attributes[attr]); 
+							 obj[attr].push(o.attributes[attr]);
+							}
+						}	
+				   
+				  });
+					
+			 //generate html listbox 
+	          var ul_element = jQuery("<ul>",{
+				     id: ul_id+select_type });
+		      for(type in obsel_type_attr)
+                {  		
+				  if(type==select_type)
+				    {
+					  for(var j in obsel_type_attr[type])
+				        {
+						 var attr=obsel_type_attr[type][j];
+						 var li_element = jQuery("<li>",{
+							   id: 'li'+attr });	
+							
+							$('<label>', {
+								id: attr,
+								value:attr,
+							}).html(attr+' : ').appendTo(li_element);
+
+						   var select_element = jQuery("<select>",{
+							  id: select_id+select_type+attr });
+							  
+								$('<option>', {
+									id: "empty",
+									value:"empty",
+									size:1,
+								}).text("").appendTo(select_element);
+							 (select_element).appendTo(li_element);					   
+									
+							for(var k  in obj[attr])
+							{
+								$('<option>', {
+									id: obj[attr][k],
+									value:obj[attr][k],
+								}).text(obj[attr][k]).appendTo(select_element);
+							 (select_element).appendTo(li_element);
+							}
+							(ul_element).append(li_element);
+							 $("#"+div_id).append(ul_element);
+					    }
+                      							
+				    }	
+				}	
+		    }     
+			
+	
+	     function obsel_relation()
+			{
+			 $("#sep_interval").empty();
+	         var tab=['prédécesseur','successeur'];
+			 var ul_element = jQuery("<ul>",{
+						id: 'ul_type'});
+							 
+				 $('#div_type > input:checked').each(function() {
+				
+				      var li_element = jQuery("<li>",{
+					    id: 'li'+$(this).attr("Id") }); 
+						$('<input>', {
+							id: $(this).attr("Id"),
+							type: "checkbox" ,
+							checked:true,
+						}).appendTo(li_element);
+						$('<label>', {
+							id: 'lab'+$(this).attr("Id"),
+							value:$(this).attr("Id"),
+						}).html($(this).attr("Id")+':').appendTo(li_element);
+						 
+						 var div_element=jQuery("<div>",{
+							id: 'div'+$(this).attr("Id") });
+								
+						 for(var i=0;i<tab.length;i++)
+						    {
+							  var select_element = jQuery("<select>",{
+								id: tab[i]+$(this).attr("Id") });
+								
+							    $('<label>', {
+								   id: 'lab'+tab[i]+$(this).attr("Id"),
+								   value:$(this).attr("Id"),
+								}).html('<br>'+tab[i]+':').appendTo(li_element);
+								$('<option>', {
+									id:tab[i]+"empty",
+									value:tab[i]+"empty",
+								}).text("").appendTo(select_element);
+								 (select_element).appendTo(li_element);					   
+							
+								$('#add_type > option' ).each(function() {
+								  if($(this).attr("Id")!="vide")
+								  {  
+									$('<option>', {
+									   id: 'op'+tab[i]+$(this).attr("Id"),
+									   value:$(this).attr("Id"),
+									   size:1,
+									}).text($(this).attr("Id")).appendTo(select_element);
+									
+									(select_element).appendTo(li_element);
+									 
+								  }	
+								
+								});	
+						
+						    }	 
+							//(div_element).appendTo(li_element);
+							(ul_element).append(li_element);
+						    $("#div_successive").append(ul_element);
+				    });
+			}
+			
+			
+			function liste_relation (div_id)
+			 {
+			   var tab=['commence avant','commence après','termine avant','termine après','chevauche','dans','invdans','égale'];
+			     var select_element = jQuery("<select>",{
+					  id: 'relation_test',
+					  multiple: "multiple"
+					  });
+					  /*
+					 $('<label>', {
+					   id: 'lab',
+					   value:'et qui'
+					 }).html('et qui').appendTo(select_element);
+					 */
+					 $('<option>', {
+						id:"empty",
+						value:"empty",
+					 }).text("").appendTo(select_element);
+					 
+			     for(var i=0;i<tab.length;i++)
+				    {
+					 $('<option>', {
+						id:tab[i],
+						value:tab[i],
+					 }).text(tab[i]).appendTo(select_element);
+					}
+                $("#"+div_id).append(select_element);					
+			 } 
+			 
+			/*
+			  function obsel_separe()
+			  {
+				$("#ul_type").remove();
+			  }
+		*/
+		     function controle_champsobligatoire(select_id_type)
+			   {
+				 if($('#'+select_id_type).val()=="")
+					{
+						$('#'+select_id_type).css("border","1px solid #f00");
+						$('#'+select_id_type).css("backgroundColor","#fba");
+						$('#error_'+select_id_type).html("Vous n'avez pas spécifié le type d'obsel à créer");
+						return false;
+					}
+				  else
+					{
+						$('#'+select_id_type).css("border","");
+						$('#'+select_id_type).css("backgroundColor","");
+						$('#error_'+select_id_type).html("");
+						return true;
+					}
+				}		
+        // calling the init function when the DOM has been loaded
+       $(document).ready(init);
+        </script>
+		 <script src="assets/js/jquery.generateFile.js"></script>
+         <script src="assets/js/script.js"></script> 
+    </body>
+</html>
