@@ -126,14 +126,19 @@ $(document).ready(function(){
 	pour la fonction essai avec tableau associatif pour la couleur     $('#my_select option:selected').attr('id');
 	*/
 	$('#add_type').change(function(){
-		alert( "Change" );
 		if ($('#add_type option:selected').attr("id")!="vide"){
-			alert( "!=  " );
 			$("#row_add > .col-md-3:nth-child(1) .progress-bar").removeClass('progress-bar-undone').addClass('bg-purple');
 		} else {
-			alert( "==  " );
 			$("#row_add > .col-md-3:nth-child(1) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
 		}
 	});
-	
+
+	$("#add_TimeStamp[type='text']").change(function(){
+		if ($("#add_TimeStamp[type='text']").val()!=""){
+			$("#row_add > .col-md-3:nth-child(2) .progress-bar").removeClass('progress-bar-undone').addClass('bg-darkblue');
+		} else {
+			$("#row_add > .col-md-3:nth-child(2) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
+		}
+	});
+
 });
