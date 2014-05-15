@@ -355,7 +355,7 @@ min-height: 50%;
 #row_traces{
   display: block;
   height: auto;
-  min-height: 100%;
+  padding-bottom: 15px;
 }
 
 #toolbox{
