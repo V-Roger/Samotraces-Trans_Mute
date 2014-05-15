@@ -153,6 +153,9 @@ min-width:620px;
   background: rgb(235,236,241);
 }
 
+.progress-bar {
+  transition: background-color 1s;
+}
 
 .progress-bar-undone {
   background: #f5f5f5;
