@@ -3,7 +3,9 @@
  **********************/
 
 div.Widget {
-	border: 1px solid #484;
+	border: 1px solid grey;
+
+	 /*#484*/
 	overflow: hidden;
 }
 
