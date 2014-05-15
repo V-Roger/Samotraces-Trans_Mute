@@ -111,12 +111,16 @@ $(document).ready(function(){
 									$('#row_add').hide();
 									$('#row_replace').show();
 									$('#row_delete').hide();
-								 	break;
+									document.getElementById('suggestion-delete').innerHTML = "";
+									document.getElementById('suggestion-replace').innerHTML = "utiliser le système de suggestions?<br><input type=\"checkbox\" id=\"activer_suggestion\">";
+									break;
 
 				case 'supprimer_obsel' : 	
 									$('#row_add').hide();
 									$('#row_replace').hide();
 									$('#row_delete').show();
+									document.getElementById('suggestion-replace').innerHTML = "";
+									document.getElementById('suggestion-delete').innerHTML = "utiliser le système de suggestions?<br><input type=\"checkbox\" id=\"activer_suggestion\">";
 								   	break;
 				default : break;
 			}
