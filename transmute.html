@@ -248,7 +248,7 @@
     </div>
 
     <!-- suggestion -->
-    <div id="dialog" title="Suggestion Samotraces_Transformation" float: right;></div>
+    <div id="dialog" title="TransMute suggestions" float: right;></div>
     <div class="col-md-2 step">
       <div class="row">
         <div class="progress-bar bg-lightblue" style="width: 100%;">
@@ -557,19 +557,21 @@ function update_points(p) {
              img +='<img src="images/'+obs.type+''+valueattr_obsel_selection+'.png"/>' ;
            });  
           $("#dialog").html('Voulez vous supprimer cet(s) obsel uniquement ?'+img);
+          var dWidth = $(window).width();
+          var dHeight = $(window).height() * 0.4;
           $( "#dialog" ).dialog({
-            height:480,
-            width:480,
+            height: dHeight,
+            width: dWidth,
             draggable: true,
             resizable: true,
-            position: ["center",500] ,
+            position: ["center", "bottom"] ,
             show: {
-              effect: "blind",
-              duration: 800
+              effect: "scale",
+              duration: 300
             },
             hide: {
-              effect: "slide",
-              duration: 500
+              effect: "scale",
+              duration: 300
             },
             
             buttons: 
@@ -847,7 +849,7 @@ cpt_attr_model=0;
              
              
            });   
-          $("#dialog").html('Voulez vous transformer cet(s) obsel uniquement<br>&emsp;'+img+"<br>en :<br>&emsp;"+new_img+"<br>?");
+          $("#dialog").html('Voulez vous utiliser le système de suggestion pour la transformation de cet(s) obsel(s)<br>&emsp;'+img+"<br>en :<br>&emsp;"+new_img+"<br>?");
           var dWidth = $(window).width();
           var dHeight = $(window).height() * 0.4;
           $( "#dialog" ).dialog({
@@ -861,12 +863,12 @@ cpt_attr_model=0;
               duration: 300
             },
             hide: {
-              effect: "puff",
+              effect: "scale",
               duration: 300
             },
             buttons: {
-             
-             "Oui": function() {
+
+            "Non": function() {
               
                obsel_selector.selection.forEach(function(obs) {
                 
@@ -912,7 +914,8 @@ cpt_attr_model=0;
               $('#replace_TimeStamp').val("");
               $(this).dialog('close'); 
             },
-            "Non": function() {
+             
+            "Oui": function() {
               
              $("#dialog").html('Voulez vous remplacer chaque obsel de type ?<br>');
              var div_element = jQuery("<div>",{
@@ -943,7 +946,7 @@ cpt_attr_model=0;
                 (div_element).append('<br><br>&emsp;1)les attributs: ');
                 $('#dialog').append(div_element);
                 list_attributesvalue(trace,'div_type',type,"ul_suggestion","select_suggestion");
-              } 
+              }
               
             }); 
 
