@@ -410,7 +410,7 @@ display: none;
   visibility: hidden;
  }
 
- /*-----Toobox-----*/
+ /*-----Toolbox-----*/
 
  #importer-transformation, #transformation_list, #row_replace, #row_delete {
   display: none;
