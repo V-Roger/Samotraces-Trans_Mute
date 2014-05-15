@@ -122,4 +122,34 @@ $(document).ready(function(){
 			}
 		});
 
+	/*
+	pour la fonction essai avec tableau associatif pour la couleur     $('#my_select option:selected').attr('id');
+	*/
+	$('#add_type').change(function(){
+		if ($('#add_type option:selected').attr("id")!="vide"){
+			$("#row_add > .col-md-3:nth-child(1) .progress-bar").removeClass('progress-bar-undone').addClass('bg-purple');
+		} else {
+			$("#row_add > .col-md-3:nth-child(1) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
+		}
+	});
+
+	$("#add_TimeStamp[type='text']").change(function(){
+		if ($("#add_TimeStamp[type='text']").val()!=""){
+			$("#row_add > .col-md-3:nth-child(2) .progress-bar").removeClass('progress-bar-undone').addClass('bg-darkblue');
+		} else {
+			$("#row_add > .col-md-3:nth-child(2) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
+		}
+	});
+/*
+	$('#attrs').change(function(){
+		if ($(("#attrs option:selected").each(this.attr("id"))!="empty")){
+			alert("!=");
+			$("#row_add > .col-md-3:nth-child(1) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mediumblue');
+		} else {
+			alert("==");
+			$("#row_add > .col-md-3:nth-child(1) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
+		}
+		alert($(("#attrs option:selected").each()this.attr("id"))!="empty"));
+	});
+*/
 });

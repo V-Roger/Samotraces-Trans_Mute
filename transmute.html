@@ -133,8 +133,8 @@
     <div id="row_add" class="col-md-10 full-height" style="padding-top: 10px; text-align: center; " >
       <div class="col-md-3 step">
         <div class="row">
-          <div class="progress-bar bg-purple" style="width: 100%;">
-            2
+          <div class="progress-bar progress-bar-undone" style="width: 100%;">
+            1/4
           </div>
         </div>
         <div class="row border-right">
@@ -148,8 +148,8 @@
       </div>
       <div class="col-md-3 step">
         <div class="row">
-          <div class="progress-bar bg-darkblue" style="width: 100%;">
-            2
+          <div class="progress-bar progress-bar-undone" style="width: 100%;">
+            2/4
           </div>
         </div>
         <div class="row border-right">
@@ -161,8 +161,8 @@
       </div>
       <div class="col-md-3 step">
         <div class="row">
-          <div class="progress-bar bg-mediumblue" style="width: 100%;">
-            2
+          <div class="progress-bar progress-bar-undone" style="width: 100%;">
+            3/4
           </div>
         </div>
         <div class="row border-right">
@@ -174,8 +174,8 @@
       </div>
       <div class="col-md-3 step">
         <div class="row">
-          <div class="progress-bar bg-green" style="width: 100%;">
-            2
+          <div class="progress-bar progress-bar-undone" style="width: 100%;">
+            4/4
           </div>
         </div>
         <div class="col-md-12">
@@ -190,7 +190,7 @@
       <div class="col-md-2 step">
         <div class="row">
           <div class="progress-bar bg-mauve" style="width: 100%;">
-            1
+            1/6
           </div>
         </div>
         <div class="row border-right">
@@ -207,7 +207,7 @@
       <div class="col-md-2 step step-choice">
         <div class="row">
           <div class="progress-bar bg-purple" style="width: 100%;">
-            2
+            2/6
           </div>
         </div>
         <div class="row border-right">
@@ -224,7 +224,7 @@
       <div class="col-md-2 step step-timestamp">
         <div class="row">
           <div class="progress-bar bg-darkblue" style="width: 100%;">
-            3
+            3/6
           </div>
         </div>
         <div class="row border-right">
@@ -239,7 +239,7 @@
      <div class="col-md-2 step step-attribute">
       <div class="row">
         <div class="progress-bar bg-mediumblue" style="width: 100%;">
-          4
+          4/6
         </div>
       </div>
       <div class="row border-right">
@@ -255,7 +255,7 @@
     <div class="col-md-2 step step-suggestion">
       <div class="row">
         <div class="progress-bar bg-lightblue" style="width: 100%;">
-          5
+          5/6
         </div>
       </div>
       <div class="row border-right">
@@ -270,7 +270,7 @@
     <div class="col-md-2 step step-submit">
       <div class="row">
         <div class="progress-bar bg-green" style="width: 100%;">
-          6
+          6/6
         </div>
       </div>
       <div class="row border-right">
@@ -851,19 +851,21 @@ cpt_attr_model=0;
              
            });   
           $("#dialog").html('Voulez vous transformer cet(s) obsel uniquement<br>&emsp;'+img+"<br>en :<br>&emsp;"+new_img+"<br>?");
+          var dWidth = $(window).width();
+          var dHeight = $(window).height() * 0.4;
           $( "#dialog" ).dialog({
-            height:480,
-            width:900,
+            height: dHeight,
+            width: dWidth,
             draggable: true,
             resizable: true,
-            position: ["center",500] ,
+            position: ["center", "bottom"] ,
             show: {
-              effect: "blind",
-              duration: 800
+              effect: "scale",
+              duration: 300
             },
             hide: {
-              effect: "slide",
-              duration: 500
+              effect: "puff",
+              duration: 300
             },
             buttons: {
              

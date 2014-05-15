@@ -153,6 +153,9 @@ min-width:620px;
   background: rgb(235,236,241);
 }
 
+.progress-bar {
+  transition: background-color 1s;
+}
 
 .progress-bar-undone {
   background: #f5f5f5;
@@ -355,7 +358,7 @@ min-height: 50%;
 #row_traces{
   display: block;
   height: auto;
-  min-height: 338px;
+  min-height: 100%;
 }
 
 #toolbox{
@@ -434,7 +437,7 @@ float:right;
   visibility: hidden;
  }
 
- /*-----Toobox-----*/
+ /*-----Toolbox-----*/
 
  #importer-transformation, #transformation_list, #row_replace, #row_delete {
   display: none;
