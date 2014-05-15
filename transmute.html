@@ -848,19 +848,21 @@ cpt_attr_model=0;
              
            });   
           $("#dialog").html('Voulez vous transformer cet(s) obsel uniquement<br>&emsp;'+img+"<br>en :<br>&emsp;"+new_img+"<br>?");
+          var dWidth = $(window).width();
+          var dHeight = $(window).height() * 0.4;
           $( "#dialog" ).dialog({
-            height:480,
-            width:900,
+            height: dHeight,
+            width: dWidth,
             draggable: true,
             resizable: true,
-            position: ["center",500] ,
+            position: ["center", "bottom"] ,
             show: {
-              effect: "blind",
-              duration: 800
+              effect: "scale",
+              duration: 300
             },
             hide: {
-              effect: "slide",
-              duration: 500
+              effect: "puff",
+              duration: 300
             },
             buttons: {
              
