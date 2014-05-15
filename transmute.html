@@ -139,8 +139,8 @@
         </div>
         <div class="row border-right">
           <div class="col-md-12">
-            <label >Type :</label>  
-            <SELECT id="add_type" size="1" name="champ" >
+            <label class="steptitle">Type :</label><br>  
+            <SELECT id="add_type" size="5" name="champ" >
             </SELECT> 
             <span id="error_add_type" color="#fba"></span>
           </div>
@@ -154,7 +154,8 @@
         </div>
         <div class="row border-right">
           <div class="col-md-12">
-            <label >Time Stamp : </label><input type="text" id="add_TimeStamp" value="">
+            <label class="steptitle">Time Stamp : </label><br>
+            <input type="text" id="add_TimeStamp" value="">
           </div>
         </div>
       </div>
@@ -166,9 +167,8 @@
         </div>
         <div class="row border-right">
           <div class="col-md-12">
-            <div id="attrs">
-              Attributs :
-            </div>
+            <label class="steptitle">Attributs</label><br>
+            <div id="attrs"></div>
           </div>
         </div>
       </div>
@@ -178,7 +178,10 @@
             4/4
           </div>
         </div>
-        <button id="add-obs">Ajouter Obsel</button>
+        <div class="col-md-12">
+          <label class="steptitle">Ajouter</label><br>
+          <button id="add-obs">Ajouter Obsel</button>
+        </div>
       </div>      
     </div><!-- row add -->
 
@@ -192,7 +195,7 @@
         </div>
         <div class="row border-right">
           <div class="col-md-12">
-            <label>obsels selectionnés</label>
+            <label class="steptitle">Obsels selectionnés</label><br>
             <div id="img_replace"></div>
             <br><br>
             <br><br>
@@ -201,7 +204,7 @@
       </div>
 
       <!-- replacement choice -->
-      <div class="col-md-2 step">
+      <div class="col-md-2 step step-choice">
         <div class="row">
           <div class="progress-bar bg-purple" style="width: 100%;">
             2/6
@@ -209,8 +212,8 @@
         </div>
         <div class="row border-right">
           <div class="col-md-12">
-            <label>Replacement</label>
-            <SELECT id="replace_type" size="1" name="champ" >
+            <label class="steptitle">Replacement</label><br>
+            <SELECT id="replace_type" size="8" name="champ" >
             </SELECT> 
             <span id="error_replace_type" color="#fba"></span>
           </div>
@@ -218,7 +221,7 @@
       </div>
 
       <!-- time stamp -->
-      <div class="col-md-2 step">
+      <div class="col-md-2 step step-timestamp">
         <div class="row">
           <div class="progress-bar bg-darkblue" style="width: 100%;">
             3/6
@@ -226,14 +229,14 @@
         </div>
         <div class="row border-right">
           <div class="col-md-12">
-           <label >Time Stamp</label>
-           <input type="text" id="replace_TimeStamp" value="" size="5">
+           <label class="steptitle">Time Stamp</label><br>
+           <input type="text" id="replace_TimeStamp" value="" size="8">
          </div>
        </div>
      </div>
 
      <!-- attribut -->
-     <div class="col-md-2 step">
+     <div class="col-md-2 step step-attribute">
       <div class="row">
         <div class="progress-bar bg-mediumblue" style="width: 100%;">
           4/6
@@ -241,7 +244,7 @@
       </div>
       <div class="row border-right">
         <div class="col-md-12">
-          <label>Attributs</label>
+          <label class="steptitle">Attributs</label>
           <div id="attrs_replace"></div>
         </div>
       </div>
@@ -257,14 +260,14 @@
       </div>
       <div class="row border-right">
         <div class="col-md-12">
-          <label>Suggestion</label>
-          <div>utiliser le système de suggestions?<br><input type="checkbox" id="activer_suggestion"></div> 
+          <label class="steptitle">Suggestion</label>
+          <div>Utiliser le système de suggestions?<br><input type="checkbox" id="activer_suggestion"></div> 
         </div>
       </div>
     </div>
 
     <!-- submit button -->
-    <div class="col-md-2 step">
+    <div class="col-md-2 step step-submit">
       <div class="row">
         <div class="progress-bar bg-green" style="width: 100%;">
           6/6
@@ -272,7 +275,7 @@
       </div>
       <div class="row border-right">
         <div class="col-md-12">
-          <label>Remplacer!</label>
+          <label class="steptitle">Remplacer!</label>
           <button type="submit" class="btn btn-default" id="modify-obs" disabled="disabled" style="margin-top:50%;">Soumettre</button>
         </div>
       </div>
