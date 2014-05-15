@@ -78,7 +78,16 @@
     <div class="row full-height">
 
       <div class="col-md-2">
-        <ul id="nav_traces" class="nav nav-pills nav-stacked">
+
+        <div class="navbar-header nav_traces_header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav_traces_collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="glyphicon glyphicon-collapse-down"></span>
+
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="nav_traces_collapse">
+        <ul id="nav_traces" class="nav nav-pills nav-stacked ">
           <li><h4>TRACES</h4></li>
           <li class="active"><a id="load_trace" href="#">Charger</a></li>
           <li><a id="transform_trace" href="#">Transformer</a></li>
@@ -88,6 +97,7 @@
           <li><a id="history" href="#">Historique</a></li>
           <li><a id="download_transformation" href="#">T&eacute;l&eacute;charger</a></li>
         </ul>
+      </div>
       </div>
 
       <div id="row_traces" class="col-md-10 bg-grey traces_row">

@@ -166,4 +166,14 @@ $(document).ready(function(){
 		}
 	});
 
+	//pour changer l'image du bouton toggle
+	$('.navbar-toggle').click(function(){
+		if($(this).attr("class")*="collapsed"){
+			$(this).find(".glyphicon").removeClass('glyphicon-collapse-down').addClass('glyphicon-collapse-up');
+		} else {
+			$(this).find(".glyphicon").removeClass('glyphicon-collapse-up').addClass('glyphicon-collapse-down');
+		}
+		
+	});
+
 });

@@ -428,6 +428,23 @@ float:right;
 }
 
 
+
+.nav_traces_header{
+background-color: rgb(235,236,241);
+margin-bottom:-15px;
+height:40px;
+}
+
+.navbar-collapse{
+  padding-left: 0px;
+  max-height: 400px;
+  width:100%;
+}
+
+
+
+
+
 @media (max-width: 992px){
   #logo{
     display: none;
@@ -441,6 +458,7 @@ float:right;
 
 
 }
+
 
 @media (max-width: 850px){
   #logo{
