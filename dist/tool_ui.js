@@ -135,5 +135,5 @@ $(document).ready(function(){
 			$("#row_add > .col-md-3:nth-child(1) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
 		}
 	});
-
+	
 });
