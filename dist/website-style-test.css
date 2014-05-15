@@ -87,7 +87,7 @@ h3{
 }
 */
 
-.nav-tabs > li > a:hover,
+.nav-tabs > li > a:hover
 {
   border-left-color: transparent;
   border-right-color: transparent;
@@ -231,5 +231,5 @@ h3{
 
 }
 
-}
+
 

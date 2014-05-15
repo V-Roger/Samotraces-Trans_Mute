@@ -404,13 +404,13 @@ display: none;
   background: #fff;
  }
 
- #my-widget2, #scale2, #importer-transformation, #transformation_list{
-  display: none;
+ #my-widget2, #scale2{
+  visibility: hidden;
  }
 
  /*-----Toobox-----*/
 
- #row_replace, #row_delete {
+ #importer-transformation, #transformation_list, #row_replace, #row_delete {
   display: none;
  }
 
