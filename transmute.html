@@ -139,7 +139,7 @@
         </div>
         <div class="row border-right">
           <div class="col-md-12">
-            <label class="steptitle">Type</label><br>  
+            <label class="steptitle">Type :</label><br>  
             <SELECT id="add_type" size="5" name="champ" >
             </SELECT> 
             <span id="error_add_type" color="#fba"></span>
@@ -154,7 +154,7 @@
         </div>
         <div class="row border-right">
           <div class="col-md-12">
-            <label class="steptitle">Time Stamp</label><br>
+            <label class="steptitle">Time Stamp : </label><br>
             <input type="text" id="add_TimeStamp" value="">
           </div>
         </div>
@@ -870,53 +870,6 @@ cpt_attr_model=0;
               duration: 300
             },
             buttons: {
-
-            "Non": function() {
-              
-               obsel_selector.selection.forEach(function(obs) {
-                
-                 trace_Transformation.remove_obsel(obs);
-                 obsel_selector.unselect(obs);
-               });
-               obsel_selector.empty(); 
-               if(o_attr.begin=="")
-               {         
-                 obsels_source_modify.forEach(function(obsel){
-                  o_attr.begin=obsel.hasbegin;
-                  o_attr.end=obsel.hasend;
-                  trace_Transformation.create_obsel(o_attr);
-                  obsels_source_transformer.push({
-                    hasbegin_trans :o_attr.begin,
-                    hasend_trans : o_attr.end,
-                    type_trans : o_attr.type,
-                    attributes_trans : o_attr.attributes ,
-                  });
-                });
-                 
-               }
-               else
-               {
-                trace_Transformation.create_obsel(o_attr);
-                
-                obsels_source_transformer.push({
-                  hasbegin_trans :o_attr.begin,
-                  hasend_trans : o_attr.end,
-                  type_trans : o_attr.type,
-                  attributes_trans : o_attr.attributes , 
-                });
-              }
-              Transformation_Interaction.push({
-                id_interaction : i,
-                date : date,
-                evt : "trace:update:obsel" ,
-                obsels_source : obsels_source_modify,
-                obsels_Transformer : obsels_source_transformer        
-              });   
-              texte = JSON.stringify(Transformation_Interaction);
-              document.getElementById('historique').value=texte ;
-              $('#replace_TimeStamp').val("");
-              $(this).dialog('close'); 
-            },
              
             "Oui": function() {
               
@@ -1195,7 +1148,55 @@ $(this).dialog('close');
 }
 });
 
-}
+},//end of "oui"
+
+"Non": function() {
+              
+               obsel_selector.selection.forEach(function(obs) {
+                
+                 trace_Transformation.remove_obsel(obs);
+                 obsel_selector.unselect(obs);
+               });
+               obsel_selector.empty(); 
+               if(o_attr.begin=="")
+               {         
+                 obsels_source_modify.forEach(function(obsel){
+                  o_attr.begin=obsel.hasbegin;
+                  o_attr.end=obsel.hasend;
+                  trace_Transformation.create_obsel(o_attr);
+                  obsels_source_transformer.push({
+                    hasbegin_trans :o_attr.begin,
+                    hasend_trans : o_attr.end,
+                    type_trans : o_attr.type,
+                    attributes_trans : o_attr.attributes ,
+                  });
+                });
+                 
+               }
+               else
+               {
+                trace_Transformation.create_obsel(o_attr);
+                
+                obsels_source_transformer.push({
+                  hasbegin_trans :o_attr.begin,
+                  hasend_trans : o_attr.end,
+                  type_trans : o_attr.type,
+                  attributes_trans : o_attr.attributes , 
+                });
+              }
+              Transformation_Interaction.push({
+                id_interaction : i,
+                date : date,
+                evt : "trace:update:obsel" ,
+                obsels_source : obsels_source_modify,
+                obsels_Transformer : obsels_source_transformer        
+              });   
+              texte = JSON.stringify(Transformation_Interaction);
+              document.getElementById('historique').value=texte ;
+              $('#replace_TimeStamp').val("");
+              $(this).dialog('close'); 
+            }
+
 }
 });
 }
