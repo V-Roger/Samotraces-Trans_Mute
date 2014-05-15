@@ -140,16 +140,30 @@ $(document).ready(function(){
 			$("#row_add > .col-md-3:nth-child(2) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
 		}
 	});
-/*
+
 	$('#attrs').change(function(){
-		if ($(("#attrs option:selected").each(this.attr("id"))!="empty")){
-			alert("!=");
-			$("#row_add > .col-md-3:nth-child(1) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mediumblue');
+
+		var any = false;
+
+		$("#attrs option:selected").each(function(){
+		    if($(this).attr("id")=="empty"){
+		        any = true;
+		    } else {
+		    	any = false;
+		    }
+		});
+
+
+		if(any==false){
+			$("#row_add > .col-md-3:nth-child(3) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mediumblue');
+
+			setTimeout(function() {
+			$("#row_add > .col-md-3:nth-child(4) .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
+			}, 1000);
+
 		} else {
-			alert("==");
-			$("#row_add > .col-md-3:nth-child(1) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
+			$("#row_add > .col-md-3:nth-child(3) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
 		}
-		alert($(("#attrs option:selected").each()this.attr("id"))!="empty"));
 	});
-*/
+
 });
