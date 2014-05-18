@@ -167,14 +167,27 @@ $(document).ready(function(){
 		}
 	});
 
-	//pour changer l'image du bouton toggle
+	//switching toggle icons
 	$('.navbar-toggle').click(function(){
-		if($(this).attr("class")*="collapsed"){
+		if($(this).hasClass("collapsed")){
 			$(this).find(".glyphicon").removeClass('glyphicon-collapse-down').addClass('glyphicon-collapse-up');
 		} else {
 			$(this).find(".glyphicon").removeClass('glyphicon-collapse-up').addClass('glyphicon-collapse-down');
 		}
 		
 	});
+
+	// collapse responsive navbar on click
+	$('#nav_traces_collapse a').on('click', function(){ 
+        if($('.nav_traces_header > .navbar-toggle').css('display') !='none'){
+            $(".nav_traces_header > .navbar-toggle").trigger( "click" );
+        }
+    });
+
+    $('#nav_tools_collapse a').on('click', function(){ 
+        if($('.nav_tools_header > .navbar-toggle').css('display') !='none'){
+            $(".nav_tools_header > .navbar-toggle").trigger( "click" );
+        }
+    });
 
 });

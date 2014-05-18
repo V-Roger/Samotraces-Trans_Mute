@@ -147,7 +147,7 @@ min-width:620px;
   color: #9571b2;
 }
 
-.nav-pills > li > a {
+nav-pills > li > a {
   border-radius: 0;
   border-bottom: 1px solid #eee;
   border-top: 1px solid #eee;
@@ -195,6 +195,7 @@ min-width:620px;
 
 .progress-bar {
   transition: background-color 1s;
+  max-height:20px;
 }
 
 .progress-bar-undone {
@@ -225,6 +226,7 @@ min-width:620px;
 .progress-bar-mauve {
   background: rgb(182,57,125);
 }
+
 .border-right{
   border-right: 2px dashed #5a5a5a;
 }
@@ -395,6 +397,7 @@ min-height: 50%;
   display: block;
   height: auto;
   min-height: 100%;
+  margin-top:-20px;
 }
 
 #toolbox{
@@ -429,17 +432,35 @@ float:right;
 
 
 
-.nav_traces_header{
+.nav_traces_header, .nav_tools_header{
 background-color: rgb(235,236,241);
+margin-top:-20px;
 margin-bottom:-15px;
 height:40px;
 }
 
 .navbar-collapse{
-  padding-left: 0px;
-  max-height: 400px;
+  padding-left: 3px;
+  max-height: 13em;
   width:100%;
 }
+
+#nav_tools_collapse{
+  background:#FFF;
+}
+
+button.navbar-toggle{
+  margin:1px;
+  height:100%;
+}
+
+.toggle-button {
+  font-weight: bold;
+  color:#b6397d;
+}
+
+
+
 
 
 
@@ -536,3 +557,4 @@ height: 100%;
 #div_type > *{
   float: left;
 }
+
