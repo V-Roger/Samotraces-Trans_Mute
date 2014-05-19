@@ -558,3 +558,10 @@ height: 100%;
   float: left;
 }
 
+#div_type > input[type=checkbox]{
+  margin-left: 3em;
+}
+
+#div_type > input[type=checkbox]:first-child{
+  margin-left: 0;
+}

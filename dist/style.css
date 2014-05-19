@@ -75,7 +75,7 @@ input.input_libelle{
 	border : 0px solid #6A6D73;
 	font-size: 11px;
 	color : #99999;
-	background -image: url("images/bg_input.gif");
+	background-image: url("images/bg_input.gif");
 	font-weight:normal;
 }
 

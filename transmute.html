@@ -447,16 +447,29 @@ obsel_selector.on('selection:add', function(e) {
   $("#delete-obs").prop("disabled",false);
   $("#modify-obs").prop("disabled",false);
   
+  /*---SELECTED OBSEL VISUALISATION---*/
+
   var obs = e.data;
-  function create_points(obs) {
+  /*function create_points(obs) {
     var x = visu.options.x(obs);
     return String.concat(x+3,",10,",x+8,",15,",x+13,",10");
+  }*/
+
+  function create_points(obs) {
+  	var x = visu.options.x(obs);
+  	var y = 17;
+  	var w = 25;
+  	var h = 40;
+  	return String.concat(x-w,",",y-h,", ",x+2*w,",",y-h,", ",x+2*w,",",y+3*h,", ",x-w,",",y+3*h);
   }
+
   visu.svg
   .append('polygon')
   .attr('points',create_points(obs))
   .attr('stroke-width','1px')
-  .attr('stroke','black')
+  .attr('stroke','#5a5a5a')
+  .attr('fill','#ebecf1')
+  .attr('opacity','0.3')
   .attr('id',"__OBSEL__"+obs.get_id());
   
   var valueattr_obsel_selection="";
@@ -505,10 +518,16 @@ function update_points(p) {
   };
   var id = $(p).attr('id');
   var obs = trace_Transformation.get_obsel(id.substr(9));
+  
+  /*---SELECTED OBSELS UDATE---*/
   var x = options_x.call(myfunc,obs);
           //var t = obs.get_begin();
           //var x = (t - tw2.start)*visu.element.clientWidth/tw2.get_width() - 8;
-          return String.concat(x+3,",10,",x+8,",15,",x+13,",10");         
+          //return String.concat(x+3,",10,",x+8,",15,",x+13,",10");         
+        var y = 17;
+	  	var w = 25;
+	  	var h = 40;
+	  	return String.concat(x-w,",",y-h,", ",x+2*w,",",y-h,", ",x+2*w,",",y+3*h,", ",x-w,",",y+3*h);
         }
         
         tw2.on('tw:update',function() {
