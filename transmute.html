@@ -207,9 +207,9 @@
 <!-- REPLACE OBSEL(S) SYSTEM -->
     <div id="row_replace" class="col-md-10 full-height" style="padding-top: 10px; text-align: center; " >
       <!-- display the selected trace -->
-      <div class="col-md-2 step">
+      <div class="col-md-2 step step-select">
         <div class="row">
-          <div class="progress-bar bg-mauve" style="width: 100%;">
+          <div class="progress-bar progress-bar-undone" style="width: 100%;">
             1/6
           </div>
         </div>
@@ -226,7 +226,7 @@
       <!-- replacement choice -->
       <div class="col-md-2 step step-choice">
         <div class="row">
-          <div class="progress-bar bg-purple" style="width: 100%;">
+          <div class="progress-bar progress-bar-undone" style="width: 100%;">
             2/6
           </div>
         </div>
@@ -243,7 +243,7 @@
       <!-- time stamp -->
       <div class="col-md-2 step step-timestamp">
         <div class="row">
-          <div class="progress-bar bg-darkblue" style="width: 100%;">
+          <div class="progress-bar progress-bar-undone" style="width: 100%;">
             3/6
           </div>
         </div>
@@ -258,7 +258,7 @@
      <!-- attribut -->
      <div class="col-md-2 step step-attribute">
       <div class="row">
-        <div class="progress-bar bg-mediumblue" style="width: 100%;">
+        <div class="progress-bar progress-bar-undone" style="width: 100%;">
           4/6
         </div>
       </div>
@@ -272,9 +272,9 @@
 
     <!-- suggestion -->
     <div id="dialog" title="TransMute suggestions" float: right;></div>
-    <div class="col-md-2 step">
+    <div class="col-md-2 step step-suggest">
       <div class="row">
-        <div class="progress-bar bg-lightblue" style="width: 100%;">
+        <div class="progress-bar progress-bar-undone" style="width: 100%;">
           5/6
         </div>
       </div>
@@ -289,7 +289,7 @@
     <!-- submit button -->
     <div class="col-md-2 step step-submit">
       <div class="row">
-        <div class="progress-bar bg-green" style="width: 100%;">
+        <div class="progress-bar progress-bar-undone" style="width: 100%;">
           6/6
         </div>
       </div>
@@ -309,7 +309,7 @@
     </div> -->
       <div class="col-md-4 step">
         <div class="row">
-          <div class="progress-bar bg-mauve" style="width: 100%;">
+          <div class="progress-bar progress-bar-undone" style="width: 100%;">
             1/3
           </div>
         </div>
@@ -324,9 +324,9 @@
       </div>
 
     <!-- delete obsel suggestion -->
-    <div class="col-md-4 step">
+    <div class="col-md-4 step step-suggest">
       <div class="row">
-        <div class="progress-bar bg-lightblue" style="width: 100%;">
+        <div class="progress-bar progress-bar-undone" style="width: 100%;">
           2/3
         </div>
       </div>
@@ -341,7 +341,7 @@
        <!-- submit button -->
     <div class="col-md-4 step">
       <div class="row">
-        <div class="progress-bar bg-green" style="width: 100%;">
+        <div class="progress-bar progress-bar-undone" style="width: 100%;">
           3/3
         </div>
       </div>
@@ -444,6 +444,16 @@ importer.on('importtrace:newtrace',function(e) {
 */
 var img="";
 obsel_selector.on('selection:add', function(e) {
+
+    //ProgressBar Object Select
+        $("#row_replace > .col-md-2:nth-child(1) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mauve');
+        $("#row_delete > .col-md-4:nth-child(1) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mauve');
+        setTimeout(function() {
+        $("#row_delete > .col-md-4:nth-child(3) .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
+        }, 100);
+
+
+
   $("#delete-obs").prop("disabled",false);
   $("#modify-obs").prop("disabled",false);
   
@@ -492,9 +502,13 @@ obsel_selector.on('selection:add', function(e) {
            });
 
 obsel_selector.on('selection:remove', function(e) {
+
   if(obsel_selector.is_empty()) {
     $("#delete-obs").prop("disabled",true);
     $("#modify-obs").prop("disabled",true);
+    $("#row_replace > .col-md-2:nth-child(1) .progress-bar").removeClass('bg-mauve').addClass('progress-bar-undone');
+    $("#row_delete > .col-md-4:nth-child(1) .progress-bar").removeClass('bg-mauve').addClass('progress-bar-undone');
+    $("#row_delete > .col-md-4:nth-child(3) .progress-bar").removeClass('bg-green').addClass('progress-bar-undone');
   }
   var obs = e.data;
   $('#__OBSEL__'+obs.id).remove();

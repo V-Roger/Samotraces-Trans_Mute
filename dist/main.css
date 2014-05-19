@@ -194,7 +194,7 @@ nav-pills > li > a {
 }
 
 .progress-bar {
-  transition: background-color 1s;
+  transition: background-color 300ms;
   max-height:20px;
 }
 

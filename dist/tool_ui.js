@@ -126,6 +126,8 @@ $(document).ready(function(){
 			}
 		});
 
+
+	//ProgressBar
 	/*
 	pour la fonction essai avec tableau associatif pour la couleur     $('#my_select option:selected').attr('id');
 	*/
@@ -161,11 +163,105 @@ $(document).ready(function(){
 			$("#row_add > .col-md-3:nth-child(3) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mediumblue');
 			setTimeout(function() {
 			$("#row_add > .col-md-3:nth-child(4) .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
-			}, 1000);
+			}, 100);
 		} else {
 			$("#row_add > .col-md-3:nth-child(3) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
 		}
 	});
+
+	//Replace_Bar
+		$('#img_replace').change(function(){
+		var element=$("#replace_1");
+		alert(element.length);
+			if(element.length>0) {
+				$("#row_replace > .col-md-2:nth-child(1) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mauve');
+			} else {
+				$("#row_replace > .col-md-2:nth-child(1) .progress-bar").removeClass('bg-mauve').addClass('progress-bar-undone');	
+			}
+		});
+
+		$('.step-choice').change(function(){
+		if ($('.step-choice option:selected').attr("id")!="vide"){
+			$("#row_replace > .col-md-2:nth-child(2) .progress-bar").removeClass('progress-bar-undone').addClass('bg-purple');
+		} else {
+			$("#row_replace > .col-md-2:nth-child(2) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
+		}
+	});
+
+		$("#replace_TimeStamp[type='text']").change(function(){
+		if ($("#replace_TimeStamp[type='text']").val()!=""){
+			$("#row_replace > .col-md-2:nth-child(3) .progress-bar").removeClass('progress-bar-undone').addClass('bg-darkblue');
+		} else {
+			$("#row_replace > .col-md-2:nth-child(3) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
+		}
+	});
+
+	$('#attrs_replace').change(function(){
+		var any = false;
+		$("#attrs_replace option:selected").each(function(){
+			if(!$(this).hasClass("facultatif")) {
+			    if($(this).attr("id")=="empty"){
+			        any = true;
+			    } else {
+			    	any = false;
+			    }
+			}
+		});
+
+		if(any==false){
+			$("#row_replace > .col-md-2:nth-child(4) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mediumblue');
+			setTimeout(function() {
+			$("#row_replace > .col-md-2:nth-child(7) .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
+			}, 100);
+		} else {
+			$("#row_replace > .col-md-2:nth-child(4) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
+		}
+	});
+
+	$(".step-suggest").change(function(){
+			if($("#activer_suggestion").is(':checked')==true) {
+				$("#row_replace > .col-md-2:nth-child(6) .progress-bar").removeClass('progress-bar-undone').addClass('bg-lightblue');
+			} else {
+				$("#row_replace > .col-md-2:nth-child(6) .progress-bar").removeClass('bg-lightblue').addClass('progress-bar-undone');
+			}
+	});
+
+	//Delete Bar
+
+	$(".step-suggest").change(function(){
+			if($("#activer_suggestion").is(':checked')==true) {
+				$("#row_delete > .col-md-4:nth-child(2) .progress-bar").removeClass('progress-bar-undone').addClass('bg-lightblue');
+			} else {
+				$("#row_delete > .col-md-4:nth-child(2) .progress-bar").removeClass('bg-lightblue').addClass('progress-bar-undone');
+			}
+	});
+
+
+	//Buttons Clear
+
+	$("#add-obs").click(function(){
+		    $("#row_add .progress-bar").each( function(){
+  				this.className = this.className.replace(/bg[^\s]+/, 'progress-bar-undone');
+			});
+		});
+
+	$("#modify-obs").click(function(){
+			$("#row_replace .progress-bar").each( function(){
+  				this.className = this.className.replace(/bg[^\s]+/, 'progress-bar-undone');
+			});
+	});
+
+	$("#delete-obs").click(function(){
+			$("#row_delete .progress-bar").each( function(){
+  				this.className = this.className.replace(/bg[^\s]+/, 'progress-bar-undone');
+			});	
+	});
+
+
+
+
+
+
 
 	//switching toggle icons
 	$('.navbar-toggle').click(function(){
@@ -189,5 +285,7 @@ $(document).ready(function(){
             $(".nav_tools_header > .navbar-toggle").trigger( "click" );
         }
     });
+
+
 
 });
