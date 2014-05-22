@@ -189,10 +189,6 @@ nav-pills > li > a {
   border-radius: 0;
 }
 
-.bg-grey{
-  background: rgb(235,236,241);
-}
-
 .progress-bar {
   transition: background-color 300ms;
   max-height:20px;
