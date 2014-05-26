@@ -474,7 +474,7 @@ obsel_selector.on('selection:add', function(e) {
   }
 
   visu.svg
-  .append('polygon')
+  .insert('polygon', "g")
   .attr('points',create_points(obs))
   .attr('stroke-width','1px')
   .attr('stroke','#5a5a5a')
