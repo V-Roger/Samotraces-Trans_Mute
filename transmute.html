@@ -1,4 +1,4 @@
-²<!doctype html>
+<!doctype html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -40,32 +40,29 @@
         <div class="navbar navbar-fixed-top" role="navigation">
           <div class="container-fluid" style="position: relative; height: 100%; padding: 0; margin: 0; border-bottom: 1px solid #ddd;">
             
-            <div class="col-md-1">
+            <div class="col-md-2">
               <div id="logo">
                 <img class="imglogo" src="images/LogoSamotraces.png" alt="Logo Samotraces">
               </div>
+              <h1 id="titre">Trans<span id="Mute">Mute</span></h1>
             </div>
 
-            <div class="col-md-4">
-              <h1 id="titre">Samotraces Transmute</h1>
-            </div>
-
-            <div class="col-md-7" style="position: absolute; bottom:-1px; right:0;">
+            <div class="col-md-10" style="position: absolute; bottom:-1px; right:0;">
               <ul class="nav nav-tabs">
                 <li><a class="liris-mauve" href="contact.html"><span class="glyphicon glyphicon-envelope"></span> Contact</a></li>
-                <li><a class="liris-lightblue" href="about.html"><span class="glyphicon glyphicon-globe"></span> A propos</a></li>      
+                <li><a class="liris-lightblue" href="about.html"><span class="glyphicon glyphicon-globe"></span> &Agrave; propos</a></li>      
                 <li class="dropdown">
                   <a href="#" data-toggle="dropdown" class="liris-purple dropdown-toggle">
-                   <span class="glyphicon glyphicon-question-sign"></span> Resources<span class="caret"></span>
+                   <span class="glyphicon glyphicon-question-sign"></span> Ressources<span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu">
-                     <li><a href="tutorials.html">Tutoriels</a></li>
-                     <li><a href="resources.html">Autres</a></li>
+                     <li><a href="tutorials.html"> Tutoriels</a></li>
+                     <li><a href="resources.html"> Autres</a></li>
                    </ul>
                  </li>
 
-                  <li class="active"><a class="liris-green" href="transmute.html"><span class="glyphicon glyphicon-tree-conifer"></span> Samotraces</a></li>
-                  <li><a class="liris-mediumblue" href="index.html"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                  <li class="active"><a class="liris-green" href="transmute.html"><span class="glyphicon glyphicon-wrench"></span> TransMute</a></li>
+                  <li><a class="liris-mediumblue" href="index.html"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
                 </ul>
               </div>
 
@@ -139,7 +136,7 @@
 
       <div class="collapse navbar-collapse" id="nav_tools_collapse">
         <ul id="nav_pills" class="nav nav-pills nav-stacked">
-          <li><h4>OBSELS</h4></li>
+          <li><h4>OUTILS</h4></li>
           <li class="active"><a id="ajouter_obsel" href="#">Ajouter<span class="glyphicon glyphicon-plus pull-right"></span></a></li>
           <li><a id="transformer_obsel" href="#">Modifier   <span class="glyphicon glyphicon-pencil pull-right"></span></a></li>
           <li><a id="supprimer_obsel" href="#">Supprimer   <span class="glyphicon glyphicon-remove pull-right"></span></a></li>
@@ -199,7 +196,7 @@
         </div>
         <div class="col-md-12">
           <label class="steptitle">Ajouter</label><br>
-          <button id="add-obs">Ajouter Obsel</button>
+          <button id="add-obs" disabled="disabled" class="btn btn-default">Ajouter Obsel</button>
         </div>
       </div>      
     </div><!-- row add -->
@@ -296,7 +293,7 @@
       <div class="row border-right">
         <div class="col-md-12">
           <label class="steptitle">Remplacer!</label>
-          <button type="submit" class="btn btn-default" id="modify-obs" disabled="disabled" style="margin-top:50%;">Soumettre</button>
+          <button type="submit" class="btn btn-default" id="modify-obs" disabled="disabled">Transformer Obsel</button>
         </div>
       </div>
     </div>
@@ -304,9 +301,6 @@
   
   <!-- DELETE OBSEL(S) SYSTEM -->
   <div id="row_delete" class="col-md-10 full-height" style="padding-top: 10px; text-align: center; " >
-<!--     <div class="col-md-12">
-      <button class="btn btn-default" id="delete-obs" disabled="disabled" >Supprimer Obsel</button>
-    </div> -->
       <div class="col-md-4 step">
         <div class="row">
           <div class="progress-bar progress-bar-undone" style="width: 100%;">
@@ -398,6 +392,7 @@
            //var visu = new Samotraces.UI.Widgets.TraceDisplayIcons('my-widget2',trace_Transformation,tw2,options);
            new Samotraces.UI.Widgets.WindowScale('scale',tw);
            new Samotraces.UI.Widgets.WindowScale('scale2',tw2);
+
            var importer = new Samotraces.UI.Widgets.ImportTrace('importer');
          new Samotraces.UI.Widgets.ImportTrace('importer-transformation');//,trace_Transformation);
 new Samotraces.UI.Widgets.ObselInspector('obsel-inspector',obsel_selector_origin);
@@ -427,7 +422,12 @@ importer.on('importtrace:newtrace',function(e) {
         $('body').on("click","#my-widget .Samotraces-obsel",function(e){
          var obsel = $.data(e.target,'Samotraces-data');
          obsel_selector_origin.select(obsel);
+         $('#row_traces').height(120+"%");
        });
+
+        $('#obsel-inspector > span').on("click", function(){
+         $('#row_traces').height('auto');
+        });
         
         
         $('body').on("click","#my-widget2 .Samotraces-obsel",function(e) {
@@ -467,9 +467,9 @@ obsel_selector.on('selection:add', function(e) {
 
   function create_points(obs) {
   	var x = visu.options.x(obs);
-  	var y = 17;
-  	var w = 25;
-  	var h = 40;
+  	var y = visu.options.y;
+  	var w = visu.options.width;
+  	var h = visu.options.height;
   	return String.concat(x-w,",",y-h,", ",x+2*w,",",y-h,", ",x+2*w,",",y+3*h,", ",x-w,",",y+3*h);
   }
 
@@ -538,9 +538,9 @@ function update_points(p) {
           //var t = obs.get_begin();
           //var x = (t - tw2.start)*visu.element.clientWidth/tw2.get_width() - 8;
           //return String.concat(x+3,",10,",x+8,",15,",x+13,",10");         
-        var y = 17;
-	  	var w = 25;
-	  	var h = 40;
+      var y = visu.options.y;
+      var w = visu.options.width;
+      var h = visu.options.height;
 	  	return String.concat(x-w,",",y-h,", ",x+2*w,",",y-h,", ",x+2*w,",",y+3*h,", ",x-w,",",y+3*h);
         }
         

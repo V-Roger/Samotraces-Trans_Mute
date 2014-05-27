@@ -160,6 +160,7 @@ $(document).ready(function(){
 		});
 
 		if(any==false){
+			$("#add-obs").prop("disabled", false);
 			$("#row_add > .col-md-3:nth-child(3) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mediumblue');
 			setTimeout(function() {
 			$("#row_add > .col-md-3:nth-child(4) .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
@@ -243,6 +244,7 @@ $(document).ready(function(){
 		    $("#row_add .progress-bar").each( function(){
   				this.className = this.className.replace(/bg[^\s]+/, 'progress-bar-undone');
 			});
+			$("#add-obs").prop("disabled", true);
 		});
 
 	$("#modify-obs").click(function(){
