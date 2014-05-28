@@ -351,40 +351,40 @@ min-height: 50%;
   margin-left: -15px;
 }
 
+#scale {
+  margin-bottom: 1em;
+}
+
+#my-widget2{
+  margin-top: 1em;
+}
+
+#apply-btn {
+  display: none;
+  position: relative;
+  width:120px;
+  left: 50%;
+  margin-left:-60px;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
 #toolbox{
 height: 38%;
 min-height: 38%;
 display: none;
 }
 
-#row_add {
+#row_add, #row_replace, #row_fusion, #row_delete {
  padding-left: 0;
+ padding-right: 0;
  margin-left: -15px;
  margin-right: -15px;
 }
 
-#row_replace {
-  padding-left: 0;
- margin-left: -15px;
- margin-right: -15px; 
+.step>.col-md-12{
+  padding: 0;
 }
-
-#row_fusion {
- padding-left: 0;
- margin-left: -15px;
- margin-right: -15px;  
-}
-
-#row_delete {
- padding-left: 0;
- margin-left: -15px;
- margin-right: -15px;  
-}
-
-.steptitle {
-padding:0 5%;
-}
-
 
 #attrs ul, #attrs_replace ul{
 margin:0;
