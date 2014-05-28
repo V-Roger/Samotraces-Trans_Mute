@@ -87,7 +87,7 @@
             <li class="active"><a id="load_trace" href="#">Charger</a></li>
             <li><a id="transform_trace" href="#">Transformer</a></li>
             <li><a id="compare_trace" href="#">Comparer</a></li>
-            <li><h4>TRANSFORMATIONS</h4></li>
+            <li><h4>OP&Eacute;RATIONS</h4></li>
             <li><a id="import_transformation" href="#">Importer</a></li>
             <li><a id="history" href="#">Historique</a></li>
             <li><a id="download_transformation" href="#">T&eacute;l&eacute;charger</a></li>
@@ -138,7 +138,8 @@
         <ul id="nav_pills" class="nav nav-pills nav-stacked">
           <li><h4>OUTILS</h4></li>
           <li class="active"><a id="ajouter_obsel" href="#">Ajouter<span class="glyphicon glyphicon-plus pull-right"></span></a></li>
-          <li><a id="transformer_obsel" href="#">Modifier   <span class="glyphicon glyphicon-pencil pull-right"></span></a></li>
+          <li><a id="transformer_obsel" href="#">Remplacer   <span class="glyphicon glyphicon-refresh pull-right"></span></a></li>
+          <li><a id="fusionner_obsel" href="#">Fusionner   <span class="glyphicon glyphicon-resize-small pull-right"></span></a></li>          
           <li><a id="supprimer_obsel" href="#">Supprimer   <span class="glyphicon glyphicon-remove pull-right"></span></a></li>
         </ul>
       </div>
@@ -162,7 +163,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 step">
+      <div class="col-md-1 step" style="text-align:center; padding:0; padding-left:10px;">
         <div class="row">
           <div class="progress-bar progress-bar-undone" style="width: 100%;">
             2/4
@@ -170,12 +171,12 @@
         </div>
         <div class="row border-right">
           <div class="col-md-12">
-            <label class="steptitle">Time Stamp : </label><br>
-            <input type="text" id="add_TimeStamp" value="">
+            <label class="steptitle">TimeStamp</label><br>
+            <input type="text" id="add_TimeStamp" value="" size="3">
           </div>
         </div>
       </div>
-      <div class="col-md-3 step">
+      <div class="col-md-7 step">
         <div class="row">
           <div class="progress-bar progress-bar-undone" style="width: 100%;">
             3/4
@@ -188,7 +189,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 step">
+      <div class="col-md-1 step" style="padding:0;">
         <div class="row">
           <div class="progress-bar progress-bar-undone" style="width: 100%;">
             4/4
@@ -196,7 +197,7 @@
         </div>
         <div class="col-md-12">
           <label class="steptitle">Ajouter</label><br>
-          <button id="add-obs" disabled="disabled" class="btn btn-default">Ajouter Obsel</button>
+          <button id="add-obs" disabled="disabled" class="btn btn-default">Ajouter !</button>
         </div>
       </div>      
     </div><!-- row add -->
@@ -298,6 +299,105 @@
       </div>
     </div>
   </div><!-- row replacement-->
+
+
+<!-- FUSION OBSEL(S) SYSTEM -->
+    <div id="row_fusion" class="col-md-10 full-height" style="padding-top: 10px; text-align: center; " >
+      <!-- display the selected trace -->
+      <div class="col-md-2 step step-select">
+        <div class="row">
+          <div class="progress-bar progress-bar-undone" style="width: 100%;">
+            1/6
+          </div>
+        </div>
+        <div class="row border-right">
+          <div class="col-md-12">
+            <label class="steptitle">Obsels selectionnés</label><br>
+            <div id="img_replace"></div>
+            <br><br>
+            <br><br>
+          </div>
+        </div>
+      </div>
+
+      <!-- replacement choice -->
+      <div class="col-md-2 step step-choice">
+        <div class="row">
+          <div class="progress-bar progress-bar-undone" style="width: 100%;">
+            2/6
+          </div>
+        </div>
+        <div class="row border-right">
+          <div class="col-md-12">
+            <label class="steptitle">Replacement</label><br>
+            <SELECT id="replace_type" size="8" name="champ" >
+            </SELECT> 
+            <span id="error_replace_type" color="#fba"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- time stamp -->
+      <div class="col-md-2 step step-timestamp">
+        <div class="row">
+          <div class="progress-bar progress-bar-undone" style="width: 100%;">
+            3/6
+          </div>
+        </div>
+        <div class="row border-right">
+          <div class="col-md-12">
+           <label class="steptitle">Time Stamp</label><br>
+           <input type="text" id="replace_TimeStamp" value="" size="8">
+         </div>
+       </div>
+     </div>
+
+     <!-- attribut -->
+     <div class="col-md-2 step step-attribute">
+      <div class="row">
+        <div class="progress-bar progress-bar-undone" style="width: 100%;">
+          4/6
+        </div>
+      </div>
+      <div class="row border-right">
+        <div class="col-md-12">
+          <label class="steptitle">Attributs</label>
+          <div id="attrs_replace"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- suggestion -->
+    <div id="dialog" title="TransMute suggestions" float: right;></div>
+    <div class="col-md-2 step step-suggest">
+      <div class="row">
+        <div class="progress-bar progress-bar-undone" style="width: 100%;">
+          5/6
+        </div>
+      </div>
+      <div class="row border-right">
+        <div class="col-md-12">
+          <label class="steptitle">Suggestion</label>
+          <div id="suggestion-fusion"><!-- the checkbox element will be appended by the jQuery function in too_ui.js--></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- submit button -->
+    <div class="col-md-2 step step-submit">
+      <div class="row">
+        <div class="progress-bar progress-bar-undone" style="width: 100%;">
+          6/6
+        </div>
+      </div>
+      <div class="row border-right">
+        <div class="col-md-12">
+          <label class="steptitle">Remplacer!</label>
+          <button type="submit" class="btn btn-default" id="modify-obs" disabled="disabled">Transformer Obsel</button>
+        </div>
+      </div>
+    </div>
+  </div><!-- row fusion-->
   
   <!-- DELETE OBSEL(S) SYSTEM -->
   <div id="row_delete" class="col-md-10 full-height" style="padding-top: 10px; text-align: center; " >

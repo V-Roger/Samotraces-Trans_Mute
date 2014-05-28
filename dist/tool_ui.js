@@ -20,7 +20,7 @@ $(document).ready(function(){
 								if(toolbox_vis)
 								{
 									$('#toolbox').hide();
-									$('#traces').css('height', '92%');
+									$('#traces').css('height', '90%');
 								}
 								break;
 
@@ -46,7 +46,7 @@ $(document).ready(function(){
 									if(toolbox_vis)
 									{
 										$('#toolbox').hide();
-										$('#traces').css('height', '92%');
+										$('#traces').css('height', '90%');
 									}
 								   	break;
 
@@ -59,7 +59,7 @@ $(document).ready(function(){
 											if(toolbox_vis)
 											{
 												$('#toolbox').hide();
-												$('#traces').css('height', '92%');
+												$('#traces').css('height', '90%');
 											}
 											break;
 
@@ -72,7 +72,7 @@ $(document).ready(function(){
 								if(toolbox_vis)
 								{
 									$('#toolbox').hide();
-									$('#traces').css('height', '92%');
+									$('#traces').css('height', '90%');
 								}
 								break;
 
@@ -84,7 +84,7 @@ $(document).ready(function(){
 												if(toolbox_vis)
 												{
 													$('#toolbox').hide();
-													$('#traces').css('height', '92%');
+													$('#traces').css('height', '90%');
 												}
 												break;
 
@@ -105,13 +105,16 @@ $(document).ready(function(){
 									$('#row_add').show();
 									$('#row_replace').hide();
 									$('#row_delete').hide();
+									$('#row_fusion').hide();
 									break;
 
 				case 'transformer_obsel' : 
 									$('#row_add').hide();
 									$('#row_replace').show();
 									$('#row_delete').hide();
+									$('#row_fusion').hide();
 									document.getElementById('suggestion-delete').innerHTML = "";
+									document.getElementById('suggestion-fusion').innerHTML = "";
 									document.getElementById('suggestion-replace').innerHTML = "utiliser le système de suggestions?<br><input type=\"checkbox\" id=\"activer_suggestion\">";
 									break;
 
@@ -119,9 +122,22 @@ $(document).ready(function(){
 									$('#row_add').hide();
 									$('#row_replace').hide();
 									$('#row_delete').show();
+									$('#row_fusion').hide();
 									document.getElementById('suggestion-replace').innerHTML = "";
+									document.getElementById('suggestion-fusion').innerHTML = "";
 									document.getElementById('suggestion-delete').innerHTML = "utiliser le système de suggestions?<br><input type=\"checkbox\" id=\"activer_suggestion\">";
 								   	break;
+
+				case 'fusionner_obsel' : 	
+									$('#row_add').hide();
+									$('#row_replace').hide();
+									$('#row_delete').hide();
+									$('#row_fusion').show();
+									document.getElementById('suggestion-replace').innerHTML = "";
+									document.getElementById('suggestion-delete').innerHTML = "";
+									document.getElementById('suggestion-fusion').innerHTML = "utiliser le système de suggestions?<br><input type=\"checkbox\" id=\"activer_suggestion\">";
+								   	break;
+
 				default : break;
 			}
 		});
@@ -251,12 +267,18 @@ $(document).ready(function(){
 			$("#row_replace .progress-bar").each( function(){
   				this.className = this.className.replace(/bg[^\s]+/, 'progress-bar-undone');
 			});
+			setTimeout(function() {			
+			$("#activer_suggestion").prop('checked', false);
+			}, 100);			
 	});
 
 	$("#delete-obs").click(function(){
 			$("#row_delete .progress-bar").each( function(){
   				this.className = this.className.replace(/bg[^\s]+/, 'progress-bar-undone');
 			});	
+			setTimeout(function() {			
+			$("#activer_suggestion").prop('checked', false);
+			}, 100);
 	});
 
 

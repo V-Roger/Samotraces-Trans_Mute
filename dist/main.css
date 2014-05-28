@@ -191,6 +191,7 @@ min-width:620px;
   left: 100%;
   top: 50%;
   margin-top: -1.428em;
+  margin-right: -1.428em;
   height: 0;
   width: 0;
   border-top: 1.428em solid transparent;
@@ -216,6 +217,7 @@ min-width:620px;
   left: 100%;
   top: 50%;
   margin-top: -1.428em;
+  margin-right: -1.428em;
   height: 0;
   width: 0;
   border-top: 1.428em solid transparent;
@@ -264,7 +266,8 @@ width: 100%;
 height: 100%;
 padding: 0;
 margin: 0;
-overflow-x: hidden;
+overflow-x:hidden;
+
 }
 
 .container-fluid{
@@ -332,15 +335,12 @@ height: 5%;
 }
 
 #traces{
-height: 92%;
+height: 90t%;
 min-height: 50%;
 }
 
 .traces_row{
   height: 100%; 
-  margin-left: 15px; 
-  margin-right: -15px; 
-  padding-right: 45px; 
   display: none;
 }
 
@@ -348,16 +348,41 @@ min-height: 50%;
   display: block;
   height: auto;
   min-height: 100%;
+  margin-left: -15px;
 }
 
 #toolbox{
-height: 40%;
-min-height: 40%;
+height: 38%;
+min-height: 38%;
 display: none;
 }
 
+#row_add {
+ padding-left: 0;
+ margin-left: -15px;
+ margin-right: -15px;
+}
+
+#row_replace {
+  padding-left: 0;
+ margin-left: -15px;
+ margin-right: -15px; 
+}
+
+#row_fusion {
+ padding-left: 0;
+ margin-left: -15px;
+ margin-right: -15px;  
+}
+
+#row_delete {
+ padding-left: 0;
+ margin-left: -15px;
+ margin-right: -15px;  
+}
+
 .steptitle {
-padding:5%;
+padding:0 5%;
 }
 
 
@@ -409,42 +434,6 @@ button.navbar-toggle{
   color:#b6397d;
 }
 
-
-
-
-
-
-
-
-@media (max-width: 992px){
-  #logo{
-    display: none;
-  }
-
-  #titre {
-    text-align: left;
-    font-size:1.7em;
-    margin-left:10%;
-  }
-
-
-}
-
-
-@media (max-width: 850px){
-  #logo{
-    display: block;
-    float:left;
-    margin-left:5%;
-  }
-
-  #titre {
-    display: none;
-  }
-
-
-}
-
 @media (max-width: 770px){
   #logo{
     display: block;
@@ -456,17 +445,6 @@ button.navbar-toggle{
 
   .full-height{
   padding-top:1em;
-  }
-}
-
-
-/*-----Modif Bootstraps------*/
-@media (min-width: 992px) {
-  .col-md-11 {
-    width: 88%;
-  }
-  .col-md-1 {
-    width: 12%;
   }
 }
 
@@ -482,7 +460,7 @@ button.navbar-toggle{
 
  /*-----Toolbox-----*/
 
- #importer-transformation, #transformation_list, #row_replace, #row_delete {
+ #importer-transformation, #transformation_list, #row_replace, #row_delete, #row_fusion {
   display: none;
  }
 
