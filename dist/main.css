@@ -453,6 +453,10 @@ button.navbar-toggle{
   #titre {
     display: none;
   }
+
+  .full-height{
+  padding-top:1em;
+  }
 }
 
 
