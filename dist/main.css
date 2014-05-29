@@ -435,18 +435,30 @@ button.navbar-toggle{
 }
 
 @media (max-width: 770px){
-  #logo{
-    display: block;
+
+}
+
+/*fixing margins and top menu when navbar collapses */
+@media screen and (max-width: 990px) {
+
+  #row_traces {
+    margin-left: 5px;
+  }
+
+  .collapse_header {
+    margin-top: 0px;
   }
 
   #titre {
     display: none;
   }
 
-  .full-height{
-  padding-top:1em;
+    #logo{
+    display: block;
   }
 }
+
+
 
  /*-----Widgets------*/
 
