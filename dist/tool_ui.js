@@ -176,10 +176,10 @@ $(document).ready(function(){
 
 	$('#attrs').change(function(){
 		var any = false;
-		var someoptions=true;
+		var someoptions=false;
 		$("#attrs option:selected").each(function(){
 			if($(this).hasClass("facultatif") && $(this).attr("id")=="empty") {
-				someoptions=false;
+				someoptions=true;
 			}
 			if(!$(this).hasClass("facultatif")) {
 			    if($(this).attr("id")=="empty"){
@@ -198,10 +198,10 @@ $(document).ready(function(){
 			$("#row_add > .step:nth-child(4) .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
 			}, 100);
 			setTimeout(function() {
-				if(($(window).width<990) && someoptions==true){
+				if(($(window).width()<990) && someoptions==false){
 					$("#skip-attrs1").css('display', 'inherit');
 				} else {
-					$("#row_replace > .step:nth-child(4) .progress-bar").trigger("click");
+					$("#row_add > .step:nth-child(4) .progress-bar").trigger("click");
 				}
 			}, 100);
 		} else {
@@ -241,10 +241,10 @@ $(document).ready(function(){
 
 	$('#attrs_replace').change(function(){
 		var any = false;
-		var someoptions2=true;
+		var someoptions2=false;
 		$("#attrs_replace option:selected").each(function(){
 			if($(this).hasClass("facultatif") && $(this).attr("id")=="empty") {
-				someoptions2=false;
+				someoptions2=true;
 			}
 			if(!$(this).hasClass("facultatif")) {
 				if($(this).attr("id")=="empty"){
@@ -261,7 +261,7 @@ $(document).ready(function(){
 			$("#row_replace > .step:nth-child(7) .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
 			}, 100);
 			setTimeout(function() {
-				if( ($(window).width<990) && someoptions2==true){
+				if(($(window).width() <990) && someoptions2==false){
 					$("#skip-attrs2").css('display', 'inherit');
 				} else {
 					$("#row_replace > .step:nth-child(6) .progress-bar").trigger("click");
