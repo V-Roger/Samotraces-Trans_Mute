@@ -62,7 +62,7 @@ body {
 
 /* CSS Document */
 input{
-	font-family: Verdana, Arial, Helvetica, sans-serif;
+	
 	border : 1px solid #CCCCCC;
 	font-size: 11px;
 	color:#333333; 
@@ -71,7 +71,7 @@ input{
 }
 
 input.input_libelle{
-	font-family: Verdana, Arial, Helvetica, sans-serif;
+	
 	border : 0px solid #6A6D73;
 	font-size: 11px;
 	color : #99999;
@@ -80,7 +80,7 @@ input.input_libelle{
 }
 
 textarea{
-	font-family: Verdana, Arial, Helvetica, sans-serif;
+	
 	border : 1px solid #CCCCCC;
 	font-size: 11px;
 	color:#333333; 
@@ -91,7 +91,7 @@ textarea{
 }
 
 select{
-	font-family: Verdana, Arial, Helvetica, sans-serif;
+	
 	border : 1px solid #EFEFEF;
 	font-size: 11px;
 	color : #003366;
@@ -99,7 +99,7 @@ select{
 }
 
 input.input {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
+	
 	border : 1px solid #CCCCCC;
 	font-size: 11px;
 	color:#333333; 	
@@ -111,110 +111,107 @@ input.input {
  }
  .baniere{
 	 height:taille_fixe px;
-	 width:200%;
+	 width:100%;
 	}	
 .baniere_gauche{
-	 width:17%;
+	 width:45%;
 	 height:100%;
 	 float:left;
 	}
 .baniere_milieuG{
-	 width:17%;
+	 width:45%;
 	 height:100%;
 	 float:left;
-	 border-left: 1px solid grey;
+	 border-left: 2px dashed #ebecf1;
 	 padding-left: 5px;
 	 margin-left: 5px;
 	 height: 200px;
 	}
 .baniere_milieuD{
-	 width:17%;
+	 width:20%;
 	 height:100%;
 	 float:left;
-	 border-left: 1px solid grey;
+	 clear: both;
+	 /*border-left: 2px dashed #ebecf1;*/
 	 padding-left: 5px;
-	 /*margin-left*/: 5px;
 	 height: 200px;
 	}
 .baniere_droite{
-	 width:17%;
+	 width:80%;
 	 height:100%;
 	 float:left;
+	 margin-top: 1em;
 	 /*border-left: 1px solid grey;*/
 	 /*padding-left: 5px;*/
 	 /*margin-left: 30px;*/
 	 height: 200px;
 	}
+
+.baniere_droite > ul, .baniere_droite > li{
+	float: left;
+}
+
+.baniere_droite > ul{
+	margin-right: 2em;
+}
 /***************************************************************************************************************/
 /* CSS txt */
 .titre{	
-	font-family: "Verdena";
 	font-size: 16px;
 	font-weight: bold;
 	color:#333333;		
 	}
 .titre2{
-	 font-family:"trebuchet ms",sans-serif;
 	 font-size:12px;
 	 color:#224499;
  } 	
 .titre3{
-	 font-family:"trebuchet ms",sans-serif;
 	 font-size:12px;
 	 font-weight:bold;
 	 color:#224499;
  } 
 .titre_orange{	
-	font-family: "Calibri";
 	font-size: 14px;
 	font-weight: bold;
 	color:#e78f2d;		
 	}
 .titre_rouge{	
-	font-family: "Calibri";
 	font-size: 14px;
 	font-weight: bold;
 	color:#ca7282;		
 	}
 .titre_bleu{	
-	font-family: "Calibri";
 	font-size: 14px;
 	font-weight: bold;
 	color:#8ab8dc;		
 	}	
 .texte_gris{	
-	font-family: "Verdena";
 	font-size: 16px;
 	font-weight: normal;
 	color:#333333;		
 	}	
 .texte_blanc{	
-	font-family: "Calibri";
 	font-size: 12px;
 	font-weight: normal;
 	color:#ffffff;		
 	}
 .texte_rouge{	
-	font-family: "Calibri";
 	font-size: 12px;
 	font-weight:bold;
 	color:#993300;		
 	}			
 .grans_titre_bleu{	
-	font-family: "Calibri";
 	font-size: 20px;
 	font-weight: bold;
 	color:#8ab8dc;		
 	}			
 
 .grans_titre_gris{	
-	font-family: "Calibri";
 	font-size: 20px;
 	/*font-weight: bold;*/
 	color:#333333;		
 	}
 .grans_titre_rouge{	
-	font-family: "Calibri";
 	font-size: 20px;
 	/*font-weight: bold;*/
 	color:#993300;		
@@ -228,57 +225,48 @@ input.input {
 /***************************************************************************************************************/
 /* CSS navigation menu principal */
 a.nav:link{
-	font-family: "Calibri";
 	font-size: 12px;
 	text-decoration : none;
 	color:#ffffff;
 }
 a.nav:visited{
-	font-family: "Calibri";
 	text-decoration : none;
 	font-size: 12px;
 	color:#ffffff;	
 }
 a.nav:hover{
-	font-family: "Calibri";
 	font-size: 12px;
 	text-decoration : none;
 	color:#d7D7D7;
 }
 
 a.nav_orange:link{
-	font-family: "Calibri";
 	font-size: 12px;
 	text-decoration : none;
 	color:#e78f2d;
 }
 a.nav_orange:visited{
-	font-family: "Calibri";
 	text-decoration : none;
 	font-size: 12px;
 	color:#e78f2d;	
 }
 a.nav_orange:hover{
-	font-family: "Calibri";
 	font-size: 12px;
 	text-decoration : none;
 	color:#333333;
 }
 
 a.nav_rouge:link{
-	font-family: "Calibri";
 	font-size: 16px;
 	text-decoration : none;
 	color:#993300;
 }
 a.nav_rouge:visited{
-	font-family: "Calibri";
 	text-decoration : none;
 	font-size: 16px;
 	color:#993300;	
 }
 a.nav_rouge:hover{
-	font-family: "Calibri";
 	font-size: 16px;
 	text-decoration : none;
 	color:#333333;
@@ -286,21 +274,21 @@ a.nav_rouge:hover{
 
 
 a.nav_orange_big:link{
-	font-family: "Calibri";
+
 	font-size: 14px;
 	text-decoration : none;
 	color:#e78f2d;
 	font-weight:bold;
 }
 a.nav_orange_big:visited{
-	font-family: "Calibri";
+
 	text-decoration : none;
 	font-size: 14px;
 	color:#e78f2d;	
 	font-weight:bold;
 }
 a.nav_orange_big:hover{
-	font-family: "Calibri";
+
 	font-size: 14px;
 	text-decoration : none;
 	color:#333333;
@@ -308,21 +296,21 @@ a.nav_orange_big:hover{
 }
 
 a.nav_rouge_big:link{
-	font-family: "Calibri";
+
 	font-size: 14px;
 	text-decoration : none;
 	color:#993300;
 	font-weight:bold;
 }
 a.nav_rouge_big:visited{
-	font-family: "Calibri";
+
 	text-decoration : none;
 	font-size: 14px;
 	color:#993300;	
 	font-weight:bold;
 }
 a.nav_rouge_big:hover{
-	font-family: "Calibri";
+
 	font-size: 14px;
 	text-decoration : none;
 	color:#333333;
@@ -330,19 +318,19 @@ a.nav_rouge_big:hover{
 }
 
 a.nav_gris:link{
-	font-family: "Calibri";
+
 	font-size: 12px;
 	text-decoration : none;
 	color:#333333;
 }
 a.nav_gris:visited{
-	font-family: "Calibri";
+
 	text-decoration : none;
 	font-size: 12px;
 	color:#333333;	
 }
 a.nav_gris:hover{
-	font-family: "Calibri";
+
 	font-size: 12px;
 	text-decoration : none;
 	color:#999999;

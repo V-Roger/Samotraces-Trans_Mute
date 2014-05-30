@@ -280,12 +280,6 @@ overflow-x:hidden;
 
 }
 
-.container-fluid{
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 .progress {
   border-radius: 0;
 }
@@ -345,7 +339,7 @@ height: 5%;
 }
 
 #traces{
-height: 90t%;
+height: 90%;
 min-height: 50%;
 }
 
@@ -365,7 +359,7 @@ min-height: 50%;
   margin-bottom: 1em;
 }
 
-#my-widget2{
+#trace-preview-widget{
   margin-top: 1em;
 }
 
@@ -476,7 +470,11 @@ button.navbar-toggle{
   background: #fff;
  }
 
- #my-widget2, #scale2{
+ #trace-preview-widget, #scale2{
+  visibility: hidden;
+ }
+
+  #trace-transformed-widget, #scale3{
   visibility: hidden;
  }
 
@@ -509,6 +507,7 @@ height: 100%;
 /*---------SUGGESTION-----------*/
 
 #div_type > *{
+  box-sizing: border-box;
   float: left;
 }
 
