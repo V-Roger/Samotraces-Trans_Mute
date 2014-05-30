@@ -7,7 +7,6 @@
 
   <!--LIBS-->
   <script type="text/javascript" src="lib/jquery-2.1.0.min.js"></script>
-  <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
   <script type="text/javascript" src="lib/jquery-ui.min.js"></script>
   <script type="text/javascript" src="lib/d3.js"></script>
   <!--<script type="text/javascript" src="lib/jquery.js"></script>-->
@@ -100,19 +99,17 @@
         <h4 id="traces_header">Charger Trace</h4>
         <div id="clef"></div>
         <div id="widgets">
-          <div id="trace-origin-widget"></div>
+          <div id="my-widget"></div>
           <div id="scale"></div>
           <div id="importer"></div>
-          <div id="obsel-inspector"></div>
+          <div id="obsel-inspector"></div>  
         </div>
         <div id="importer-transformation"></div>  
-        <div id="trace-transformed-widget"></div>
-        <div id="scale3"></div>
-        <div id="obsel-inspector-transformed"></div>  
-        <div id="apply-btn" class="btn btn-default">
+        <div id="obsel-inspector"></div>
+        <div id="apply-btn" class="btn btn-default" disabled="disabled">
         Appliquer <span class="glyphicon glyphicon-chevron-up"> </span>
         </div>
-        <div id="trace-preview-widget"></div>
+        <div id="my-widget2"></div>
         <div id="scale2"></div>
         <div id="interaction-liste"></div>
 
@@ -157,7 +154,7 @@
       <div class="col-md-3 step">
         <div class="row">
           <div class="progress-bar progress-bar-undone" style="width: 100%;">
-            1/4
+            Type
           </div>
         </div>
         <div class="row border-right">
@@ -172,12 +169,12 @@
       <div class="col-md-1 step">
         <div class="row">
           <div class="progress-bar progress-bar-undone" style="width: 100%;">
-            2/4
+            Timestamp
           </div>
         </div>
         <div class="row border-right">
           <div class="col-md-12">
-            <label class="steptitle TSLabel">TimeStamp</label><br>
+            <label class="steptitle">TimeStamp</label><br>
             <input type="text" id="add_TimeStamp" value="" size="3">
           </div>
         </div>
@@ -185,20 +182,21 @@
       <div class="col-md-7 step">
         <div class="row">
           <div class="progress-bar progress-bar-undone" style="width: 100%;">
-            3/4
+            Attributs
           </div>
         </div>
         <div class="row border-right">
           <div class="col-md-12">
             <label class="steptitle">Attributs</label><br>
             <div id="attrs"></div>
+            <div id="skip-attrs1">J'ai fini</div>
           </div>
         </div>
       </div>
       <div class="col-md-1 step">
         <div class="row">
           <div class="progress-bar progress-bar-undone" style="width: 100%;">
-            4/4
+            Ajouter
           </div>
         </div>
         <div class="col-md-12">
@@ -214,7 +212,7 @@
       <div class="col-md-1 step step-select">
         <div class="row">
           <div class="progress-bar progress-bar-undone" style="width: 100%;">
-            1/5
+            Sélection
           </div>
         </div>
         <div class="row border-right">
@@ -231,7 +229,7 @@
       <div class="col-md-2 step step-choice">
         <div class="row">
           <div class="progress-bar progress-bar-undone" style="width: 100%;">
-            2/6
+            Type
           </div>
         </div>
         <div class="row border-right">
@@ -244,16 +242,16 @@
         </div>
       </div>
 
-      <!-- time stamp-->
+      <!-- time stamp -->
       <div class="col-md-1 step">
         <div class="row">
           <div class="progress-bar progress-bar-undone" style="width: 100%;">
-            3/6
+            Timestamp
           </div>
         </div>
         <div class="row border-right">
           <div class="col-md-12">
-            <label class="steptitle TSLabel">TimeStamp</label><br>
+            <label class="steptitle">TimeStamp</label><br>
             <input type="text" id="replace_TimeStamp" value="" size="3">
           </div>
         </div>
@@ -263,13 +261,14 @@
      <div class="col-md-5 step step-attribute">
       <div class="row">
         <div class="progress-bar progress-bar-undone" style="width: 100%;">
-          4/6
+          Attributs
         </div>
       </div>
       <div class="row border-right">
         <div class="col-md-12">
           <label class="steptitle">Attributs</label>
           <div id="attrs_replace"></div>
+          <div id="skip-attrs2">J'ai fini</div>
         </div>
       </div>
     </div>
@@ -279,13 +278,14 @@
     <div class="col-md-2 step step-suggest">
       <div class="row">
         <div class="progress-bar progress-bar-undone" style="width: 100%;">
-          5/6
+          Suggestion
         </div>
       </div>
       <div class="row border-right">
         <div class="col-md-12">
           <label class="steptitle">Suggestion</label>
           <div id="suggestion-replace"><!-- the checkbox element will be appended by the jQuery function in too_ui.js--></div>
+          <div id="skip-suggestion">Non merci</div>
         </div>
       </div>
     </div>
@@ -294,7 +294,7 @@
     <div class="col-md-1 step step-submit">
       <div class="row">
         <div class="progress-bar progress-bar-undone" style="width: 100%;">
-          6/6
+          Remplacer
         </div>
       </div>
       <div class="row border-right">
@@ -313,7 +313,7 @@
       <div class="col-md-1 step step-select">
         <div class="row">
           <div class="progress-bar progress-bar-undone" style="width: 100%;">
-            1/6
+            Sélection
           </div>
         </div>
         <div class="row border-right">
@@ -330,7 +330,7 @@
       <div class="col-md-2 step step-choice">
         <div class="row">
           <div class="progress-bar progress-bar-undone" style="width: 100%;">
-            2/6
+            Type
           </div>
         </div>
         <div class="row border-right">
@@ -343,16 +343,16 @@
         </div>
       </div>
 
-      <!-- time stamp-->
+      <!-- time stamp -->
       <div class="col-md-1 step">
         <div class="row">
           <div class="progress-bar progress-bar-undone" style="width: 100%;">
-            3/6
+            Timestamp
           </div>
         </div>
         <div class="row border-right">
           <div class="col-md-12">
-            <label class="steptitle TSLabel">TimeStamp</label><br>
+            <label class="steptitle">TimeStamp</label><br>
             <input type="text" id="fusion_TimeStamp" value="" size="3">
           </div>
         </div>
@@ -362,7 +362,7 @@
      <div class="col-md-5 step step-attribute">
       <div class="row">
         <div class="progress-bar progress-bar-undone" style="width: 100%;">
-          4/6
+          Attributs
         </div>
       </div>
       <div class="row border-right">
@@ -374,10 +374,11 @@
     </div>
 
     <!-- suggestion -->
+    <div id="dialog" title="TransMute suggestions" float: right;></div>
     <div class="col-md-2 step step-suggest">
       <div class="row">
         <div class="progress-bar progress-bar-undone" style="width: 100%;">
-          5/6
+          Suggestion
         </div>
       </div>
       <div class="row border-right">
@@ -392,7 +393,7 @@
     <div class="col-md-1 step step-submit">
       <div class="row">
         <div class="progress-bar progress-bar-undone" style="width: 100%;">
-          6/6
+          Fusionner
         </div>
       </div>
       <div class="row border-right">
@@ -409,7 +410,7 @@
       <div class="col-md-4 step">
         <div class="row">
           <div class="progress-bar progress-bar-undone" style="width: 100%;">
-            1/3
+            Sélection
           </div>
         </div>
         <div class="row border-right">
@@ -426,7 +427,7 @@
     <div class="col-md-4 step step-suggest">
       <div class="row">
         <div class="progress-bar progress-bar-undone" style="width: 100%;">
-          2/3
+          Suggestion
         </div>
       </div>
       <div class="row border-right">
@@ -441,7 +442,7 @@
     <div class="col-md-4 step">
       <div class="row">
         <div class="progress-bar progress-bar-undone" style="width: 100%;">
-          3/3
+          Supprimer
         </div>
       </div>
       <div class="row border-right">
@@ -467,13 +468,11 @@
            var index_replace=$('#replace_type').val();
                 // Create logical objects
            //var trace        = new Samotraces.LocalTrace();
-           //var trace_Preview = trace.transform(trace.transformations.duplicate); //new Samotraces.LocalTrace();
+           //var trace_Transformation = trace.transform(trace.transformations.duplicate); //new Samotraces.LocalTrace();
            var tw            = new Samotraces.TimeWindow({start: 0,end: 20});
            var tw2          = new Samotraces.TimeWindow({start: 0,end: 20});
-           var tw3          = new Samotraces.TimeWindow({start: 0,end: 20});
            var obsel_selector    = new Samotraces.Selector('Obsel','multiple');
            var obsel_selector_origin   = new Samotraces.Selector('Obsel');
-           var obsel_selector_transformed   = new Samotraces.Selector('Obsel');
            
          // Visualisation options
          var options = { 
@@ -495,53 +494,40 @@
        };
        
          // Create widgets
-               //var visu_origin = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-origin-widget',trace,tw,options);
-           //var visu = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-preview-widget',trace_Preview,tw2,options);
+               //var visu_origin = new Samotraces.UI.Widgets.TraceDisplayIcons('my-widget',trace,tw,options);
+           //var visu = new Samotraces.UI.Widgets.TraceDisplayIcons('my-widget2',trace_Transformation,tw2,options);
            new Samotraces.UI.Widgets.WindowScale('scale',tw);
            new Samotraces.UI.Widgets.WindowScale('scale2',tw2);
-           new Samotraces.UI.Widgets.WindowScale('scale3',tw3);
 
            var importer = new Samotraces.UI.Widgets.ImportTrace('importer');
-         new Samotraces.UI.Widgets.ImportTrace('importer-transformation');//,trace_Preview);
+         new Samotraces.UI.Widgets.ImportTrace('importer-transformation');//,trace_Transformation);
 new Samotraces.UI.Widgets.ObselInspector('obsel-inspector',obsel_selector_origin);
-new Samotraces.UI.Widgets.ObselInspector('obsel-inspector-transformed',obsel_selector_transformed);
 
-var trace, trace_Preview, trace_Transformed, visu_origin, visu;
+var trace, trace_Transformation, visu_origin, visu;
 
 importer.on('importtrace:newtrace',function(e) {
   delete visu_origin;
   delete visu;
   delete trace;
-  delete trace_Preview;
-  delete trace_Transformed;
-  $('#trace-origin-widget').empty();
-  $('#trace-preview-widget').empty();
-  $('#trace-transformed-widget').empty();
+  delete trace_Transformation;
+  $('#my-widget').empty();
+  $('#my-widget2').empty();
   
   trace = e.data;
-  trace_Preview = trace.transform(trace.transformations.duplicate);
-  trace_Transformed = trace.transform(trace.transformations.duplicate);
-  visu_origin = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-origin-widget',trace,tw,options);
-  visu = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-preview-widget',trace_Preview,tw2,options);
-  visu_transformed = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-transformed-widget',trace_Transformed,tw3,options);
+  trace_Transformation = trace.transform(trace.transformations.duplicate);
+  visu_origin = new Samotraces.UI.Widgets.TraceDisplayIcons('my-widget',trace,tw,options);
+  visu = new Samotraces.UI.Widgets.TraceDisplayIcons('my-widget2',trace_Transformation,tw2,options);
   
   $('#importtrans').remove();
-  new Samotraces.UI.Widgets.ImportTrace('importer-transformation',trace_Preview);
+  new Samotraces.UI.Widgets.ImportTrace('importer-transformation',trace_Transformation);
 });
 
 
 
         // Select Obsel when clicked
-        $('body').on("click","#trace-origin-widget .Samotraces-obsel",function(e){
+        $('body').on("click","#my-widget .Samotraces-obsel",function(e){
          var obsel = $.data(e.target,'Samotraces-data');
          obsel_selector_origin.select(obsel);
-         $('#row_traces').height(120+"%");
-       });
-
-        // Select Obsel when clicked
-        $('body').on("click","#trace-transformed-widget .Samotraces-obsel",function(e){
-         var obsel = $.data(e.target,'Samotraces-data');
-         obsel_selector_transformed.select(obsel);
          $('#row_traces').height(120+"%");
        });
 
@@ -550,26 +536,18 @@ importer.on('importtrace:newtrace',function(e) {
         });
         
         
-        $('body').on("click","#trace-preview-widget .Samotraces-obsel",function(e) {
+        $('body').on("click","#my-widget2 .Samotraces-obsel",function(e) {
           var obs = $.data(e.target,'Samotraces-data');
           $(e.target).addClass('selected');
           obsel_selector.toggle(obs);
         });
         /*
         trace.on('trace:create_obsel',function(e) {
-          //trace_Preview.create_obsel(e.data);//o.type,o.timestamp,o.attributes);
+          //trace_Transformation.create_obsel(e.data);//o.type,o.timestamp,o.attributes);
           obsel_selector.empty(); 
           
         });
-        */
-
-        //Apply transformation
-        //WIP !!!!
-        $('body').on("click", "#apply-btn", function(e){
-          alert("applied");
-          trace_Transformed = trace.transform(trace_Preview.transformations.duplicate);
-        });
-
+*/
 var img="";
 obsel_selector.on('selection:add', function(e) {
 
@@ -659,7 +637,7 @@ function update_points(p) {
     return this.calculate_x(o.get_begin()) - 8;
   };
   var id = $(p).attr('id');
-  var obs = trace_Preview.get_obsel(id.substr(9));
+  var obs = trace_Transformation.get_obsel(id.substr(9));
   
   /*---SELECTED OBSELS UDATE---*/
   var x = options_x.call(myfunc,obs);
@@ -714,7 +692,7 @@ function update_points(p) {
            }
          });
 
-          trace_Preview.create_obsel(o_attr); 
+          trace_Transformation.create_obsel(o_attr); 
           alert(count);
           obsels_source_add.push({
               idObs : 0,//getid
@@ -750,7 +728,7 @@ function update_points(p) {
               type : obs.get_type(),
               attributes : obs.attributes ,             
             }); 
-            trace_Preview.remove_obsel(obs);
+            trace_Transformation.remove_obsel(obs);
             obsel_selector.unselect(obs);
           });
            Transformation_Interaction.push({
@@ -787,14 +765,14 @@ function update_points(p) {
              }
              img +='<img src="images/'+obs.type+''+valueattr_obsel_selection+'.png"/>' ;
            });  
-          $("#dialog").html('Voulez vous utiliser le système de suggestion pour la suppression de cet(s) obsel(s) : '+img+' ?');
+          $("#dialog").html('Voulez vous supprimer cet(s) obsel uniquement ?'+img);
           var dWidth = $(window).width();
-          var dHeight = $(window).height() * 0.5;
+          var dHeight = $(window).height() * 0.4;
           $( "#dialog" ).dialog({
             height: dHeight,
             width: dWidth,
-            draggable: false,
-            resizable: false,
+            draggable: true,
+            resizable: true,
             position: ["center", "bottom"] ,
             show: {
               effect: "scale",
@@ -807,7 +785,25 @@ function update_points(p) {
             
             buttons: 
             {
+             
               "Oui": function() {
+                obsel_selector.selection.forEach(function(obs) {
+                  trace_Transformation.remove_obsel(obs);
+                  obsel_selector.unselect(obs);
+                });
+                obsel_selector.empty();
+                Transformation_Interaction.push({
+                  id_interaction : i,
+                  date : date,
+                  evt : "trace:remove:obsel" ,
+                  obsels_source : obsels_source_delete        
+                }); // TODO implémenter un get_selection
+                texte = JSON.stringify(Transformation_Interaction);
+                document.getElementById('historique').value=texte;
+                
+                $(this).dialog('close'); 
+              },
+              "Non": function() {
                 $(this).html('Voulez vous supprimer tous les obsels de type ?');
                 var div_element = jQuery("<div>",{
                   id: 'div_type' });  
@@ -826,7 +822,6 @@ function update_points(p) {
                     }); 
                     $('<input>', {
                       id: $(this).attr("Id"),
-                      "class" : "type_ckbx",
                       type: "checkbox" ,
                       checked: checked,
                     }).appendTo(div_element);
@@ -835,24 +830,12 @@ function update_points(p) {
                       value:$(this).attr("Id"),
                     }).html($(this).attr("Id")).appendTo(div_element);
                     
+                    (div_element).append('<br><br>&emsp;les attributs: ');
                     $('#dialog').append(div_element);
                     list_attributesvalue(trace,'div_type',type,"ul_suggestion","select_suggestion");
                   } 
                   
-                });
-
-                      //afficher seulement les attributs des types sélectionnés
-
-                      $('.type_ckbx').each(function(){
-                        if($(this).is(':checked')==false){
-                          $('#ul_suggestion'+$(this).attr("id")).hide();
-                        }
-                      });
-
-                      $('.type_ckbx').click(function(){
-                          $('#ul_suggestion'+$(this).attr("id")).toggle();
-                      });
-
+                });   
                       //suppression après suggestion oui/non
                       $(this).dialog({
                         buttons: {
@@ -861,7 +844,7 @@ function update_points(p) {
                            var bool_valid_value=true;
                            var cpt_attr_model=0;
                            var obsels_source_delete=[];
-                           trace_Preview.list_obsels().forEach(function(o){  
+                           trace_Transformation.list_obsels().forEach(function(o){  
                             $('#div_type > input:checked').each(function() {
                               if(o.type==$(this).attr("Id"))
                               {
@@ -911,7 +894,7 @@ if(bool_valid_value==true && cpt_attr_obsel==cpt_attr_model)
     type : o.get_type(),
     attributes : o.attributes ,             
   }); 
-  trace_Preview.remove_obsel(o);  
+  trace_Transformation.remove_obsel(o);  
 } 
 bool_valid_value=true;
 cpt_attr_obsel=0;
@@ -926,7 +909,7 @@ cpt_attr_model=0;
                      obsels_source_delete.forEach(function(o){
                        if(o.idObs!=obs.id)
                        {
-                        trace_Preview.remove_obsel(obs);
+                        trace_Transformation.remove_obsel(obs);
                         obsel_selector.unselect(obs);
                       }
                     })
@@ -953,24 +936,6 @@ cpt_attr_model=0;
 
 
 },
-              "Non": function() {
-                obsel_selector.selection.forEach(function(obs) {
-                  trace_Preview.remove_obsel(obs);
-                  obsel_selector.unselect(obs);
-                });
-                obsel_selector.empty();
-                Transformation_Interaction.push({
-                  id_interaction : i,
-                  date : date,
-                  evt : "trace:remove:obsel" ,
-                  obsels_source : obsels_source_delete        
-                }); // TODO implémenter un get_selection
-                texte = JSON.stringify(Transformation_Interaction);
-                document.getElementById('historique').value=texte;
-                
-                $(this).dialog('close'); 
-              },
-              
 }
 });    
 
@@ -1020,7 +985,7 @@ cpt_attr_model=0;
               attributes : obs.attributes ,
               
             });
-            trace_Preview.remove_obsel(obs);
+            trace_Transformation.remove_obsel(obs);
             obsel_selector.unselect(obs);
                  //obsel_selector.select(new_obs);
                });
@@ -1030,7 +995,7 @@ cpt_attr_model=0;
              obsels_source_modify.forEach(function(obsel){
                o_attr.begin=obsel.hasbegin;
                o_attr.end=obsel.hasend;
-               trace_Preview.create_obsel(o_attr);
+               trace_Transformation.create_obsel(o_attr);
                obsels_source_transformer.push({
                 hasbegin_trans :o_attr.begin,
                 hasend_trans : o_attr.end,
@@ -1042,7 +1007,7 @@ cpt_attr_model=0;
            }
            else
            {
-            trace_Preview.create_obsel(o_attr);
+            trace_Transformation.create_obsel(o_attr);
             
             obsels_source_transformer.push({
               hasbegin_trans :o_attr.begin,
@@ -1065,7 +1030,7 @@ cpt_attr_model=0;
         
         else{  
           var obsel_id=[];
-          trace_Preview.list_obsels().forEach(function(o){ 
+          trace_Transformation.list_obsels().forEach(function(o){ 
            obsel_id.push(o.id);
          });
           
@@ -1095,12 +1060,12 @@ cpt_attr_model=0;
            });   
           $("#dialog").html('Voulez vous utiliser le système de suggestion pour la transformation de cet(s) obsel(s)<br>&emsp;'+img+"<br>en :<br>&emsp;"+new_img+"<br>?");
           var dWidth = $(window).width();
-          var dHeight = $(window).height() * 0.5;
+          var dHeight = $(window).height() * 0.4;
           $( "#dialog" ).dialog({
             height: dHeight,
             width: dWidth,
-            draggable: false,
-            resizable: false,
+            draggable: true,
+            resizable: true,
             position: ["center", "bottom"] ,
             show: {
               effect: "scale",
@@ -1114,7 +1079,7 @@ cpt_attr_model=0;
              
             "Oui": function() {
               
-             $("#dialog").html('Voulez vous remplacer chaque obsel de type :<br>');
+             $("#dialog").html('Voulez vous remplacer chaque obsel de type ?<br>');
              var div_element = jQuery("<div>",{
                id: 'div_type' }); 
              $('#add_type > option' ).each(function() {
@@ -1132,7 +1097,6 @@ cpt_attr_model=0;
                 }); 
                 $('<input>', {
                   id: $(this).attr("Id"),
-                  "class": "type_ckbx",
                   type: "checkbox" ,
                   checked: checked,
                 }).appendTo(div_element);
@@ -1144,29 +1108,15 @@ cpt_attr_model=0;
                 //(div_element).append('<br><br>&emsp;1)les attributs: ');
                 $('#dialog').append(div_element);
                 list_attributesvalue(trace,'div_type',type,"ul_suggestion","select_suggestion");
-
               }
               
             }); 
-                
-                //afficher seulement les attributs des types sélectionnés
-
-                $('.type_ckbx').each(function(){
-                  if($(this).is(':checked')==false){
-                    $('#ul_suggestion'+$(this).attr("id")).hide();
-                  }
-                });
-
-                $('.type_ckbx').click(function(){
-                    $('#ul_suggestion'+$(this).attr("id")).toggle();
-                });
-
                   //clearfix
                   $(this).append('<div class="clearfix"></div>');
 
 
                   //>>relation entre les obsels selectionnés 
-                  $(this).append('<br>Relation entre obsel(s): ');
+                  $(this).append('<br>2)Relation entre obsel(s): ');
                   $(this).append('<br><br>&emsp;<input type="radio"  name="choix" id="successive" onChange="obsel_relation()"> adjacence ');
                   $(this).append('<div id=div_successive></div>');
                   $(this).append('<br>&emsp;<input type="radio" name="choix" id="separe" onChange="obsel_separe()" > Dans un intervalle');
@@ -1181,7 +1131,7 @@ cpt_attr_model=0;
                       //<<
                       
                       //>>fin de l interval
-                      $("#sep_interval").append('<div id=attrs_baniere_milieuG class=baniere_milieuG>Termine par: <SELECT id=relationsepare_fin_type></SELECT></div>');
+                      $("#sep_interval").append('<div id=attrs_baniere_milieuG class=baniere_milieuG>Et termine par: <SELECT id=relationsepare_fin_type></SELECT></div>');
                       var index_relsep_fin = $('#relationsepare_fin_type').val();
                       list_typeobsel(trace,'relationsepare_fin_type');
                       //<<
@@ -1244,9 +1194,6 @@ cpt_attr_model=0;
                      });
                    //
                    
-                   //clearfix
-                  $(this).append('<div class="clearfix"></div>');
-
                   //<<
                   $(this).append("<b><div>par l'obsel ?"+new_img+'</div>');
                    //suppression après suggestion oui/non
@@ -1257,7 +1204,7 @@ cpt_attr_model=0;
                        var bool_valid_value=true;
                        var cpt_attr_model=0;
                        var obsels_source_modify=[];
-                       trace_Preview.list_obsels().forEach(function(o){  
+                       trace_Transformation.list_obsels().forEach(function(o){  
                         $('#div_type > input:checked').each(function() {
                           if(o.type==$(this).attr("Id"))
                           { 
@@ -1354,7 +1301,7 @@ cpt_attr_model=0;
                                 type : o.get_type(),
                                 attributes : o.attributes ,             
                               }); 
-                               trace_Preview.remove_obsel(o);
+                               trace_Transformation.remove_obsel(o);
                                obsel_selector.unselect(o);
                              }
                              bool_valid_value=true;                     
@@ -1371,7 +1318,7 @@ if($('#replace_TimeStamp').val()=="")
    
     o_attr.begin=obsel.hasbegin;
     o_attr.end=obsel.hasend;
-    trace_Preview.create_obsel(o_attr);
+    trace_Transformation.create_obsel(o_attr);
     obsels_source_transformer.push({
       hasbegin_trans :o_attr.begin,
       hasend_trans : o_attr.end,
@@ -1382,7 +1329,7 @@ if($('#replace_TimeStamp').val()=="")
 }
 else
 {
-  trace_Preview.create_obsel(o_attr);
+  trace_Transformation.create_obsel(o_attr);
   obsels_source_transformer.push({
     hasbegin_trans :o_attr.begin,
     hasend_trans : o_attr.end,
@@ -1416,7 +1363,7 @@ $(this).dialog('close');
               
                obsel_selector.selection.forEach(function(obs) {
                 
-                 trace_Preview.remove_obsel(obs);
+                 trace_Transformation.remove_obsel(obs);
                  obsel_selector.unselect(obs);
                });
                obsel_selector.empty(); 
@@ -1425,7 +1372,7 @@ $(this).dialog('close');
                  obsels_source_modify.forEach(function(obsel){
                   o_attr.begin=obsel.hasbegin;
                   o_attr.end=obsel.hasend;
-                  trace_Preview.create_obsel(o_attr);
+                  trace_Transformation.create_obsel(o_attr);
                   obsels_source_transformer.push({
                     hasbegin_trans :o_attr.begin,
                     hasend_trans : o_attr.end,
@@ -1437,7 +1384,7 @@ $(this).dialog('close');
                }
                else
                {
-                trace_Preview.create_obsel(o_attr);
+                trace_Transformation.create_obsel(o_attr);
                 
                 obsels_source_transformer.push({
                   hasbegin_trans :o_attr.begin,
