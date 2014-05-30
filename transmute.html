@@ -762,7 +762,7 @@ function update_points(p) {
              }
              img +='<img src="images/'+obs.type+''+valueattr_obsel_selection+'.png"/>' ;
            });  
-          $("#dialog").html('Voulez vous supprimer cet(s) obsel uniquement ?'+img);
+          $("#dialog").html('Voulez vous utiliser le système de suggestion pour la suppression de cet(s) obsel(s) : '+img+' ?');
           var dWidth = $(window).width();
           var dHeight = $(window).height() * 0.5;
           $( "#dialog" ).dialog({
@@ -770,7 +770,7 @@ function update_points(p) {
             width: dWidth,
             draggable: false,
             resizable: false,
-            position: ["center", "800"] ,
+            position: ["center", "bottom"] ,
             show: {
               effect: "scale",
               duration: 300
@@ -782,25 +782,7 @@ function update_points(p) {
             
             buttons: 
             {
-             
               "Oui": function() {
-                obsel_selector.selection.forEach(function(obs) {
-                  trace_Transformation.remove_obsel(obs);
-                  obsel_selector.unselect(obs);
-                });
-                obsel_selector.empty();
-                Transformation_Interaction.push({
-                  id_interaction : i,
-                  date : date,
-                  evt : "trace:remove:obsel" ,
-                  obsels_source : obsels_source_delete        
-                }); // TODO implémenter un get_selection
-                texte = JSON.stringify(Transformation_Interaction);
-                document.getElementById('historique').value=texte;
-                
-                $(this).dialog('close'); 
-              },
-              "Non": function() {
                 $(this).html('Voulez vous supprimer tous les obsels de type ?');
                 var div_element = jQuery("<div>",{
                   id: 'div_type' });  
@@ -819,6 +801,7 @@ function update_points(p) {
                     }); 
                     $('<input>', {
                       id: $(this).attr("Id"),
+                      "class" : "type_ckbx",
                       type: "checkbox" ,
                       checked: checked,
                     }).appendTo(div_element);
@@ -827,12 +810,24 @@ function update_points(p) {
                       value:$(this).attr("Id"),
                     }).html($(this).attr("Id")).appendTo(div_element);
                     
-                    (div_element).append('<br><br>&emsp;les attributs: ');
                     $('#dialog').append(div_element);
                     list_attributesvalue(trace,'div_type',type,"ul_suggestion","select_suggestion");
                   } 
                   
-                });   
+                });
+
+                      //afficher seulement les attributs des types sélectionnés
+
+                      $('.type_ckbx').each(function(){
+                        if($(this).is(':checked')==false){
+                          $('#ul_suggestion'+$(this).attr("id")).hide();
+                        }
+                      });
+
+                      $('.type_ckbx').click(function(){
+                          $('#ul_suggestion'+$(this).attr("id")).toggle();
+                      });
+
                       //suppression après suggestion oui/non
                       $(this).dialog({
                         buttons: {
@@ -933,6 +928,24 @@ cpt_attr_model=0;
 
 
 },
+              "Non": function() {
+                obsel_selector.selection.forEach(function(obs) {
+                  trace_Transformation.remove_obsel(obs);
+                  obsel_selector.unselect(obs);
+                });
+                obsel_selector.empty();
+                Transformation_Interaction.push({
+                  id_interaction : i,
+                  date : date,
+                  evt : "trace:remove:obsel" ,
+                  obsels_source : obsels_source_delete        
+                }); // TODO implémenter un get_selection
+                texte = JSON.stringify(Transformation_Interaction);
+                document.getElementById('historique').value=texte;
+                
+                $(this).dialog('close'); 
+              },
+              
 }
 });    
 
@@ -1110,6 +1123,8 @@ cpt_attr_model=0;
               }
               
             }); 
+                
+                //afficher seulement les attributs des types sélectionnés
 
                 $('.type_ckbx').each(function(){
                   if($(this).is(':checked')==false){
