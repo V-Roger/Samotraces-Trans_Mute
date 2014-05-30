@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
-	/*Traces menu management*/
+		/*Traces menu management*/
+
 
 	$('#nav_traces > li > a').click(function(){
 
@@ -106,8 +107,8 @@ $(document).ready(function(){
 		}
 	});
 
-	/*-----------------------*/
-	/*Toolbox menu management*/
+		/*-----------------------*/
+		/*Toolbox menu management*/
 
 	$('#nav_pills > li > a').click(function(){
 
@@ -233,6 +234,7 @@ $(document).ready(function(){
 	$('#attrs_replace').change(function(){
 		var any = false;
 		$("#attrs_replace option:selected").each(function(){
+<<<<<<< HEAD
 			if(!$(this).hasClass("facultatif")) {
 			    if($(this).attr("id")=="empty"){
 			        any = true;
@@ -243,12 +245,25 @@ $(document).ready(function(){
 		});
 
 		if(any==false){
+=======
+			    if($(this).attr("id")!="empty"){
+			        any = true;
+			    }
+		});
+
+		if(any==true){
+>>>>>>> 69671c91f7d99b05007066c04552721d75ac700e
 			$("#row_replace > .step:nth-child(4) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mediumblue');
 			setTimeout(function() {
 			$("#row_replace > .step:nth-child(7) .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
 			}, 100);
 		} else {
+<<<<<<< HEAD
 			$("#row_replace > .step:nth-child(4) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
+=======
+			$("#row_replace > .step:nth-child(4) .progress-bar").removeClass('bg-mediumblue').addClass('progress-bar-undone');
+			$("#row_replace > .step:nth-child(7) .progress-bar").removeClass('bg-green').addClass('progress-bar-undone');
+>>>>>>> 69671c91f7d99b05007066c04552721d75ac700e
 		}
 	});
 
@@ -328,11 +343,5 @@ $(document).ready(function(){
     });
 
 
-
-    /*----SUGGESTION----*/
-
-    $('.type_ckbx').click(function(){
-			$('#ul_suggestion'+$(this).attr("id")).toggle();
-	});
 
 });
