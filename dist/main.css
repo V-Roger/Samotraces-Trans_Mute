@@ -184,6 +184,11 @@ min-width:620px;
   color: #9571b2;
 }
 
+.nav-pills > li > a:hover,
+.nav-pills > li > a:focus {
+  background: #ebecf1;
+}
+
 .nav-pills > li > a:hover:after,
 .nav-pills > li > a:focus:after {
   content: '';
@@ -196,13 +201,13 @@ min-width:620px;
   width: 0;
   border-top: 1.428em solid transparent;
   border-bottom: 1.428em solid transparent;
-  border-left: 1em solid #eee;
+  border-left: 1em solid #ebecf1;
   z-index: 1;
 }
 
 .nav-pills > li > a {
   border-radius: 0;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #ebecf1;
 }
 
 .nav > li > h4 {
@@ -263,6 +268,7 @@ position: absolute;
 left: 0;
 top: 0;
 width: 100%;
+max-width: 100%;
 height: 100%;
 padding: 0;
 margin: 0;

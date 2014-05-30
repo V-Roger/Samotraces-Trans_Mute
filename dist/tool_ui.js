@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+	/*Traces menu management*/
+
 	$('#nav_traces > li > a').click(function(){
 
 		var id = $(this).attr('id');
@@ -97,6 +99,9 @@ $(document).ready(function(){
 			default : break;
 		}
 	});
+
+	/*-----------------------*/
+	/*Toolbox menu management*/
 
 	$('#nav_pills > li > a').click(function(){
 
@@ -317,5 +322,11 @@ $(document).ready(function(){
     });
 
 
+
+    /*----SUGGESTION----*/
+
+    $('.type_ckbx').click(function(){
+			$('#ul_suggestion'+$(this).attr("id")).toggle();
+	});
 
 });

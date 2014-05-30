@@ -7,6 +7,7 @@
 
   <!--LIBS-->
   <script type="text/javascript" src="lib/jquery-2.1.0.min.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
   <script type="text/javascript" src="lib/jquery-ui.min.js"></script>
   <script type="text/javascript" src="lib/d3.js"></script>
   <!--<script type="text/javascript" src="lib/jquery.js"></script>-->
@@ -371,7 +372,6 @@
     </div>
 
     <!-- suggestion -->
-    <div id="dialog" title="TransMute suggestions" float: right;></div>
     <div class="col-md-2 step step-suggest">
       <div class="row">
         <div class="progress-bar progress-bar-undone" style="width: 100%;">
@@ -764,13 +764,13 @@ function update_points(p) {
            });  
           $("#dialog").html('Voulez vous supprimer cet(s) obsel uniquement ?'+img);
           var dWidth = $(window).width();
-          var dHeight = $(window).height() * 0.4;
+          var dHeight = $(window).height() * 0.5;
           $( "#dialog" ).dialog({
             height: dHeight,
             width: dWidth,
-            draggable: true,
-            resizable: true,
-            position: ["center", "bottom"] ,
+            draggable: false,
+            resizable: false,
+            position: ["center", "800"] ,
             show: {
               effect: "scale",
               duration: 300
@@ -1057,12 +1057,12 @@ cpt_attr_model=0;
            });   
           $("#dialog").html('Voulez vous utiliser le système de suggestion pour la transformation de cet(s) obsel(s)<br>&emsp;'+img+"<br>en :<br>&emsp;"+new_img+"<br>?");
           var dWidth = $(window).width();
-          var dHeight = $(window).height() * 0.4;
+          var dHeight = $(window).height() * 0.5;
           $( "#dialog" ).dialog({
             height: dHeight,
             width: dWidth,
-            draggable: true,
-            resizable: true,
+            draggable: false,
+            resizable: false,
             position: ["center", "bottom"] ,
             show: {
               effect: "scale",
@@ -1076,7 +1076,7 @@ cpt_attr_model=0;
              
             "Oui": function() {
               
-             $("#dialog").html('Voulez vous remplacer chaque obsel de type ?<br>');
+             $("#dialog").html('Voulez vous remplacer chaque obsel de type :<br>');
              var div_element = jQuery("<div>",{
                id: 'div_type' }); 
              $('#add_type > option' ).each(function() {
@@ -1094,6 +1094,7 @@ cpt_attr_model=0;
                 }); 
                 $('<input>', {
                   id: $(this).attr("Id"),
+                  "class": "type_ckbx",
                   type: "checkbox" ,
                   checked: checked,
                 }).appendTo(div_element);
@@ -1105,15 +1106,27 @@ cpt_attr_model=0;
                 //(div_element).append('<br><br>&emsp;1)les attributs: ');
                 $('#dialog').append(div_element);
                 list_attributesvalue(trace,'div_type',type,"ul_suggestion","select_suggestion");
+
               }
               
             }); 
+
+                $('.type_ckbx').each(function(){
+                  if($(this).is(':checked')==false){
+                    $('#ul_suggestion'+$(this).attr("id")).hide();
+                  }
+                });
+
+                $('.type_ckbx').click(function(){
+                    $('#ul_suggestion'+$(this).attr("id")).toggle();
+                });
+
                   //clearfix
                   $(this).append('<div class="clearfix"></div>');
 
 
                   //>>relation entre les obsels selectionnés 
-                  $(this).append('<br>2)Relation entre obsel(s): ');
+                  $(this).append('<br>Relation entre obsel(s): ');
                   $(this).append('<br><br>&emsp;<input type="radio"  name="choix" id="successive" onChange="obsel_relation()"> adjacence ');
                   $(this).append('<div id=div_successive></div>');
                   $(this).append('<br>&emsp;<input type="radio" name="choix" id="separe" onChange="obsel_separe()" > Dans un intervalle');
