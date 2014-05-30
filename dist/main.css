@@ -10,6 +10,10 @@ h3{
   color: rgb(92,161,218);
 }
 
+#TSLabel {
+  margin-left: -10px;
+}
+
 .navbar-fixed-top
 {
   height:60px;
