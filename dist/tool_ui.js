@@ -216,41 +216,30 @@ $(document).ready(function(){
 		}
 	});
 
-		$("#replace_TimeStamp[type='text']").change(function(){
-		if ($("#replace_TimeStamp[type='text']").val()!=""){
-			$("#row_replace > .step:nth-child(3) .progress-bar").removeClass('progress-bar-undone').addClass('bg-darkblue');
-		} else {
-			$("#row_replace > .step:nth-child(3) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
-		}
-	});
-
 	$('#attrs_replace').change(function(){
-		var any = false;
+		var any = true;
 		$("#attrs_replace option:selected").each(function(){
-			if(!$(this).hasClass("facultatif")) {
-			    if($(this).attr("id")=="empty"){
-			        any = true;
-			    } else {
-			    	any = false;
-			    }
+			    if($(this).attr("id")!="empty"){
+			        any = false;
 			}
 		});
 
 		if(any==false){
-			$("#row_replace > .step:nth-child(4) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mediumblue');
+			$("#row_replace > .step:nth-child(3) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mediumblue');
 			setTimeout(function() {
-			$("#row_replace > .step:nth-child(7) .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
+			$("#row_replace > .step:nth-child(6) .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
 			}, 100);
 		} else {
-			$("#row_replace > .step:nth-child(4) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
+			$("#row_replace > .step:nth-child(3) .progress-bar").removeClass('bg-mediumblue').addClass('progress-bar-undone');
+			$("#row_replace > .step:nth-child(6) .progress-bar").removeClass('bg-green').addClass('progress-bar-undone');
 		}
 	});
 
 	$(".step-suggest").change(function(){
 			if($("#activer_suggestion").is(':checked')==true) {
-				$("#row_replace > .step:nth-child(6) .progress-bar").removeClass('progress-bar-undone').addClass('bg-lightblue');
+				$("#row_replace > .step:nth-child(5) .progress-bar").removeClass('progress-bar-undone').addClass('bg-lightblue');
 			} else {
-				$("#row_replace > .step:nth-child(6) .progress-bar").removeClass('bg-lightblue').addClass('progress-bar-undone');
+				$("#row_replace > .step:nth-child(5) .progress-bar").removeClass('bg-lightblue').addClass('progress-bar-undone');
 			}
 	});
 
