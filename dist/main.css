@@ -10,6 +10,10 @@ h3{
   color: rgb(92,161,218);
 }
 
+.TSLabel {
+  margin-left: -10px;
+}
+
 .navbar-fixed-top
 {
   height:60px;
@@ -184,6 +188,11 @@ min-width:620px;
   color: #9571b2;
 }
 
+.nav-pills > li > a:hover,
+.nav-pills > li > a:focus {
+  background: #ebecf1;
+}
+
 .nav-pills > li > a:hover:after,
 .nav-pills > li > a:focus:after {
   content: '';
@@ -196,13 +205,13 @@ min-width:620px;
   width: 0;
   border-top: 1.428em solid transparent;
   border-bottom: 1.428em solid transparent;
-  border-left: 1em solid #eee;
+  border-left: 1em solid #ebecf1;
   z-index: 1;
 }
 
 .nav-pills > li > a {
   border-radius: 0;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #ebecf1;
 }
 
 .nav > li > h4 {
@@ -263,17 +272,12 @@ position: absolute;
 left: 0;
 top: 0;
 width: 100%;
+max-width: 100%;
 height: 100%;
 padding: 0;
 margin: 0;
 overflow-x:hidden;
 
-}
-
-.container-fluid{
-  height: 100%;
-  margin: 0;
-  padding: 0;
 }
 
 .progress {
@@ -335,7 +339,7 @@ height: 5%;
 }
 
 #traces{
-height: 90t%;
+height: 90%;
 min-height: 50%;
 }
 
@@ -355,7 +359,7 @@ min-height: 50%;
   margin-bottom: 1em;
 }
 
-#my-widget2{
+#trace-preview-widget{
   margin-top: 1em;
 }
 
@@ -365,8 +369,8 @@ min-height: 50%;
   width:120px;
   left: 50%;
   margin-left:-60px;
-  margin-bottom: 1em;
-  margin-top: 1em;
+  margin-bottom: 0.3em;
+  margin-top: 0.3em;
 }
 
 #toolbox{
@@ -434,14 +438,8 @@ button.navbar-toggle{
   color:#b6397d;
 }
 
-#skip-attrs1, #skip-attrs2 {
-  display: none;
-}
+@media (max-width: 770px){
 
-
-
-#skip-suggestion {
-  display : none;
 }
 
 /*fixing margins and top menu when navbar collapses */
@@ -462,26 +460,6 @@ button.navbar-toggle{
     #logo{
     display: block;
   }
-
-  .border-right{
-    height:auto;
-  }
-
-  .step {
-    height: 20px;
-    width: 100%;
-    overflow: hidden;
-  }
-
-  #skip-suggestion {
-    display:inherit;
-  }
-
-  #row_replace > .step:nth-child(6) {
-  margin-top: -20px;
-  }
-
-
 }
 
 
@@ -492,7 +470,11 @@ button.navbar-toggle{
   background: #fff;
  }
 
- #my-widget2, #scale2{
+ #trace-preview-widget, #scale2{
+  visibility: hidden;
+ }
+
+  #trace-transformed-widget, #scale3{
   visibility: hidden;
  }
 
@@ -525,6 +507,7 @@ height: 100%;
 /*---------SUGGESTION-----------*/
 
 #div_type > *{
+  box-sizing: border-box;
   float: left;
 }
 
