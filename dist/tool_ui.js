@@ -1,8 +1,5 @@
 $(document).ready(function(){
 
-		/*Traces menu management*/
-
-
 	$('#nav_traces > li > a').click(function(){
 
 		var id = $(this).attr('id');
@@ -16,8 +13,7 @@ $(document).ready(function(){
 		{
 			case 'load_trace' : $('#traces_header').html('Charger trace');
 								$('#widgets').show();
-								$('#trace-transformed-widget, #scale3').css('visibility','hidden');
-								$('#trace-preview-widget, #scale2').css('visibility','hidden');
+								$('#my-widget2, #scale2').css('visibility','hidden');
 								$('#importer').show();
 								$('#transformation_list').hide();
 								$('#importer-transformation').hide();
@@ -30,9 +26,8 @@ $(document).ready(function(){
 								break;
 
 			case 'transform_trace' : 	$('#traces_header').html('Transformer trace');
-										$('#widgets').hide();
-										$('#trace-transformed-widget, #scale3').css('visibility','visible');
-										$('#trace-preview-widget, #scale2').css('visibility','visible');
+										$('#widgets').show();
+										$('#my-widget2, #scale2').css('visibility','visible');
 										$('#importer').hide();
 										$('#transformation_list').hide();
 										$('#importer-transformation').hide();
@@ -46,8 +41,7 @@ $(document).ready(function(){
 
 			case 'compare_trace' : 	$('#traces_header').html('Comparer trace');
 									$('#widgets').show();
-									$('#trace-transformed-widget, #scale3').css('visibility','visible');
-									$('#trace-preview-widget, #scale2').css('visibility', 'hidden');
+									$('#my-widget2, #scale2').css('visibility','visible');
 									$('#importer').hide();
 									$('#transformation_list').hide();
 									$('#importer-transformation').hide();
@@ -61,8 +55,7 @@ $(document).ready(function(){
 
 			case 'import_transformation' : 	$('#traces_header').html('Importer transformation');
 											$('#widgets').hide();
-											$('#trace-transformed-widget, #scale3').css('visibility','visible');
-											$('#trace-preview-widget, #scale2').css('visibility', 'hidden');
+											$('#my-widget2, #scale2').css('visibility','visible');
 											$('#importer-transformation').show();
 											$('#importer').hide();
 											$('#transformation_list').hide();
@@ -76,8 +69,7 @@ $(document).ready(function(){
 
 			case 'history' : 	$('#traces_header').html('Historique');
 								$('#widgets').hide();			
-								$('#trace-transformed-widget, #scale3').css('visibility','visible');
-								$('#trace-preview-widget, #scale2').css('visibility', 'hidden');
+								$('#my-widget2, #scale2').css('visibility','visible');
 								$('#transformation_list').show();
 								$('#importer').hide();
 								$('#importer-transformation').hide();
@@ -91,8 +83,7 @@ $(document).ready(function(){
 
 			case 'download_transformation' : 	$('#traces_header').html('Télécharger transformation');
 												$('#widgets').hide();
-												$('#trace-transformed-widget, #scale3').css('visibility','visible');
-												$('#trace-preview-widget, #scale2').css('visibility', 'hidden');
+												$('#my-widget2, #scale2').css('visibility','visible');
 												$('#transformation_list').show();
 												$('#importer').hide();
 												$('#apply-btn').hide();
@@ -106,9 +97,6 @@ $(document).ready(function(){
 			default : break;
 		}
 	});
-
-		/*-----------------------*/
-		/*Toolbox menu management*/
 
 	$('#nav_pills > li > a').click(function(){
 
@@ -165,9 +153,13 @@ $(document).ready(function(){
 	/*
 	pour la fonction essai avec tableau associatif pour la couleur     $('#my_select option:selected').attr('id');
 	*/
+
+
 	$('#add_type').change(function(){
+		
 		if ($('#add_type option:selected').attr("id")!="vide"){
 			$("#row_add > .step:nth-child(1) .progress-bar").removeClass('progress-bar-undone').addClass('bg-purple');
+			$("#row_add > .step:nth-child(2) .progress-bar").trigger("click");
 		} else {
 			$("#row_add > .step:nth-child(1) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
 		}
@@ -176,8 +168,9 @@ $(document).ready(function(){
 	$("#add_TimeStamp[type='text']").change(function(){
 		if ($("#add_TimeStamp[type='text']").val()!=""){
 			$("#row_add > .step:nth-child(2) .progress-bar").removeClass('progress-bar-undone').addClass('bg-darkblue');
+			$("#row_add > .step:nth-child(3) .progress-bar").trigger("click");
 		} else {
-			$("#row_add > .step:nth-child(2) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
+			$("#row_add > .step:nth-child(2) .progress-bar").removeClass('bg-darkblue').addClass('progress-bar-undone');
 		}
 	});
 
@@ -188,12 +181,16 @@ $(document).ready(function(){
 			if($(this).hasClass("facultatif") && $(this).attr("id")=="empty") {
 				someoptions=true;
 			}
-		    if($(this).attr("id")!="empty"){
-		        any = true;
-		    }
+			if(!$(this).hasClass("facultatif")) {
+			    if($(this).attr("id")=="empty"){
+			        any = true;
+			    } else {
+			    	any = false;
+			    }
+			}
 		});
 
-		if(any==true){
+		if(any==false){
 			$("#add-obs").prop("disabled", false);
 			$("#row_add > .step:nth-child(3) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mediumblue');
 
@@ -209,7 +206,6 @@ $(document).ready(function(){
 			}, 100);
 		} else {
 			$("#row_add > .step:nth-child(3) .progress-bar").removeClass('bg-mediumblue').addClass('progress-bar-undone');
-			$("#row_add > .step:nth-child(4) .progress-bar").removeClass('bg-green').addClass('progress-bar-undone');
 		}
 	});
 
@@ -219,6 +215,7 @@ $(document).ready(function(){
 		alert(element.length);
 			if(element.length>0) {
 				$("#row_replace > .step:nth-child(1) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mauve');
+				$("#row_replace > .step:nth-child(2) .progress-bar").trigger("click");
 			} else {
 				$("#row_replace > .step:nth-child(1) .progress-bar").removeClass('bg-mauve').addClass('progress-bar-undone');	
 			}
@@ -227,6 +224,7 @@ $(document).ready(function(){
 		$('.step-choice').change(function(){
 		if ($('.step-choice option:selected').attr("id")!="vide"){
 			$("#row_replace > .step:nth-child(2) .progress-bar").removeClass('progress-bar-undone').addClass('bg-purple');
+			$("#row_replace > .step:nth-child(3) .progress-bar").trigger("click");
 		} else {
 			$("#row_replace > .step:nth-child(2) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
 		}
@@ -235,8 +233,9 @@ $(document).ready(function(){
 		$("#replace_TimeStamp[type='text']").change(function(){
 		if ($("#replace_TimeStamp[type='text']").val()!=""){
 			$("#row_replace > .step:nth-child(3) .progress-bar").removeClass('progress-bar-undone').addClass('bg-darkblue');
+			$("#row_replace > .step:nth-child(4) .progress-bar").trigger("click");
 		} else {
-			$("#row_replace > .step:nth-child(3) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
+			$("#row_replace > .step:nth-child(3) .progress-bar").removeClass('bg-darkblue').addClass('progress-bar-undone');
 		}
 	});
 
@@ -247,12 +246,16 @@ $(document).ready(function(){
 			if($(this).hasClass("facultatif") && $(this).attr("id")=="empty") {
 				someoptions2=true;
 			}
-			if($(this).attr("id")!="empty"){
-		        any = true;
-		    }
+			if(!$(this).hasClass("facultatif")) {
+				if($(this).attr("id")=="empty"){
+			        any = true;
+			    } else {
+			    	any = false;
+			    }
+			}
 		});
 
-		if(any==true){
+		if(any==false){
 			$("#row_replace > .step:nth-child(4) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mediumblue');
 			setTimeout(function() {
 			$("#row_replace > .step:nth-child(7) .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
@@ -267,13 +270,13 @@ $(document).ready(function(){
 
 		} else {
 			$("#row_replace > .step:nth-child(4) .progress-bar").removeClass('bg-mediumblue').addClass('progress-bar-undone');
-			$("#row_replace > .step:nth-child(7) .progress-bar").removeClass('bg-green').addClass('progress-bar-undone');
 		}
 	});
 
 	$(".step-suggest").change(function(){
 			if($("#activer_suggestion").is(':checked')==true) {
 				$("#row_replace > .step:nth-child(6) .progress-bar").removeClass('progress-bar-undone').addClass('bg-lightblue');
+				$("#row_replace > .step:nth-child(7) .progress-bar").trigger("click");
 			} else {
 				$("#row_replace > .step:nth-child(6) .progress-bar").removeClass('bg-lightblue').addClass('progress-bar-undone');
 			}
@@ -318,7 +321,36 @@ $(document).ready(function(){
 	});
 
 
+//responsive toolbox accordion
+	$('.progress-bar').click(function(){
+		if($(window).width() < 990) {
+				$(this).closest('.step').height(200);
+				$(this).closest('.step').siblings().height(20);
+			
+		}});
 
+	
+
+	$('#skip-attrs1').click(function(){
+		if($(window).width() < 990) {
+			$("#row_add > .step:nth-child(4) .progress-bar").trigger("click");
+
+		}
+	});
+
+	$('#skip-suggestion').click(function(){
+		$("#row_replace > .step:nth-child(6) .progress-bar").removeClass('progress-bar-undone').addClass('bg-lightblue');
+		if($(window).width() < 990) {
+			$("#row_replace > .step:nth-child(7) .progress-bar").trigger("click");
+		}
+	});
+
+	$('#skip-attrs2').click(function(){
+		if($(window).width() < 990) {
+			$("#row_replace > .step:nth-child(6) .progress-bar").trigger("click");
+
+		}
+	});
 
 
 
@@ -345,6 +377,8 @@ $(document).ready(function(){
             $(".nav_tools_header > .navbar-toggle").trigger( "click" );
         }
     });
+
+
 
 
 
