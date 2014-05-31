@@ -206,6 +206,7 @@ $(document).ready(function(){
 			}, 100);
 		} else {
 			$("#row_add > .step:nth-child(3) .progress-bar").removeClass('bg-mediumblue').addClass('progress-bar-undone');
+			$("#skip-attrs1").css('display', 'none');
 		}
 	});
 
@@ -270,6 +271,7 @@ $(document).ready(function(){
 
 		} else {
 			$("#row_replace > .step:nth-child(4) .progress-bar").removeClass('bg-mediumblue').addClass('progress-bar-undone');
+			$("#skip-attrs2").css('display', 'none');
 		}
 	});
 
@@ -324,7 +326,7 @@ $(document).ready(function(){
 //responsive toolbox accordion
 	$('.progress-bar').click(function(){
 		if($(window).width() < 990) {
-				$(this).closest('.step').height(200);
+				$(this).closest('.step').css({"height":"70%", "overflow":"scroll"});
 				$(this).closest('.step').siblings().height(20);
 			
 		}});
@@ -377,9 +379,6 @@ $(document).ready(function(){
             $(".nav_tools_header > .navbar-toggle").trigger( "click" );
         }
     });
-
-
-
 
 
 });
