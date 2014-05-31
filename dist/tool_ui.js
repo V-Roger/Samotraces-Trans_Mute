@@ -13,7 +13,8 @@ $(document).ready(function(){
 		{
 			case 'load_trace' : $('#traces_header').html('Charger trace');
 								$('#widgets').show();
-								$('#my-widget2, #scale2').css('visibility','hidden');
+								$('#trace-transformed-widget, #scale3').css('visibility','hidden');
+								$('#trace-preview-widget, #scale2').css('visibility','hidden');
 								$('#importer').show();
 								$('#transformation_list').hide();
 								$('#importer-transformation').hide();
@@ -26,8 +27,9 @@ $(document).ready(function(){
 								break;
 
 			case 'transform_trace' : 	$('#traces_header').html('Transformer trace');
-										$('#widgets').show();
-										$('#my-widget2, #scale2').css('visibility','visible');
+										$('#widgets').hide();
+										$('#trace-transformed-widget, #scale3').css('visibility','visible');
+										$('#trace-preview-widget, #scale2').css('visibility','visible');
 										$('#importer').hide();
 										$('#transformation_list').hide();
 										$('#importer-transformation').hide();
@@ -41,7 +43,8 @@ $(document).ready(function(){
 
 			case 'compare_trace' : 	$('#traces_header').html('Comparer trace');
 									$('#widgets').show();
-									$('#my-widget2, #scale2').css('visibility','visible');
+									$('#trace-transformed-widget, #scale3').css('visibility','visible');
+									$('#trace-preview-widget, #scale2').css('visibility','hidden');
 									$('#importer').hide();
 									$('#transformation_list').hide();
 									$('#importer-transformation').hide();
@@ -55,7 +58,8 @@ $(document).ready(function(){
 
 			case 'import_transformation' : 	$('#traces_header').html('Importer transformation');
 											$('#widgets').hide();
-											$('#my-widget2, #scale2').css('visibility','visible');
+											$('#trace-transformed-widget, #scale3').css('visibility','visible');
+											$('#trace-preview-widget, #scale2').css('visibility','hidden');
 											$('#importer-transformation').show();
 											$('#importer').hide();
 											$('#transformation_list').hide();
@@ -68,8 +72,9 @@ $(document).ready(function(){
 											break;
 
 			case 'history' : 	$('#traces_header').html('Historique');
-								$('#widgets').hide();			
-								$('#my-widget2, #scale2').css('visibility','visible');
+								$('#widgets').hide();
+								$('#trace-transformed-widget, #scale3').css('visibility','visible');			
+								$('#trace-preview-widget, #scale2').css('visibility','hidden');
 								$('#transformation_list').show();
 								$('#importer').hide();
 								$('#importer-transformation').hide();
@@ -83,7 +88,8 @@ $(document).ready(function(){
 
 			case 'download_transformation' : 	$('#traces_header').html('Télécharger transformation');
 												$('#widgets').hide();
-												$('#my-widget2, #scale2').css('visibility','visible');
+												$('#trace-transformed-widget, #scale3').css('visibility','visible');
+												$('#trace-preview-widget, #scale2').css('visibility','hidden');
 												$('#transformation_list').show();
 												$('#importer').hide();
 												$('#apply-btn').hide();

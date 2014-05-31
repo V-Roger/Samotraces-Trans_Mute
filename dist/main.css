@@ -492,7 +492,11 @@ button.navbar-toggle{
   background: #fff;
  }
 
- #my-widget2, #scale2{
+ #trace-preview-widget, #scale2{
+  visibility: hidden;
+ }
+
+  #trace-transformed-widget, #scale3{
   visibility: hidden;
  }
 
