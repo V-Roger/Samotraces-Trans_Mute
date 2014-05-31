@@ -181,16 +181,12 @@ $(document).ready(function(){
 			if($(this).hasClass("facultatif") && $(this).attr("id")=="empty") {
 				someoptions=true;
 			}
-			if(!$(this).hasClass("facultatif")) {
-			    if($(this).attr("id")=="empty"){
-			        any = true;
-			    } else {
-			    	any = false;
-			    }
-			}
+		    if($(this).attr("id")!="empty"){
+		        any = true;
+		    }
 		});
 
-		if(any==false){
+		if(any==true){
 			$("#add-obs").prop("disabled", false);
 			$("#row_add > .step:nth-child(3) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mediumblue');
 
@@ -206,6 +202,7 @@ $(document).ready(function(){
 			}, 100);
 		} else {
 			$("#row_add > .step:nth-child(3) .progress-bar").removeClass('bg-mediumblue').addClass('progress-bar-undone');
+			$("#row_add > .step:nth-child(4) .progress-bar").removeClass('bg-green').addClass('progress-bar-undone');
 		}
 	});
 
@@ -246,16 +243,12 @@ $(document).ready(function(){
 			if($(this).hasClass("facultatif") && $(this).attr("id")=="empty") {
 				someoptions2=true;
 			}
-			if(!$(this).hasClass("facultatif")) {
-				if($(this).attr("id")=="empty"){
-			        any = true;
-			    } else {
-			    	any = false;
-			    }
-			}
+			if($(this).attr("id")!="empty"){
+		        any = true;
+		    }
 		});
 
-		if(any==false){
+		if(any==true){
 			$("#row_replace > .step:nth-child(4) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mediumblue');
 			setTimeout(function() {
 			$("#row_replace > .step:nth-child(7) .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
@@ -270,6 +263,7 @@ $(document).ready(function(){
 
 		} else {
 			$("#row_replace > .step:nth-child(4) .progress-bar").removeClass('bg-mediumblue').addClass('progress-bar-undone');
+			$("#row_replace > .step:nth-child(7) .progress-bar").removeClass('bg-green').addClass('progress-bar-undone');
 		}
 	});
 
