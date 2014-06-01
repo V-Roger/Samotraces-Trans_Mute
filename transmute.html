@@ -27,8 +27,6 @@
         <!--UI-->
     <script type="text/javascript" src="dist/tool_ui.js"></script>
     <link href="dist/main.css" rel="stylesheet">
-
-
 </head>
 
 
@@ -177,7 +175,7 @@
         <div class="row border-right">
           <div class="col-md-12">
             <br>
-            <input type="text" id="add_TimeStamp" value="" size="3">
+            <input type="text" id="add_TimeStamp" placeholder="0" size="3">
           </div>
         </div>
       </div>
@@ -567,8 +565,9 @@ importer.on('importtrace:newtrace',function(e) {
         //Apply transformation
         //WIP !!!!
         $('body').on("click", "#apply-btn", function(e){
-          alert("applied");
-          trace_Transformed = trace.transform(trace_Preview.transformations.duplicate);
+          if (confirm("Appliquer le changement?") == true) {
+            trace_Transformed = trace.transform(trace_Preview.transformations.duplicate);
+          }
         });
 
 var img="";
