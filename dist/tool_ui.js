@@ -32,7 +32,7 @@ $(document).ready(function(){
 										$('#widgets').hide();
 										$('#trace-transformed-widget, #scale3').css('visibility','visible');
 										$('#trace-preview-widget, #scale2').css('visibility','visible');
-										$('#obsel-inspector').css('visibility','hide');
+										$('#obsel-inspector').css('visibility','hidden');
 										$('#obsel-inspector-transformed').css('visibility','visible');
 										$('#importer').hide();
 										$('#transformation_list').hide();
@@ -67,7 +67,7 @@ $(document).ready(function(){
 											$('#trace-transformed-widget, #scale3').css('visibility','visible');
 											$('#trace-preview-widget, #scale2').css('visibility','hidden');
 											$('#obsel-inspector').css('visibility','hidden');
-											$('#obsel-inspector-transformed').css('visibility','show');
+											$('#obsel-inspector-transformed').css('visibility','visible');
 											$('#importer-transformation').show();
 											$('#importer').hide();
 											$('#transformation_list').hide();
