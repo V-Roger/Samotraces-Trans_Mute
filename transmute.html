@@ -566,7 +566,10 @@ importer.on('importtrace:newtrace',function(e) {
         //WIP !!!!
         $('body').on("click", "#apply-btn", function(e){
           if (confirm("Appliquer le changement?") == true) {
-            trace_Transformed = trace.transform(trace_Preview.transformations.duplicate);
+            delete visu_transformed;
+            $('#trace-transformed-widget').empty();
+            trace_Transformed = trace_Preview.transform(trace_Preview.transformations.duplicate);
+            visu_transformed = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-transformed-widget',trace_Transformed,tw3,options);
           }
         });
 
