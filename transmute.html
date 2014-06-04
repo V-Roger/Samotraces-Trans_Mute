@@ -527,7 +527,7 @@ importer.on('importtrace:newtrace',function(e) {
   visu_transformed = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-transformed-widget',trace_Transformed,tw3,options);
   
   $('#importtrans').remove();
-  new Samotraces.UI.Widgets.ImportTrace('importer-transformation',trace_Preview);
+  new Samotraces.UI.Widgets.ImportTrace('importer-transformation',trace_Transformed);
 });
 
 
@@ -567,8 +567,6 @@ importer.on('importtrace:newtrace',function(e) {
         //Apply transformation
         //WIP !!!!
         $('body').on("click", "#apply-btn", function(e){
-          alert("applied");
-          trace_Transformed = trace.transform(trace_Preview.transformations.duplicate);
         });
 
 var img="";
