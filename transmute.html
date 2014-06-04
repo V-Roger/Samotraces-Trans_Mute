@@ -637,6 +637,7 @@ importer.on('importtrace:newtrace',function(e) {
             delete visu_transformed;
             $('#trace-transformed-widget').empty();
             visu_transformed = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-transformed-widget',trace_Transformed,tw2,options);
+            sync = true;
           }
         })
 
