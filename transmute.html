@@ -570,6 +570,11 @@ importer.on('importtrace:newtrace',function(e) {
             $('#trace-transformed-widget').empty();
             trace_Transformed = trace_Preview.transform(trace_Preview.transformations.duplicate);
             visu_transformed = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-transformed-widget',trace_Transformed,tw3,options);
+
+            delete visu;
+            $('#trace-preview-widget').empty();
+            trace_Preview = trace_Transformed.transform(trace_Transformed.transformations.duplicate);
+            visu = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-preview-widget',trace_Preview,tw2,options);
           }
         });
 
