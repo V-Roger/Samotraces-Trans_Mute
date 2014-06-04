@@ -15,6 +15,8 @@ $(document).ready(function(){
 								$('#widgets').show();
 								$('#trace-transformed-widget, #scale3').css('visibility','hidden');
 								$('#trace-preview-widget, #scale2').css('visibility','hidden');
+								$('#obsel-inspector').css('visibility','visible');
+								$('#obsel-inspector-transformed').css('visibility','hidden');
 								$('#importer').show();
 								$('#transformation_list').hide();
 								$('#importer-transformation').hide();
@@ -30,6 +32,8 @@ $(document).ready(function(){
 										$('#widgets').hide();
 										$('#trace-transformed-widget, #scale3').css('visibility','visible');
 										$('#trace-preview-widget, #scale2').css('visibility','visible');
+										$('#obsel-inspector').css('visibility','hidden');
+										$('#obsel-inspector-transformed').css('visibility','visible');
 										$('#importer').hide();
 										$('#transformation_list').hide();
 										$('#importer-transformation').hide();
@@ -45,6 +49,8 @@ $(document).ready(function(){
 									$('#widgets').show();
 									$('#trace-transformed-widget, #scale3').css('visibility','visible');
 									$('#trace-preview-widget, #scale2').css('visibility','hidden');
+									$('#obsel-inspector').css('visibility','visible');
+									$('#obsel-inspector-transformed').css('visibility','visible');
 									$('#importer').hide();
 									$('#transformation_list').hide();
 									$('#importer-transformation').hide();
@@ -60,6 +66,8 @@ $(document).ready(function(){
 											$('#widgets').hide();
 											$('#trace-transformed-widget, #scale3').css('visibility','visible');
 											$('#trace-preview-widget, #scale2').css('visibility','hidden');
+											$('#obsel-inspector').css('visibility','hidden');
+											$('#obsel-inspector-transformed').css('visibility','visible');
 											$('#importer-transformation').show();
 											$('#importer').hide();
 											$('#transformation_list').hide();
@@ -75,6 +83,8 @@ $(document).ready(function(){
 								$('#widgets').hide();
 								$('#trace-transformed-widget, #scale3').css('visibility','visible');			
 								$('#trace-preview-widget, #scale2').css('visibility','hidden');
+								$('#obsel-inspector').css('visibility','hidden');
+								$('#obsel-inspector-transformed').css('visibility','visible');								
 								$('#transformation_list').show();
 								$('#importer').hide();
 								$('#importer-transformation').hide();
@@ -90,6 +100,8 @@ $(document).ready(function(){
 												$('#widgets').hide();
 												$('#trace-transformed-widget, #scale3').css('visibility','visible');
 												$('#trace-preview-widget, #scale2').css('visibility','hidden');
+												$('#obsel-inspector').css('visibility','hidden');
+												$('#obsel-inspector-transformed').css('visibility','visible');												
 												$('#transformation_list').show();
 												$('#importer').hide();
 												$('#apply-btn').hide();
