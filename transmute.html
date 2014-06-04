@@ -606,14 +606,14 @@ importer.on('importtrace:newtrace',function(e) {
         $('body').on("click","#trace-origin-widget .Samotraces-obsel",function(e){
          var obsel = $.data(e.target,'Samotraces-data');
          obsel_selector_origin.select(obsel);
-         $('#row_traces').height(120+"%");
+         $('#row_traces').height('auto');
        });
 
         // Select Obsel when clicked
         $('body').on("click","#trace-transformed-widget .Samotraces-obsel",function(e){
          var obsel = $.data(e.target,'Samotraces-data');
          obsel_selector_transformed.select(obsel);
-         $('#row_traces').height(120+"%");
+         $('#row_traces').height('auto');
        });
 
       $('#obsel-inspector > span').on("click", function () {

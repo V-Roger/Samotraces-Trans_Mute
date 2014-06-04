@@ -350,6 +350,7 @@ min-height: 50%;
   height: auto;
   min-height: 100%;
   margin-left: -15px;
+  padding-bottom: 15px;
 }
 
 #scale {
