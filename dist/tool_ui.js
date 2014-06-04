@@ -21,6 +21,7 @@ $(document).ready(function(){
 								$('#transformation_list').hide();
 								$('#importer-transformation').hide();
 								$('#apply-btn').hide();
+								$('#tw-link-btn').hide();
 								if(toolbox_vis)
 								{
 									$('#toolbox').hide();
@@ -38,6 +39,7 @@ $(document).ready(function(){
 										$('#transformation_list').hide();
 										$('#importer-transformation').hide();
 										$('#apply-btn').show();
+										$('#tw-link-btn').show();
 										if(!toolbox_vis)
 										{
 											$('#toolbox').show();
@@ -55,6 +57,8 @@ $(document).ready(function(){
 									$('#transformation_list').hide();
 									$('#importer-transformation').hide();
 									$('#apply-btn').hide();
+									$('#tw-link-btn').hide();
+									$('#tw-link-btn').hide();
 									if(toolbox_vis)
 									{
 										$('#toolbox').hide();
@@ -72,6 +76,7 @@ $(document).ready(function(){
 											$('#importer').hide();
 											$('#transformation_list').hide();
 											$('#apply-btn').hide();
+											$('#tw-link-btn').hide();
 											if(toolbox_vis)
 											{
 												$('#toolbox').hide();
@@ -89,6 +94,7 @@ $(document).ready(function(){
 								$('#importer').hide();
 								$('#importer-transformation').hide();
 								$('#apply-btn').hide();
+								$('#tw-link-btn').hide();
 								if(toolbox_vis)
 								{
 									$('#toolbox').hide();
@@ -105,6 +111,7 @@ $(document).ready(function(){
 												$('#transformation_list').show();
 												$('#importer').hide();
 												$('#apply-btn').hide();
+												$('#tw-link-btn').hide();
 												if(toolbox_vis)
 												{
 													$('#toolbox').hide();

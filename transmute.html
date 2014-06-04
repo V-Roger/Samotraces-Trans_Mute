@@ -130,8 +130,13 @@
           <div id="trace-transformed-widget"></div>
           <div id="scale3"></div>
           <div id="obsel-inspector-transformed"></div>
-          <div id="apply-btn" class="btn btn-default">
-            Appliquer <span class="glyphicon glyphicon-chevron-up"> </span>
+          <div id="btns" class="btn-group">
+            <button id="tw-link-btn" class="btn btn-default">
+              Synchronisation <span class="glyphicon glyphicon-link"> </span>
+            </button>
+            <button id="apply-btn" class="btn btn-default">
+              Appliquer <span class="glyphicon glyphicon-chevron-up"> </span>
+            </button>
           </div>
           <div id="trace-preview-widget"></div>
           <div id="scale2"></div>
@@ -576,7 +581,7 @@
 new Samotraces.UI.Widgets.ObselInspector('obsel-inspector',obsel_selector_origin);
 new Samotraces.UI.Widgets.ObselInspector('obsel-inspector-transformed',obsel_selector_transformed);
 
-var trace, trace_Preview, trace_Transformed, visu_origin, visu;
+var trace, trace_Preview, trace_Transformed, visu_origin, visu, sync;
 
 importer.on('importtrace:newtrace',function(e) {
   delete visu_origin;
@@ -593,8 +598,9 @@ importer.on('importtrace:newtrace',function(e) {
   trace_Transformed = trace.transform(trace.transformations.duplicate);
   visu_origin = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-origin-widget',trace,tw,options);
   visu = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-preview-widget',trace_Preview,tw2,options);
-  visu_transformed = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-transformed-widget',trace_Transformed,tw3,options);
-  
+  visu_transformed = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-transformed-widget',trace_Transformed,tw2,options);
+  sync = true;
+
   $('#importtrans').remove();
   new Samotraces.UI.Widgets.ImportTrace('importer-transformation',trace_Transformed);
 });
@@ -619,6 +625,20 @@ importer.on('importtrace:newtrace',function(e) {
         $('#row_traces').height('auto');
       });
 
+        //timewindows Synchronisation
+        $('#tw-link-btn').on("click", function(){
+          if(sync == true){
+            delete visu_transformed;
+            $('#trace-transformed-widget').empty();
+            visu_transformed = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-transformed-widget',trace_Transformed,tw3,options);
+            sync = false;
+          }
+          else{
+            delete visu_transformed;
+            $('#trace-transformed-widget').empty();
+            visu_transformed = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-transformed-widget',trace_Transformed,tw2,options);
+          }
+        })
 
       $('body').on("click", "#trace-preview-widget .Samotraces-obsel", function (
         e) {

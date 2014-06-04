@@ -336,7 +336,7 @@ height: 5%;
 }
 
 #traces{
-height: 90t%;
+height: 90%;
 min-height: 50%;
 }
 
@@ -357,18 +357,20 @@ min-height: 50%;
   margin-bottom: 1em;
 }
 
-#my-widget2{
-  margin-top: 1em;
+#btns{
+  width: 100%;
+  margin: 1em 0;
 }
 
-#apply-btn {
+#tw-link-btn, #apply-btn{
   display: none;
+  width: 150px;
+}
+
+#apply-btn{
   position: relative;
-  width:120px;
   left: 50%;
-  margin-left:-60px;
-  margin-bottom: 1em;
-  margin-top: 1em;
+  margin-left: -225px;
 }
 
 #toolbox{
