@@ -673,7 +673,7 @@ function update_points(p) {
       var w = visu.options.width;
       var h = visu.options.height;
       return String.concat(x-w,",",y-h,", ",x+2*w,",",y-h,", ",x+2*w,",",y+3*h,", ",x-w,",",y+3*h);
-        }
+  }
         
         tw2.on('tw:update',function() {
           $('polygon').each(function(i,p) {
@@ -706,7 +706,7 @@ function update_points(p) {
           o_attr.end = $('#add_TimeStamp').val();
           if(controle_champsobligatoire("add_type")==false)
           {
-           return false;
+           	return false;
          }
          else
          {
@@ -716,16 +716,15 @@ function update_points(p) {
              o_attr.attributes[$(this).attr("Id")]=$('#select_interaction_add'+$('#add_type').val()+$(this).attr("Id")).val();
            }
          });
-
           trace_Preview.create_obsel(o_attr); 
-          alert(count);
           obsels_source_add.push({
               idObs : 0,//getid
               hasbegin : o_attr.begin,
               hasend : o_attr.end,
               type : o_attr.type,
-              attributes : o_attr.attributes 
+              attributes : o_attr.attributes
             });
+
           Transformation_Interaction.push({
             id_interaction : i,
             date : date,
