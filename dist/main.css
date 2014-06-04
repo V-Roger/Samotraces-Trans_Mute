@@ -30,6 +30,7 @@ min-width:620px;
 
 .thumbnail {
   margin-top:20px;
+  padding-top: 30px;
   min-height:350px;
   width:100%;
 }
