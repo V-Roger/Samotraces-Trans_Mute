@@ -36,7 +36,8 @@
 <body>
 
   <div class="container-fluid">
-
+  
+<!--NAV BAR -->
     <div class="container-fluid" style="height: 60px;">
       <div class="navbar navbar-fixed-top" role="navigation">
         <div class="container-fluid" style="position: relative; height: 100%; padding: 0; margin: 0; border-bottom: 1px solid #ddd;">
@@ -77,13 +78,14 @@
         </div>
       </div>
     </div>
+<!--END - NAVBAR-->
 
+<!--TOP HALF : TRACES DISPLAY-->
     <div id="traces" class="container-fluid">
-      <!-- top half : traces display-->
       <div class="row full-height">
 
         <div class="col-md-2">
-          <!-- togglable menu-->
+          <!-- Traces menu : side bar for full screen / togglable menu for responsive-->
           <div class="navbar-header nav_traces_header collapse_header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav_traces_collapse">
               <span class="sr-only">Toggle navigation</span>
@@ -115,8 +117,9 @@
             </ul>
           </div>
         </div>
-        <!-- end togglable menu-->
+        <!-- end side bar / togglable menu-->
 
+        <!--traces display -->
         <div id="row_traces" class="col-md-10 bg-grey traces_row">
           <h4 id="traces_header">Charger Trace</h4>
           <div id="clef"></div>
@@ -141,7 +144,8 @@
           <div id="trace-preview-widget"></div>
           <div id="scale2"></div>
           <div id="interaction-liste"></div>
-
+          
+          <!--transformations-->
           <fieldset id="transformation_list">
             <legend><b>Liste des transformations</b>
             </legend>
@@ -158,16 +162,16 @@
         </div>
       </div>
     </div>
-    <!-- end top half-->
+<!-- END TOP HALF-->
 
     <div class="clearfix"></div>
 
+<!-- BOTTOM HALF - TOOLBOX AND SUGGESTIONS -->
     <div id="toolbox" class="container-fluid">
-      <!-- bottom half-->
       <div class="row full-height">
 
+          <!-- Toolbox menu : side bar for full screen / togglable menu for responsive -->
         <div class="col-md-2">
-          <!-- togglable toolbox menu-->
           <div class="navbar-header nav_tools_header collapse_header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav_tools_collapse">
               <span class="sr-only">Toggle navigation</span>
@@ -192,11 +196,13 @@
             </ul>
           </div>
         </div>
-        <!-- end togglable toolbox menu-->
+        <!-- end side bar / togglable menu-->
 
 
-        <!-- ADD OBSEL TOOL -->
+      <!-- ADD OBSEL TOOL -->
         <div id="row_add" class="col-md-10 full-height" style="padding-top: 10px; text-align: center; ">
+          
+          <!-- Obsel type -->
           <div class="col-md-3 step">
             <div class="row">
               <div class="progress-bar progress-bar-undone" style="width: 100%;">
@@ -212,6 +218,7 @@
               </div>
             </div>
           </div>
+          <!-- Timestamp -->
           <div class="col-md-1 step">
             <div class="row">
               <div class="progress-bar progress-bar-undone" style="width: 100%;">
@@ -225,6 +232,7 @@
               </div>
             </div>
           </div>
+          <!-- Attributes -->
           <div class="col-md-7 step">
             <div class="row">
               <div class="progress-bar progress-bar-undone" style="width: 100%;">
@@ -235,10 +243,11 @@
               <div class="col-md-12">
                 <br>
                 <div id="attrs"></div>
-                <div id="skip-attrs1">J'ai fini</div>
+                <div id="skip-attrs1">J'ai fini</div> <!-- Skipping optional attributes - half screen accordion only -->
               </div>
             </div>
           </div>
+          <!-- Confirm add ! -->
           <div class="col-md-1 step">
             <div class="row">
               <div class="progress-bar progress-bar-undone" style="width: 100%;">
@@ -254,11 +263,11 @@
             </div>
           </div>
         </div>
-        <!-- row add -->
+       <!-- END - ADD OBSEL -->
 
-        <!-- REPLACE OBSEL(S) SYSTEM -->
+      <!-- REPLACE OBSEL(S) SYSTEM -->
         <div id="row_replace" class="col-md-10 full-height" style="padding-top: 10px; text-align: center; ">
-          <!-- display the selected trace -->
+          <!-- selected obsel -->
           <div class="col-md-1 step step-select">
             <div class="row">
               <div class="progress-bar progress-bar-undone" style="width: 100%;">
@@ -277,7 +286,7 @@
             </div>
           </div>
 
-          <!-- replacement choice -->
+          <!-- replacement type -->
           <div class="col-md-2 step step-choice">
             <div class="row">
               <div class="progress-bar progress-bar-undone" style="width: 100%;">
@@ -309,7 +318,7 @@
             </div>
           </div>
 
-          <!-- attribut -->
+          <!-- attributes -->
           <div class="col-md-5 step step-attribute">
             <div class="row">
               <div class="progress-bar progress-bar-undone" style="width: 100%;">
@@ -320,7 +329,7 @@
               <div class="col-md-12">
                 <br>
                 <div id="attrs_replace"></div>
-                <div id="skip-attrs2">J'ai fini</div>
+                <div id="skip-attrs2">J'ai fini</div><!-- Skipping optional attributes - half screen accordion only -->
               </div>
             </div>
           </div>
@@ -339,7 +348,7 @@
                 <div id="suggestion-replace">
                   <!-- the checkbox element will be appended by the jQuery function in too_ui.js-->
                 </div>
-                <div id="skip-suggestion">Non merci</div>
+                <div id="skip-suggestion">Non merci</div><!-- Skipping suggestion - half screen accordion only -->
               </div>
             </div>
           </div>
@@ -362,12 +371,12 @@
             </div>
           </div>
         </div>
-        <!-- row replacement-->
+      <!-- END - REPLACE-->
 
 
-        <!-- FUSION OBSEL(S) SYSTEM -->
+      <!-- FUSION OBSEL(S) SYSTEM -->
         <div id="row_fusion" class="col-md-10 full-height" style="padding-top: 10px; text-align: center; ">
-          <!-- display the selected trace -->
+          <!-- display the selected obsel -->
           <div class="col-md-1 step step-select">
             <div class="row">
               <div class="progress-bar progress-bar-undone" style="width: 100%;">
@@ -386,7 +395,7 @@
             </div>
           </div>
 
-          <!-- replacement choice -->
+          <!-- obsel type -->
           <div class="col-md-2 step step-choice">
             <div class="row">
               <div class="progress-bar progress-bar-undone" style="width: 100%;">
@@ -418,7 +427,7 @@
             </div>
           </div>
 
-          <!-- attribut -->
+          <!-- attributes -->
           <div class="col-md-5 step step-attribute">
             <div class="row">
               <div class="progress-bar progress-bar-undone" style="width: 100%;">
@@ -450,7 +459,7 @@
             </div>
           </div>
 
-          <!-- submit button -->
+          <!-- submit fusion ! -->
           <div class="col-md-1 step step-submit">
             <div class="row">
               <div class="progress-bar progress-bar-undone" style="width: 100%;">
@@ -468,10 +477,12 @@
             </div>
           </div>
         </div>
-        <!-- row fusion-->
+        <!-- END - FUSION-->
 
         <!-- DELETE OBSEL(S) SYSTEM -->
         <div id="row_delete" class="col-md-10 full-height" style="padding-top: 10px; text-align: center; ">
+          
+          <!-- Obsel selectionne -->
           <div class="col-md-4 step">
             <div class="row">
               <div class="progress-bar progress-bar-undone" style="width: 100%;">
@@ -490,7 +501,7 @@
             </div>
           </div>
 
-          <!-- delete obsel suggestion -->
+          <!-- suggestion -->
           <div class="col-md-4 step step-suggest">
             <div class="row">
               <div class="progress-bar progress-bar-undone" style="width: 100%;">
@@ -507,7 +518,7 @@
             </div>
           </div>
 
-          <!-- submit button -->
+          <!-- submit delete ! -->
           <div class="col-md-4 step">
             <div class="row">
               <div class="progress-bar progress-bar-undone" style="width: 100%;">
@@ -525,12 +536,12 @@
             </div>
           </div>
         </div>
-        <!-- row delete -->
+        <!-- END - DELETE -->
       </div>
     </div>
-    <!--toolbox-->
+    <!--END - TOOLBOX-->
   </div>
-  <!--container-fluid-->
+  <!--end-->
 
 <script type="text/javascript">
   function init() {
@@ -736,8 +747,8 @@
           .insert('polygon', "g")
           .attr('points', create_points(obs))
           .attr('stroke-width', '1px')
-          .attr('stroke', '#5a5a5a')
-          .attr('fill', '#ebecf1')
+          .attr('stroke', '#3389d2')
+          .attr('fill', '#99cdff')
           .attr('opacity', '0.3')
           .attr('id', "__OBSEL__" + obs.get_id());
 
