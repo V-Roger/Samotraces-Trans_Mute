@@ -488,6 +488,31 @@ button.navbar-toggle{
 
 }
 
+/*-----Contact Form-----*/
+
+.panel-perso {
+  border-color: #EBECF1;
+}
+.panel-perso > .panel-heading {
+  color: #ffffff;
+  background-color: #5CA1DA;
+  border-color: #EBECF1;
+}
+.panel-perso > .panel-heading + .panel-collapse .panel-body {
+  border-top-color: #EBECF1;
+}
+.panel-perso > .panel-footer + .panel-collapse .panel-body {
+  border-bottom-color: #EBECF1;
+}
+
+.btn-perso {
+  font-size: 1em;
+  padding: 5px 5px;
+  color: #FFF;
+  border:none;
+  background-color: #3389D2;
+  border-radius: 3px;
+}
 
 
  /*-----Widgets------*/
