@@ -30,6 +30,7 @@ min-width:620px;
 
 .thumbnail {
   margin-top:20px;
+  padding-top: 30px;
   min-height:350px;
   width:100%;
 }
@@ -335,7 +336,7 @@ height: 5%;
 }
 
 #traces{
-height: 90t%;
+height: 90%;
 min-height: 50%;
 }
 
@@ -349,24 +350,27 @@ min-height: 50%;
   height: auto;
   min-height: 100%;
   margin-left: -15px;
+  padding-bottom: 15px;
 }
 
 #scale {
   margin-bottom: 1em;
 }
 
-#my-widget2{
-  margin-top: 1em;
+#btns{
+  width: 100%;
+  margin: 1em 0;
 }
 
-#apply-btn {
-  display: none;
+#tw-link-btn, #apply-btn{
+  visibility: hidden;
+  width: 150px;
+}
+
+#apply-btn{
   position: relative;
-  width:120px;
   left: 50%;
-  margin-left:-60px;
-  margin-bottom: 1em;
-  margin-top: 1em;
+  margin-left: -225px;
 }
 
 #toolbox{
@@ -484,6 +488,31 @@ button.navbar-toggle{
 
 }
 
+/*-----Contact Form-----*/
+
+.panel-perso {
+  border-color: #EBECF1;
+}
+.panel-perso > .panel-heading {
+  color: #ffffff;
+  background-color: #5CA1DA;
+  border-color: #EBECF1;
+}
+.panel-perso > .panel-heading + .panel-collapse .panel-body {
+  border-top-color: #EBECF1;
+}
+.panel-perso > .panel-footer + .panel-collapse .panel-body {
+  border-bottom-color: #EBECF1;
+}
+
+.btn-perso {
+  font-size: 1em;
+  padding: 5px 5px;
+  color: #FFF;
+  border:none;
+  background-color: #3389D2;
+  border-radius: 3px;
+}
 
 
  /*-----Widgets------*/
