@@ -898,8 +898,7 @@ importer.on('importtrace:newtrace',function(e) {
               valueattr_obsel_selection + '.png"/>';
           });
           $("#dialog").html(
-            'Voulez vous utiliser le système de suggestion pour la suppression de cet(s) obsel(s) : ' +
-            img + ' ?');
+            'Voulez vous supprimer cet(s) obsel(s) : ' + img + ' uniquement ?');
           var dWidth = $(window).width();
           var dHeight = $(window).height() * 0.5;
           $("#dialog").dialog({
@@ -918,7 +917,7 @@ importer.on('importtrace:newtrace',function(e) {
             },
 
             buttons: {
-              "Oui": function () {
+              "Non, suggérer plus d'obsels": function () {
                 $(this).html(
                   'Voulez vous supprimer tous les obsels de type ?');
                 var div_element = jQuery("<div>", {
@@ -1062,7 +1061,7 @@ importer.on('importtrace:newtrace',function(e) {
 
 
               },
-              "Non": function () {
+              "Oui": function () {
                 obsel_selector.selection.forEach(function (obs) {
                   trace_Preview.remove_obsel(obs);
                   obsel_selector.unselect(obs);
@@ -1197,8 +1196,7 @@ importer.on('importtrace:newtrace',function(e) {
 
             });
             $("#dialog").html(
-              'Voulez vous utiliser le système de suggestion pour la transformation de cet(s) obsel(s)<br>&emsp;' +
-              img + "<br>en :<br>&emsp;" + new_img + "<br>?");
+              'Voulez vous transformer uniquement cet(s) obsel(s)<br>' + img + "<br>en :<br>" + new_img + "<br>?");
             var dWidth = $(window).width();
             var dHeight = $(window).height() * 0.5;
             $("#dialog").dialog({
@@ -1217,7 +1215,7 @@ importer.on('importtrace:newtrace',function(e) {
               },
               buttons: {
 
-                "Oui": function () {
+                "Non, suggérer plus d'obsels": function () {
 
                   $("#dialog").html(
                     'Voulez vous remplacer chaque obsel de type :<br>');
@@ -1546,7 +1544,7 @@ importer.on('importtrace:newtrace',function(e) {
 
                 }, //end of "oui"
 
-                "Non": function () {
+                "Oui": function () {
 
                   obsel_selector.selection.forEach(function (obs) {
 
