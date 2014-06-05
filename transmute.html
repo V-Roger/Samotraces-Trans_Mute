@@ -540,81 +540,95 @@
            $('#replace_type').val("");
            var index=$('#add_type').val();
            var index_replace=$('#replace_type').val();
-                // Create logical objects
+
+           // Mehdi's codes
            //var trace        = new Samotraces.LocalTrace();
            //var trace_Preview = trace.transform(trace.transformations.duplicate); //new Samotraces.LocalTrace();
-           var tw            = new Samotraces.TimeWindow({start: 0,end: 20});
-           var tw2          = new Samotraces.TimeWindow({start: 0,end: 20});
-           var tw3          = new Samotraces.TimeWindow({start: 0,end: 20});
-           var obsel_selector    = new Samotraces.Selector('Obsel','multiple');
-           var obsel_selector_origin   = new Samotraces.Selector('Obsel');
-           var obsel_selector_transformed   = new Samotraces.Selector('Obsel');
+
+           // Three TimeWindows
+           var tw           = new Samotraces.TimeWindow({start: 0,end: 20}); // Original
+           var tw2          = new Samotraces.TimeWindow({start: 0,end: 20});  // Preview
+           var tw3          = new Samotraces.TimeWindow({start: 0,end: 20});  // Transfomed
+
+           // Three Obsel Selectors
+           var obsel_selector               = new Samotraces.Selector('Obsel','multiple');  // this Preview selector: selectable
+           var obsel_selector_origin        = new Samotraces.Selector('Obsel');             // no selectable
+           var obsel_selector_transformed   = new Samotraces.Selector('Obsel');             // no selectable
            
          // Visualisation options
          var options = { 
-           url:  function(o) {
-             var attrs ="";
-             for (var attr in o.attributes)
-             {
-              if(o.attributes[attr]!="")
-              {
-               attrs=attrs+' '+o.attributes[attr];
-             } 
-           }
-           return 'images/'+o.type+attrs+'.png' ;
-         },
-         width: 25,
-         height: 40,
-         y: 0,
-         
-       };
+            url:  function(o) {
+              var attrs ="";
+              for (var attr in o.attributes) {
+                if(o.attributes[attr]!="") {
+                 attrs=attrs+' '+o.attributes[attr];
+                } 
+              }
+              return 'images/'+o.type+attrs+'.png' ;
+            },
+            width: 25,
+            height: 40,
+            y: 0,
+         };
        
-         // Create widgets
-               //var visu_origin = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-origin-widget',trace,tw,options);
-           //var visu = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-preview-widget',trace_Preview,tw2,options);
-           new Samotraces.UI.Widgets.WindowScale('scale',tw);
-           new Samotraces.UI.Widgets.WindowScale('scale2',tw2);
-           new Samotraces.UI.Widgets.WindowScale('scale3',tw3);
+         // Mehdi's codes
+         //var visu_origin = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-origin-widget',trace,tw,options);
+         //var visu = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-preview-widget',trace_Preview,tw2,options);
 
-           var importer = new Samotraces.UI.Widgets.ImportTrace('importer');
-         new Samotraces.UI.Widgets.ImportTrace('importer-transformation');//,trace_Preview);
-new Samotraces.UI.Widgets.ObselInspector('obsel-inspector',obsel_selector_origin);
-new Samotraces.UI.Widgets.ObselInspector('obsel-inspector-transformed',obsel_selector_transformed);
+          // Create widgets
 
-var trace, trace_Preview, trace_Transformed, visu_origin, visu, sync;
+          // scales for three timewidows
+          new Samotraces.UI.Widgets.WindowScale('scale',tw);
+          new Samotraces.UI.Widgets.WindowScale('scale2',tw2);
+          new Samotraces.UI.Widgets.WindowScale('scale3',tw3);
 
-importer.on('importtrace:newtrace',function(e) {
-  delete visu_origin;
-  delete visu;
-  delete trace;
-  delete trace_Preview;
-  delete trace_Transformed;
-  $('#trace-origin-widget').empty();
-  $('#trace-preview-widget').empty();
-  $('#trace-transformed-widget').empty();
-  
-  trace = e.data;
-  trace_Preview = trace.transform(trace.transformations.duplicate);
-  trace_Transformed = trace.transform(trace.transformations.duplicate);
-  visu_origin = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-origin-widget',trace,tw,options);
-  visu = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-preview-widget',trace_Preview,tw2,options);
-  visu_transformed = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-transformed-widget',trace_Transformed,tw2,options);
-  sync = true;
+          // importer
+          var importer = new Samotraces.UI.Widgets.ImportTrace('importer');
+          new Samotraces.UI.Widgets.ImportTrace('importer-transformation');
 
-  $('#importtrans').remove();
-  new Samotraces.UI.Widgets.ImportTrace('importer-transformation',trace_Transformed);
-});
+          // Obsels inspector
+          new Samotraces.UI.Widgets.ObselInspector('obsel-inspector',obsel_selector_origin);
+          new Samotraces.UI.Widgets.ObselInspector('obsel-inspector-transformed',obsel_selector_transformed);
+
+// var trace, trace_Preview, trace_Transformed, visu_origin, visu, sync;
+
+        // After importing a trace
+        importer.on('importtrace:newtrace',function(e) {
+          delete visu_origin;
+          delete visu;
+          delete trace;
+          delete trace_Preview;
+          delete trace_Transformed;
+          $('#trace-origin-widget').empty();
+          $('#trace-preview-widget').empty();
+          $('#trace-transformed-widget').empty();
+          $('#tw-link-btn').removeClass('active');
+          
+
+          // Create three traces
+          trace = e.data;
+          trace_Preview = trace.transform(trace.transformations.duplicate);
+          trace_Transformed = trace.transform(trace.transformations.duplicate);
+
+          // Create display icons for three Traces
+          visu_origin = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-origin-widget',trace,tw,options);
+          visu = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-preview-widget',trace_Preview,tw2,options);
+          visu_transformed = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-transformed-widget',trace_Transformed,tw3,options);
+          
+          $('#importtrans').remove();
+          new Samotraces.UI.Widgets.ImportTrace('importer-transformation',trace_Transformed);
+        });
 
 
 
-        // Select Obsel when clicked
+        // Click on an Obsel of origin trace widget
         $('body').on("click","#trace-origin-widget .Samotraces-obsel",function(e){
          var obsel = $.data(e.target,'Samotraces-data');
          obsel_selector_origin.select(obsel);
          $('#row_traces').height('auto');
        });
 
-        // Select Obsel when clicked
+        // Click on an Obsel of transformed trace widget
         $('body').on("click","#trace-transformed-widget .Samotraces-obsel",function(e){
          var obsel = $.data(e.target,'Samotraces-data');
          obsel_selector_transformed.select(obsel);
@@ -626,20 +640,25 @@ importer.on('importtrace:newtrace',function(e) {
         });
 
         //timewindows Synchronisation
+        if ( $('tw-link-btn').hasClass('active') ) {
+            sync = true;
+        } else {sync = false; }
+
         $('#tw-link-btn').on("click", function(){
           if(sync == true){
             delete visu_transformed;
             $('#trace-transformed-widget').empty();
             visu_transformed = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-transformed-widget',trace_Transformed,tw3,options);
             sync = false;
+            $('#tw-link-btn').removeClass('active');
           }
           else{
             delete visu_transformed;
             $('#trace-transformed-widget').empty();
             visu_transformed = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-transformed-widget',trace_Transformed,tw2,options);
             sync = true;
+            $('#tw-link-btn').addClass('active');
           }
-
         });
 
       $('body').on("click", "#trace-preview-widget .Samotraces-obsel", function (
@@ -656,8 +675,8 @@ importer.on('importtrace:newtrace',function(e) {
         });
         */
 
-      //Apply transformation
-      //WIP !!!!
+      // Apply transformation funciton
+      // Here will distroy the Traces and DisplayIcon objects then re-create.  
       $('body').on("click", "#apply-btn", function (e) {
         if (confirm("Appliquer le changement?") == true) {
           delete visu_transformed;
@@ -674,7 +693,7 @@ importer.on('importtrace:newtrace',function(e) {
           visu = new Samotraces.UI.Widgets.TraceDisplayIcons(
             'trace-preview-widget', trace_Preview, tw2, options);
         
-          $("#apply-btn").prop("disabled", true);
+          $("#apply-btn").prop("disabled", true); // once applied, apply-btn will reset disabled
         }
       });
 
@@ -738,8 +757,6 @@ importer.on('importtrace:newtrace',function(e) {
         });
         $("#img_replace").append(img_element_replace);
         $("#img_delete").append(img_element_delete);
-        //<<
-
       });
 
       obsel_selector.on('selection:remove', function (e) {
@@ -810,6 +827,7 @@ importer.on('importtrace:newtrace',function(e) {
       var date = date_heure();
       var texte = "";
 
+      // Add obsels function
       $("#add-obs").click(function () {
         i++;
         var o_attr = {};
@@ -848,13 +866,15 @@ importer.on('importtrace:newtrace',function(e) {
           document.getElementById('historique').value = texte;
         }
       });
-      ////
+      
+      // Delete Obesls function
       $("#delete-obs").click(function () {
         i++;
         var img = "";
         var attr_obsel_selection = [];
         var obsels_source_delete = [];
 
+        // when Suggestion checked
         if ($('#activer_suggestion').is(':checked') != true) {
           obsel_selector.selection.forEach(function (obs) {
             obsels_source_delete.push({
@@ -1086,6 +1106,8 @@ importer.on('importtrace:newtrace',function(e) {
         }
       });
       //>>suggestion replace
+
+      // Modify Obsels functions
       $("#modify-obs").click(function () {
         i++;
         var img = "";
