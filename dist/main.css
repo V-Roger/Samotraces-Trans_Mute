@@ -363,7 +363,7 @@ min-height: 50%;
 }
 
 #tw-link-btn, #apply-btn{
-  display: none;
+  visibility: hidden;
   width: 150px;
 }
 

@@ -134,7 +134,7 @@
             <button id="tw-link-btn" class="btn btn-default">
               Synchronisation <span class="glyphicon glyphicon-link"> </span>
             </button>
-            <button id="apply-btn" class="btn btn-default">
+            <button id="apply-btn" class="btn btn-default" disabled="disabled">
               Appliquer <span class="glyphicon glyphicon-chevron-up"> </span>
             </button>
           </div>
@@ -621,9 +621,9 @@ importer.on('importtrace:newtrace',function(e) {
          $('#row_traces').height('auto');
        });
 
-      $('#obsel-inspector > span').on("click", function () {
-        $('#row_traces').height('auto');
-      });
+        $('#obsel-inspector > span').on("click", function () {
+          $('#row_traces').height('auto');
+        });
 
         //timewindows Synchronisation
         $('#tw-link-btn').on("click", function(){
@@ -639,7 +639,8 @@ importer.on('importtrace:newtrace',function(e) {
             visu_transformed = new Samotraces.UI.Widgets.TraceDisplayIcons('trace-transformed-widget',trace_Transformed,tw2,options);
             sync = true;
           }
-        })
+
+        });
 
       $('body').on("click", "#trace-preview-widget .Samotraces-obsel", function (
         e) {
@@ -672,6 +673,8 @@ importer.on('importtrace:newtrace',function(e) {
             .duplicate);
           visu = new Samotraces.UI.Widgets.TraceDisplayIcons(
             'trace-preview-widget', trace_Preview, tw2, options);
+        
+          $("#apply-btn").prop("disabled", true);
         }
       });
 
