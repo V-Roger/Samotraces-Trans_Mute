@@ -204,7 +204,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$('#attrs').change(function(){
+	$('#row_add').change(function(){
 		var any = false;
 		var someoptions=false;
 		$("#attrs option:selected").each(function(){
@@ -220,13 +220,13 @@ $(document).ready(function(){
 			}
 		});
 
-		if(any==false){
+		if((any==false) && ($('#row_add .step-choice option:selected').attr("id")!="vide")){
 			$("#add-obs").prop("disabled", false);
 			$("#row_add > .step:nth-child(3) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mediumblue');
 
-			setTimeout(function() {
+			/*setTimeout(function() {
 			$("#row_add > .step:nth-child(4) .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
-			}, 100);
+			}, 100);*/
 			setTimeout(function() {
 				if(($(window).width()<990) && someoptions==false){
 					$("#skip-attrs1").css('display', 'inherit');
@@ -243,7 +243,6 @@ $(document).ready(function(){
 	//Replace_Bar
 		$('#img_replace').change(function(){
 		var element=$("#replace_1");
-		alert(element.length);
 			if(element.length>0) {
 				$("#row_replace > .step:nth-child(1) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mauve');
 				$("#row_replace > .step:nth-child(2) .progress-bar").trigger("click");
@@ -252,8 +251,8 @@ $(document).ready(function(){
 			}
 		});
 
-		$('.step-choice').change(function(){
-		if ($('.step-choice option:selected').attr("id")!="vide"){
+		$('#row_replace .step-choice').change(function(){
+		if ($('#row_replace .step-choice option:selected').attr("id")!="vide"){
 			$("#row_replace > .step:nth-child(2) .progress-bar").removeClass('progress-bar-undone').addClass('bg-purple');
 			$("#row_replace > .step:nth-child(3) .progress-bar").trigger("click");
 		} else {
@@ -270,7 +269,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$('#attrs_replace').change(function(){
+	$('#row_replace').change(function(){
 		var any = false;
 		var someoptions2=false;
 		$("#attrs_replace option:selected").each(function(){
@@ -278,19 +277,19 @@ $(document).ready(function(){
 				someoptions2=true;
 			}
 			if(!$(this).hasClass("facultatif")) {
-				if($(this).attr("id")=="empty"){
-			        any = true;
-			    } else {
-			    	any = false;
-			    }
-			}
+					if($(this).attr("id")=="empty") {
+				        any = true;
+				    } else {
+				    	any = false;
+				    }
+				}
 		});
 
-		if(any==false){
+		if((any==false) && ($('#row_replace .step-choice option:selected').attr("id")!="vide")){
 			$("#row_replace > .step:nth-child(4) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mediumblue');
-			setTimeout(function() {
+			/*setTimeout(function() {
 			$("#row_replace > .step:nth-child(7) .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
-			}, 100);
+			}, 100);*/
 			setTimeout(function() {
 				if(($(window).width() <990) && someoptions2==false){
 					$("#skip-attrs2").css('display', 'inherit');
@@ -302,6 +301,48 @@ $(document).ready(function(){
 		} else {
 			$("#row_replace > .step:nth-child(4) .progress-bar").removeClass('bg-mediumblue').addClass('progress-bar-undone');
 			$("#skip-attrs2").css('display', 'none');
+		}
+	});
+
+	$('#row_replace').change(function(){
+		var testprogressbar=0;
+
+		$("#row_replace .progress-bar").each( function(){
+
+			if(!($(this).parent().parent().hasClass("step-suggest")||$(this).parent().parent().hasClass("step-submit")||$(this).parent().parent().hasClass("step-select"))) {
+				
+				if(/.progress-bar-undone/.test($(this).attr("class"))) {
+					testprogressbar--;
+				}
+				else {
+					testprogressbar++;
+				}
+			}
+		});
+		if (testprogressbar==3) {
+		$("#row_replace .step-submit .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
+		} else {
+		$("#row_replace .step-submit .progress-bar").removeClass('bg-green').addClass('progress-bar-undone');	
+		}
+	});
+
+	$('#row_add').change(function(){
+		var testprogressbar=false;
+		$("#row_add .progress-bar").each( function(){
+
+			if(!($(this).parent().parent().hasClass("step-suggest")||$(this).parent().parent().hasClass("step-submit")||$(this).parent().parent().hasClass("step-select"))) {
+				if(/bg[^\s]+/.test($(this).attr("class"))) {
+					testprogressbar = true;
+				}
+				else {
+					testprogressbar = false;
+				}
+			}
+		});
+		if (testprogressbar==true) {
+		$("#row_add .step-submit .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
+		} else {
+		$("#row_add .step-submit .progress-bar").removeClass('bg-green').addClass('progress-bar-undone');	
 		}
 	});
 
