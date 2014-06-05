@@ -20,8 +20,7 @@ $(document).ready(function(){
 								$('#importer').show();
 								$('#transformation_list').hide();
 								$('#importer-transformation').hide();
-								$('#apply-btn').hide();
-								$('#tw-link-btn').hide();
+								$('#apply-btn, #tw-link-btn').css('visibility', 'hidden');
 								if(toolbox_vis)
 								{
 									$('#toolbox').hide();
@@ -38,8 +37,7 @@ $(document).ready(function(){
 										$('#importer').hide();
 										$('#transformation_list').hide();
 										$('#importer-transformation').hide();
-										$('#apply-btn').show();
-										$('#tw-link-btn').show();
+										$('#apply-btn, #tw-link-btn').css('visibility', 'visible');
 										if(!toolbox_vis)
 										{
 											$('#toolbox').show();
@@ -56,9 +54,7 @@ $(document).ready(function(){
 									$('#importer').hide();
 									$('#transformation_list').hide();
 									$('#importer-transformation').hide();
-									$('#apply-btn').hide();
-									$('#tw-link-btn').hide();
-									$('#tw-link-btn').hide();
+									$('#apply-btn, #tw-link-btn').css('visibility', 'hidden');
 									if(toolbox_vis)
 									{
 										$('#toolbox').hide();
@@ -75,8 +71,7 @@ $(document).ready(function(){
 											$('#importer-transformation').show();
 											$('#importer').hide();
 											$('#transformation_list').hide();
-											$('#apply-btn').hide();
-											$('#tw-link-btn').hide();
+											$('#apply-btn, #tw-link-btn').css('visibility', 'hidden');
 											if(toolbox_vis)
 											{
 												$('#toolbox').hide();
@@ -93,8 +88,7 @@ $(document).ready(function(){
 								$('#transformation_list').show();
 								$('#importer').hide();
 								$('#importer-transformation').hide();
-								$('#apply-btn').hide();
-								$('#tw-link-btn').hide();
+								$('#apply-btn, #tw-link-btn').css('visibility', 'hidden');
 								if(toolbox_vis)
 								{
 									$('#toolbox').hide();
@@ -110,8 +104,7 @@ $(document).ready(function(){
 												$('#obsel-inspector-transformed').css('visibility','visible');												
 												$('#transformation_list').show();
 												$('#importer').hide();
-												$('#apply-btn').hide();
-												$('#tw-link-btn').hide();
+												$('#apply-btn, #tw-link-btn').css('visibility', 'hidden');
 												if(toolbox_vis)
 												{
 													$('#toolbox').hide();
@@ -121,6 +114,18 @@ $(document).ready(function(){
 
 			default : break;
 		}
+	});
+
+	$('#delete-obs').click(function(){
+	  $("#apply-btn").prop("disabled", false);
+	});
+
+	$('#add-obs').click(function(){
+	  $("#apply-btn").prop("disabled", false);
+	});
+
+	$('#modify-obs').click(function(){
+	  $("#apply-btn").prop("disabled", false);
 	});
 
 	$('#nav_pills > li > a').click(function(){
