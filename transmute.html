@@ -645,6 +645,8 @@
          $('#row_traces').height('auto');
        });
 
+
+        //Close the obsel inspectors
         $('#obsel-inspector > span').on("click", function () {
           $('#row_traces').height('auto');
         });
@@ -654,6 +656,8 @@
             sync = true;
         } else {sync = false; }
 
+        //checks if the synchronisation is on or off and toggles it
+        //resets the visualisation using the corresponding time windows
         $('#tw-link-btn').on("click", function(){
           if(sync == true){
             delete visu_transformed;
@@ -733,6 +737,7 @@
     return String.concat(x+3,",10,",x+8,",15,",x+13,",10");
   }*/
 
+  		//Blue rectangle background
         function create_points(obs) {
           var x = visu.options.x(obs);
           var y = visu.options.y;
@@ -743,7 +748,7 @@
         }
 
         visu.svg
-          .insert('polygon', "g")
+          .insert('polygon', "g")//insert before the selected obsel
           .attr('points', create_points(obs))
           .attr('stroke-width', '1px')
           .attr('stroke', '#3389d2')

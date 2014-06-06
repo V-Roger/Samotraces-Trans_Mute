@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+	/*  Widgets display toggle according to the active menu item
+		Most use the display property, some use the visibility property to have the rendering done at window initialisation and the JavaScript functional
+	*/
+
 	$('#nav_traces > li > a').click(function(){
 
 		var id = $(this).attr('id');
@@ -9,6 +13,7 @@ $(document).ready(function(){
 
 		var toolbox_vis = $('#toolbox').css('display') == 'block' ? true : false;
 
+		//switch on the menu item id
 		switch (id)
 		{
 			case 'load_trace' : $('#traces_header').html('Charger trace');
@@ -115,7 +120,8 @@ $(document).ready(function(){
 			default : break;
 		}
 	});
-
+	
+	//enable the apply button when a transformation is made
 	$('#delete-obs').click(function(){
 	  $("#apply-btn").prop("disabled", false);
 	});
@@ -128,6 +134,11 @@ $(document).ready(function(){
 	  $("#apply-btn").prop("disabled", false);
 	});
 
+
+	/*  Toolbox rows display according to the active toolbox menu item
+		Rows are shown and hidden
+		Suggestion triggers are instanciated
+	*/
 	$('#nav_pills > li > a').click(function(){
 
 			var id = $(this).attr('id');
