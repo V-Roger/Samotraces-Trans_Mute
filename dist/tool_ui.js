@@ -179,14 +179,11 @@ $(document).ready(function(){
 		});
 
 
-	//ProgressBar
-	/*
-	pour la fonction essai avec tableau associatif pour la couleur     $('#my_select option:selected').attr('id');
-	*/
+/*-------------------------------------------ProgressBar-------------------------------------------*/
 
-
+	
+	/* Row Add Obsel col Type*/
 	$('#add_type').change(function(){
-		
 		if ($('#add_type option:selected').attr("id")!="vide"){
 			$("#row_add > .step:nth-child(1) .progress-bar").removeClass('progress-bar-undone').addClass('bg-purple');
 			$("#row_add > .step:nth-child(2) .progress-bar").trigger("click");
@@ -195,6 +192,7 @@ $(document).ready(function(){
 		}
 	});
 
+	/* Row Add Obsel col TimeStamp*/
 	$("#add_TimeStamp[type='text']").change(function(){
 		if ($("#add_TimeStamp[type='text']").val()!=""){
 			$("#row_add > .step:nth-child(2) .progress-bar").removeClass('progress-bar-undone').addClass('bg-darkblue');
@@ -204,6 +202,7 @@ $(document).ready(function(){
 		}
 	});
 
+	/* Row Add Obsel col Attributs*/
 	$('#row_add').change(function(){
 		var any = false;
 		var someoptions=false;
@@ -219,14 +218,9 @@ $(document).ready(function(){
 			    }
 			}
 		});
-
 		if((any==false) && ($('#row_add .step-choice option:selected').attr("id")!="vide")){
 			$("#add-obs").prop("disabled", false);
 			$("#row_add > .step:nth-child(3) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mediumblue');
-
-			/*setTimeout(function() {
-			$("#row_add > .step:nth-child(4) .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
-			}, 100);*/
 			setTimeout(function() {
 				if(($(window).width()<990) && someoptions==false){
 					$("#skip-attrs1").css('display', 'inherit');
@@ -240,7 +234,27 @@ $(document).ready(function(){
 		}
 	});
 
-	//Replace_Bar
+	/* Row Add Obsel col Submit*/
+	$('#row_add').change(function(){
+		var testprogressbar=false;
+		$("#row_add .progress-bar").each( function(){
+			if(!($(this).parent().parent().hasClass("step-suggest")||$(this).parent().parent().hasClass("step-submit")||$(this).parent().parent().hasClass("step-select"))) {
+				if(/bg[^\s]+/.test($(this).attr("class"))) {
+					testprogressbar = true;
+				}
+				else {
+					testprogressbar = false;
+				}
+			}
+		});
+		if (testprogressbar==true) {
+		$("#row_add .step-submit .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
+		} else {
+		$("#row_add .step-submit .progress-bar").removeClass('bg-green').addClass('progress-bar-undone');	
+		}
+	});
+
+	/* Row Replace Obsel col Selection*/
 		$('#img_replace').change(function(){
 		var element=$("#replace_1");
 			if(element.length>0) {
@@ -251,6 +265,7 @@ $(document).ready(function(){
 			}
 		});
 
+	/* Row Replace Obsel col Type*/
 		$('#row_replace .step-choice').change(function(){
 		if ($('#row_replace .step-choice option:selected').attr("id")!="vide"){
 			$("#row_replace > .step:nth-child(2) .progress-bar").removeClass('progress-bar-undone').addClass('bg-purple');
@@ -260,6 +275,7 @@ $(document).ready(function(){
 		}
 	});
 
+	/* Row Replace Obsel col TimeStamp*/
 		$("#replace_TimeStamp[type='text']").change(function(){
 		if ($("#replace_TimeStamp[type='text']").val()!=""){
 			$("#row_replace > .step:nth-child(3) .progress-bar").removeClass('progress-bar-undone').addClass('bg-darkblue');
@@ -269,6 +285,7 @@ $(document).ready(function(){
 		}
 	});
 
+	/* Row Replace Obsel col Attributs*/
 	$('#row_replace').change(function(){
 		var any = false;
 		var someoptions2=false;
@@ -284,12 +301,8 @@ $(document).ready(function(){
 				    }
 				}
 		});
-
 		if((any==false) && ($('#row_replace .step-choice option:selected').attr("id")!="vide")){
 			$("#row_replace > .step:nth-child(4) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mediumblue');
-			/*setTimeout(function() {
-			$("#row_replace > .step:nth-child(7) .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
-			}, 100);*/
 			setTimeout(function() {
 				if(($(window).width() <990) && someoptions2==false){
 					$("#skip-attrs2").css('display', 'inherit');
@@ -304,6 +317,7 @@ $(document).ready(function(){
 		}
 	});
 
+	/* Row Replace Obsel col Attributs*/
 	$('#row_replace').change(function(){
 		var testprogressbar=0;
 
@@ -326,26 +340,8 @@ $(document).ready(function(){
 		}
 	});
 
-	$('#row_add').change(function(){
-		var testprogressbar=false;
-		$("#row_add .progress-bar").each( function(){
 
-			if(!($(this).parent().parent().hasClass("step-suggest")||$(this).parent().parent().hasClass("step-submit")||$(this).parent().parent().hasClass("step-select"))) {
-				if(/bg[^\s]+/.test($(this).attr("class"))) {
-					testprogressbar = true;
-				}
-				else {
-					testprogressbar = false;
-				}
-			}
-		});
-		if (testprogressbar==true) {
-		$("#row_add .step-submit .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
-		} else {
-		$("#row_add .step-submit .progress-bar").removeClass('bg-green').addClass('progress-bar-undone');	
-		}
-	});
-
+	/* Row Replace Obsel col Suggestion*/
 	$(".step-suggest").change(function(){
 			if($("#activer_suggestion").is(':checked')==true) {
 				$("#row_replace > .step:nth-child(6) .progress-bar").removeClass('progress-bar-undone').addClass('bg-lightblue');
@@ -355,8 +351,7 @@ $(document).ready(function(){
 			}
 	});
 
-	//Delete Bar
-
+	/* Row Delete Obsel col Suggestion*/
 	$(".step-suggest").change(function(){
 			if($("#activer_suggestion").is(':checked')==true) {
 				$("#row_delete > .step:nth-child(2) .progress-bar").removeClass('progress-bar-undone').addClass('bg-lightblue');
@@ -365,9 +360,7 @@ $(document).ready(function(){
 			}
 	});
 
-
-	//Buttons Clear
-
+	/* Clear ProgressBar when Push Button Go !*/
 	$("#add-obs").click(function(){
 		    $("#row_add .progress-bar").each( function(){
   				this.className = this.className.replace(/bg[^\s]+/, 'progress-bar-undone');
