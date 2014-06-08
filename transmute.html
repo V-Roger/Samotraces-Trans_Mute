@@ -365,7 +365,7 @@
                 <br>
                 <br>
                 <br>
-                <button type="submit" class="btn btn-default" id="modify-obs" disabled="disabled">Go !</button>
+                <button type="submit" class="btn btn-default" id="fusion-obs" disabled="disabled">Go !</button>
               </div>
             </div>
           </div>
@@ -385,7 +385,7 @@
             <div class="row border-right">
               <div class="col-md-12">
                 <br>
-                <div id="img_replace"></div>
+                <div id="img_fusion"></div>
                 <br>
                 <br>
                 <br>
@@ -404,9 +404,9 @@
             <div class="row border-right">
               <div class="col-md-12">
                 <br>
-                <SELECT id="replace_type" size="8" name="champ">
+                <SELECT id="fusion_type" size="8" name="champ">
                 </SELECT>
-                <span id="error_replace_type" color="#fba"></span>
+                <span id="error_fusion_type" color="#fba"></span>
               </div>
             </div>
           </div>
@@ -436,7 +436,7 @@
             <div class="row border-right">
               <div class="col-md-12">
                 <br>
-                <div id="attrs_replace"></div>
+                <div id="attrs_fusion"></div>
               </div>
             </div>
           </div>
@@ -471,7 +471,7 @@
                 <br>
                 <br>
                 <br>
-                <button type="submit" class="btn btn-default" id="modify-obs" disabled="disabled">Go !</button>
+                <button type="submit" class="btn btn-default" id="fusionner-obs" disabled="disabled">Go !</button>
               </div>
             </div>
           </div>
@@ -717,6 +717,8 @@
         //ProgressBar Object Select
         $("#row_replace > .step:nth-child(1) .progress-bar").removeClass(
           'progress-bar-undone').addClass('bg-mauve');
+        $("#row_fusion > .step:nth-child(1) .progress-bar").removeClass(
+          'progress-bar-undone').addClass('bg-mauve');
         $("#row_delete > .step:nth-child(1) .progress-bar").removeClass(
           'progress-bar-undone').addClass('bg-mauve');
         setTimeout(function () {
@@ -770,7 +772,13 @@
           src: 'images/' + obs.type + '' + valueattr_obsel_selection +
             '.png',
         });
+        var img_element_fusion = jQuery("<img>", {
+          id: 'replace_' + obs.id,
+          src: 'images/' + obs.type + '' + valueattr_obsel_selection +
+            '.png',
+        });
         $("#img_replace").append(img_element_replace);
+        $("#img_fusion").append(img_element_fusion);
         $("#img_delete").append(img_element_delete);
       });
 
@@ -778,8 +786,11 @@
 
         if (obsel_selector.is_empty()) {
           $("#delete-obs").prop("disabled", true);
+          $("#fusion-obs").prop("disabled", true);
           $("#modify-obs").prop("disabled", true);
           $("#row_replace > .step:nth-child(1) .progress-bar").removeClass(
+            'bg-mauve').addClass('progress-bar-undone');
+          $("#row_fusion > .step:nth-child(1) .progress-bar").removeClass(
             'bg-mauve').addClass('progress-bar-undone');
           $("#row_delete > .step:nth-child(1) .progress-bar").removeClass(
             'bg-mauve').addClass('progress-bar-undone');
@@ -1653,6 +1664,18 @@
         } else {
           $('#ul_interaction_replace' + index_replace).remove();
           list_attributesvalue(trace, "attrs_replace", type,
+            "ul_interaction_replace", "select_interaction_replace");
+          index_replace = type;
+        }
+      });
+      $('#fusion_type').change(function () {
+        var type = $('#fusion_type').val();
+        if (type == "") {
+          $('#ul_interaction_replace' + index_replace).remove();
+          index_replace = type;
+        } else {
+          $('#ul_interaction_replace' + index_replace).remove();
+          list_attributesvalue(trace, "attrs_fusion", type,
             "ul_interaction_replace", "select_interaction_replace");
           index_replace = type;
         }

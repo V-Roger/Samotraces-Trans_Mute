@@ -154,7 +154,7 @@ $(document).ready(function(){
 									$('#row_delete').hide();
 									$('#row_fusion').hide();
 									break;
-
+									
 				case 'transformer_obsel' : 
 									$('#row_add').hide();
 									$('#row_replace').show();
@@ -359,6 +359,103 @@ $(document).ready(function(){
 				$("#row_replace > .step:nth-child(7) .progress-bar").trigger("click");
 			} else {
 				$("#row_replace > .step:nth-child(6) .progress-bar").removeClass('bg-lightblue').addClass('progress-bar-undone');
+			}
+	});
+
+	/* Row fusion Obsel col Selection*/
+		$('#img_fusion').change(function(){
+		var element=$("#fusion_1");
+			if(element.length>0) {
+				$("#row_fusion > .step:nth-child(1) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mauve');
+				$("#row_fusion > .step:nth-child(2) .progress-bar").trigger("click");
+			} else {
+				$("#row_fusion > .step:nth-child(1) .progress-bar").removeClass('bg-mauve').addClass('progress-bar-undone');	
+			}
+		});
+
+	/* Row fusion Obsel col Type*/
+		$('#row_fusion .step-choice').change(function(){
+		if ($('#row_fusion .step-choice option:selected').attr("id")!="vide"){
+			$("#row_fusion > .step:nth-child(2) .progress-bar").removeClass('progress-bar-undone').addClass('bg-purple');
+			$("#row_fusion > .step:nth-child(3) .progress-bar").trigger("click");
+		} else {
+			$("#row_fusion > .step:nth-child(2) .progress-bar").removeClass('bg-purple').addClass('progress-bar-undone');
+		}
+	});
+
+	/* Row fusion Obsel col TimeStamp*/
+		$("#fusion_TimeStamp[type='text']").change(function(){
+		if ($("#fusion_TimeStamp[type='text']").val()!=""){
+			$("#row_fusion > .step:nth-child(3) .progress-bar").removeClass('progress-bar-undone').addClass('bg-darkblue');
+			$("#row_fusion > .step:nth-child(4) .progress-bar").trigger("click");
+		} else {
+			$("#row_fusion > .step:nth-child(3) .progress-bar").removeClass('bg-darkblue').addClass('progress-bar-undone');
+		}
+	});
+
+	/* Row fusion Obsel col Attributs*/
+	$('#row_fusion').change(function(){
+		var any = false;
+		var someoptions2=false;
+		$("#attrs_fusion option:selected").each(function(){
+			if($(this).hasClass("facultatif") && $(this).attr("id")=="empty") {
+				someoptions2=true;
+			}
+			if(!$(this).hasClass("facultatif")) {
+					if($(this).attr("id")=="empty") {
+				        any = true;
+				    } else {
+				    	any = false;
+				    }
+				}
+		});
+		if((any==false) && ($('#row_fusion .step-choice option:selected').attr("id")!="vide")){
+			$("#row_fusion > .step:nth-child(4) .progress-bar").removeClass('progress-bar-undone').addClass('bg-mediumblue');
+			setTimeout(function() {
+				if(($(window).width() <990) && someoptions2==false){
+					$("#skip-attrs2").css('display', 'inherit');
+				} else {
+					$("#row_fusion > .step:nth-child(6) .progress-bar").trigger("click");
+				}
+			}, 100);
+
+		} else {
+			$("#row_fusion > .step:nth-child(4) .progress-bar").removeClass('bg-mediumblue').addClass('progress-bar-undone');
+			$("#skip-attrs2").css('display', 'none');
+		}
+	});
+
+	/* Row fusion Obsel col Attributs*/
+	$('#row_fusion').change(function(){
+		var testprogressbar=0;
+
+		$("#row_fusion .progress-bar").each( function(){
+
+			if(!($(this).parent().parent().hasClass("step-suggest")||$(this).parent().parent().hasClass("step-submit")||$(this).parent().parent().hasClass("step-select"))) {
+				
+				if(/.progress-bar-undone/.test($(this).attr("class"))) {
+					testprogressbar--;
+				}
+				else {
+					testprogressbar++;
+				}
+			}
+		});
+		if (testprogressbar==3) {
+		$("#row_fusion .step-submit .progress-bar").removeClass('progress-bar-undone').addClass('bg-green');
+		} else {
+		$("#row_fusion .step-submit .progress-bar").removeClass('bg-green').addClass('progress-bar-undone');	
+		}
+	});
+
+
+	/* Row fusion Obsel col Suggestion*/
+	$(".step-suggest").change(function(){
+			if($("#activer_suggestion").is(':checked')==true) {
+				$("#row_fusion > .step:nth-child(5) .progress-bar").removeClass('progress-bar-undone').addClass('bg-lightblue');
+				$("#row_fusion > .step:nth-child(6) .progress-bar").trigger("click");
+			} else {
+				$("#row_fusion > .step:nth-child(5) .progress-bar").removeClass('bg-lightblue').addClass('progress-bar-undone');
 			}
 	});
 

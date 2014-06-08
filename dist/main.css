@@ -409,6 +409,25 @@ float:left;
 float:right;
 }
 
+#attrs ul, #attrs_fusion ul{
+margin:0;
+padding:0;
+list-style-type: none;
+}
+
+#attrs li, #attrs_fusion li{
+clear:both;
+width:100%;
+}
+
+#attrs label, #attrs_fusion label{
+float:left;
+}
+
+#attrs select, #attrs_fusion select{
+float:right;
+}
+
 
 
 .nav_traces_header, .nav_tools_header{

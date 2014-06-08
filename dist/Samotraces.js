@@ -2408,6 +2408,7 @@ Samotraces.UI.Widgets.ImportTrace.prototype = {
 		//>>mehdi
         list_typeobsel(trace,'add_type');
 		list_typeobsel(trace,'replace_type');
+		list_typeobsel(trace,'fusion_type');
        //<<mehdi generate list obsel type for any trace
 		
 		}
