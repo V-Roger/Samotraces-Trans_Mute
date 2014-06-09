@@ -353,12 +353,12 @@ $(document).ready(function(){
 
 
 	/* Row Replace Obsel col Suggestion*/
-	$(".step-suggest").change(function(){
-			if($("#activer_suggestion").is(':checked')==true) {
-				$("#row_replace > .step:nth-child(6) .progress-bar").removeClass('progress-bar-undone').addClass('bg-lightblue');
+	$("#row_replace .step-suggest").change(function(){
+			if($("#row_replace #activer_suggestion").is(':checked')==true) {
+				$("#row_replace > .step-suggest .progress-bar").removeClass('progress-bar-undone').addClass('bg-lightblue');
 				$("#row_replace > .step:nth-child(7) .progress-bar").trigger("click");
 			} else {
-				$("#row_replace > .step:nth-child(6) .progress-bar").removeClass('bg-lightblue').addClass('progress-bar-undone');
+				$("#row_replace > .step-suggest .progress-bar").removeClass('bg-lightblue').addClass('progress-bar-undone');
 			}
 	});
 
@@ -450,8 +450,8 @@ $(document).ready(function(){
 
 
 	/* Row fusion Obsel col Suggestion*/
-	$(".step-suggest").change(function(){
-			if($("#activer_suggestion").is(':checked')==true) {
+	$("#row_fusion .step-suggest").change(function(){
+			if($("#row_fusion #activer_suggestion").is(':checked')==true) {
 				$("#row_fusion > .step:nth-child(5) .progress-bar").removeClass('progress-bar-undone').addClass('bg-lightblue');
 				$("#row_fusion > .step:nth-child(6) .progress-bar").trigger("click");
 			} else {
@@ -460,8 +460,8 @@ $(document).ready(function(){
 	});
 
 	/* Row Delete Obsel col Suggestion*/
-	$(".step-suggest").change(function(){
-			if($("#activer_suggestion").is(':checked')==true) {
+	$("#row_delete .step-suggest").change(function(){
+			if($("#row_delete #activer_suggestion").is(':checked')==true) {
 				$("#row_delete > .step:nth-child(2) .progress-bar").removeClass('progress-bar-undone').addClass('bg-lightblue');
 			} else {
 				$("#row_delete > .step:nth-child(2) .progress-bar").removeClass('bg-lightblue').addClass('progress-bar-undone');

@@ -730,6 +730,7 @@
 
         $("#delete-obs").prop("disabled", false);
         $("#modify-obs").prop("disabled", false);
+        $("#fusion-obs").prop("disabled", false);
 
         /*---SELECTED OBSEL VISUALISATION---*/
 
@@ -805,6 +806,7 @@
       obsel_selector.on('selection:empty', function () {
         $("#delete-obs").prop("disabled", true);
         $("#modify-obs").prop("disabled", true);
+        $("#fusion-obs").prop("disabled", true);
         visu.svg.selectAll('polygon').remove();
       });
 
