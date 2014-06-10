@@ -587,3 +587,15 @@ height: 100%;
 #div_type > input[type=checkbox]:first-child{
   margin-left: 0;
 }
+
+#div_successive label{
+  margin-left: 3em;
+}
+
+#div_successive select{
+  margin-left: 1em;
+}
+
+#div_successive label:first-child{
+  margin-left: 0;
+}
