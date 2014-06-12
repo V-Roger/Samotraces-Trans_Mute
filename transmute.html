@@ -988,10 +988,13 @@
                       type: "checkbox",
                       checked: checked,
                     }).appendTo(div_element);
+
                     $('<label>', {
                       id: 'lab' + $(this).attr("Id"),
                       value: $(this).attr("Id"),
                     }).html($(this).attr("Id")).appendTo(div_element);
+
+                    $('<br>').appendTo(div_element);
 
                     $('#dialog').append(div_element);
                     list_attributesvalue(trace, 'div_type', type,
